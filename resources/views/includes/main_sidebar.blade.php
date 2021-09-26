@@ -1,5 +1,5 @@
 <!-- Main sidebar -->
-<div class="sidebar bg-telkom sidebar-light sidebar-main sidebar-expand-lg align-self-start">
+<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start">
 
     <!-- Sidebar content -->
     <div class="sidebar-content">

@@ -41,6 +41,16 @@
 	<script src="{{ asset('assets/global/js/plugins/forms/styling/switch.min.js') }}"></script>
 	<script src="{{ asset('assets/js/components_checkbox_radios.js') }}"></script>
 
+	<script src="{{ asset('assets/global/js/plugins/pickers/pickadate/picker.js') }}"></script>
+	<script src="{{ asset('assets/global/js/plugins/pickers/pickadate/picker.time.js') }}"></script> 
+	<script src="{{ asset('assets/global/js/plugins/pickers/picker_date.js') }}"></script>
+
+	<script src="{{ asset('assets/global/js/demo_pages/form_input_groups.js') }}"></script>
+	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
+
+	<script src="{{ asset('assets/global/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
+	<script src="{{ asset('assets/global/js/plugins/forms/inputs/touchspin.min.js') }}"></script>
+
 	
 
 
@@ -56,11 +66,11 @@
 		}
 		.sidebar-light{
 			background-color: #fff;
-			color: #fff;
+			color: rgb(3, 3, 3);
 		}
 
 		.text-body{
-			color: #f1ebeb!important;
+			color: #000!important;
 		}
 
 		.sidebar-light .nav-sidebar .nav-item-header {
@@ -68,8 +78,13 @@
 		}
 	
 		.sidebar-light .nav-sidebar .nav-link {
-			color: rgba(255, 255, 255, 0.85);
+			color: rgb(20, 20, 20);
 			font-size: 16px;
+		}
+
+		.sidebar-light .nav-sidebar>.nav-item>.nav-link.active {
+			background-color: #e1cccc;
+			color: #ef5350;
 		}
 	</style>
 </head>
@@ -95,6 +110,8 @@
 			<!-- /content area -->
 		</div>
 		<!-- /main content -->
+
+		@include('includes.right_sidebar')
 
 	</div>
 	<!-- /page content -->
