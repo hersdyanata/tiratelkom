@@ -8,22 +8,11 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 
-// use App\Models\TraMedisReservasiModel as Reservasi;
-// use App\Models\TraMedisAntrianHeaderModel as AntrianHeader;
-// use App\Models\TraMedisAntrianItemModel as AntrianItem;
 use App\Models\TraMomModel as MomHeader;
 use App\Models\TraMomTypeModel as MomTypeItem;
 use App\Models\TraMomParticipantModel as MomParticipantItem;
 
 class MomService{
-
-    protected $query_header;
-    protected $data;
-    // public function __construct(){
-    //     $this->query_header = MomHeader::leftjoin('param_medis_jadwal_header', 'jdw_h_id', 'hday_jdw_h_id')
-    //                                 ->leftjoin('master_medis_poli', 'poli_id','jdw_h_poli_id')
-    //                                 ->leftjoin('master_medis_petugas', 'petugas_id', 'hday_petugas_id');
-    // }
 
     public function create_mom($post){
         // simpan transaksi mom header 

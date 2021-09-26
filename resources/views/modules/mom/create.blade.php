@@ -21,7 +21,6 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Title</label>
-                                                {{-- <input type="text" placeholder="Forum" class="form-control" name="title" id="title"> --}}
                                                 <select class="form-control select" name="category_id" id="category_id">
                                                     <option value="">-- Forum --</option>
                                                     @foreach ($dataCategory as $dc)
@@ -151,17 +150,16 @@
             url: "{{ route('mom.store') }}",
             data: $('#form_data').serialize(),
             beforeSend: function(){
-                // small_loader_open('form_data');
+                small_loader_open('form_data');
             },
             success: function (s) {
-                console.log(s);
-                // sw_success_redirect(s, "{{ route('user.index') }}");
+                sw_success_redirect(s, "{{ route('mom.index') }}");
             },
             error: function(e){
                 sw_multi_error(e);
             },
             complete: function(){
-                // small_loader_close('form_data');
+                small_loader_close('form_data');
             }
         });
     }
