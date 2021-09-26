@@ -1,5 +1,5 @@
 <!-- Main sidebar -->
-<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start">
+<div class="sidebar bg-telkom sidebar-light sidebar-main sidebar-expand-lg align-self-start">
 
     <!-- Sidebar content -->
     <div class="sidebar-content">
@@ -9,11 +9,11 @@
             <div class="sidebar-section-body d-flex align-items-center justify-content-center pb-0">
                 <h6 class="sidebar-resize-hide flex-1 mb-0">Navigation</h6>
                 <div>
-                    <button type="button" class="btn btn-outline-light text-body border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
+                    <button type="button" class="btn nav-link text-body border-transparent btn-icon rounded-pill btn-sm sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
                         <i class="icon-transmission"></i>
                     </button>
 
-                    <button type="button" class="btn btn-outline-light text-body border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-main-toggle d-lg-none">
+                    <button type="button" class="btn nav-link text-body border-transparent btn-icon rounded-pill btn-sm sidebar-mobile-main-toggle d-lg-none">
                         <i class="icon-cross2"></i>
                     </button>
                 </div>
@@ -31,7 +31,7 @@
 
                 <div class="sidebar-resize-hide flex-1 ml-3">
                     <div class="font-weight-semibold">{{ Auth::user()->name }}</div>
-                    <div class="font-size-sm line-height-sm text-muted">
+                    <div class="font-size-sm line-height-sm text-white">
                         {{ session('group_name') }}
                     </div>
                 </div>

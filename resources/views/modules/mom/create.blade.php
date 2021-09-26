@@ -115,20 +115,31 @@
                                             </div>
                                         </div> 
                                     </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-danger" id="next_to_agenda" onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                            </div>
+                                        </div> 
+                                    </div>
 
+                                    
+
+                                    <hr>
                                    
 
-                                    {{-- <div class="form-group">
-                                        <label>Agenda</label>
-                                        <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
-                                    </div> --}}
+                                    <div id="agenda">
+                                        <div class="form-group">
+                                            <label>Agenda</label>
+                                            <textarea rows="12" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
+                                        </div>
+                                    </div>
                                 </fieldset>
                             </div>
                         </div>
 
-                        <div class="text-center">
-                            <button type="button" class="btn btn-danger" onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
-                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -141,27 +152,31 @@
 <script>
 
     $('document').ready(function(){
-        
+        $('#agenda').hide();
     });
 
     function simpan_data(){
-        $.ajax({
-            type: "POST",
-            url: "{{ route('mom.store') }}",
-            data: $('#form_data').serialize(),
-            beforeSend: function(){
-                small_loader_open('form_data');
-            },
-            success: function (s) {
-                sw_success_redirect(s, "{{ route('mom.index') }}");
-            },
-            error: function(e){
-                sw_multi_error(e);
-            },
-            complete: function(){
-                small_loader_close('form_data');
-            }
-        });
+        $('#agenda').show();
+        $('html, body').animate({
+            scrollTop: $("#agenda").offset().top
+        }, 2000);
+        // $.ajax({
+        //     type: "POST",
+        //     url: "{{ route('mom.store') }}",
+        //     data: $('#form_data').serialize(),
+        //     beforeSend: function(){
+        //         small_loader_open('form_data');
+        //     },
+        //     success: function (s) {
+        //         sw_success_redirect(s, "{{ route('mom.index') }}");
+        //     },
+        //     error: function(e){
+        //         sw_multi_error(e);
+        //     },
+        //     complete: function(){
+        //         small_loader_close('form_data');
+        //     }
+        // });
     }
 </script>
 @endsection

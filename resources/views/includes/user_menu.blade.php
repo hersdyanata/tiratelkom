@@ -32,7 +32,7 @@
                     $('#navigate_{{ $m['menu_id'] }}').addClass('nav-item-submenu');
                 </script>
 
-                <ul class="nav nav-group-sub" data-submenu-title="{{ $m['menu_nama_ina'] }}">
+                <ul class="nav nav-group-sub bg-telkom" data-submenu-title="{{ $m['menu_nama_ina'] }}">
                 @foreach ($childMenu1 as $c)
                     @php
                         if($c['menu_controller'] != '#'){

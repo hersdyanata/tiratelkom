@@ -24,9 +24,6 @@
 	<script src="{{ asset('assets/global/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/ui/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/pickers/daterangepicker.js') }}"></script>
-	<script src="{{ asset('assets/global/js/plugins/pickers/pickadate/picker.js') }}"></script>
-	<script src="{{ asset('assets/global/js/plugins/pickers/pickadate/picker.time.js') }}"></script> 
-	<script src="{{ asset('assets/global/js/plugins/pickers/picker_date.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/tables/datatables/datatables.min.js') }}"></script>
 
 	<script src="{{ asset('assets/global/js/plugins/loaders/blockui.min.js') }}"></script>
@@ -36,12 +33,8 @@
 	<script src="{{ asset('assets/global/js/plugins/notifications/sweet_alert.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/demo_pages/components_modals.js') }}"></script>
 
-	<script src="{{ asset('assets/global/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
-	<script src="{{ asset('assets/global/js/plugins/forms/inputs/touchspin.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/forms/selects/select2.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/demo_pages/form_select2.js') }}"></script>
-	<script src="{{ asset('assets/global/js/demo_pages/form_input_groups.js') }}"></script>
-	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
 
 	<script src="{{ asset('assets/global/js/plugins/forms/styling/uniform.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/forms/styling/switchery.min.js') }}"></script>
@@ -56,6 +49,29 @@
 	<script src="{{ asset('assets/'.session('theme').'/js/app.js') }}"></script>
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<!-- /theme JS files -->
+
+	<style>
+		.bg-telkom{
+			background-color: #E74C3C!important;
+		}
+		.sidebar-light{
+			background-color: #fff;
+			color: #fff;
+		}
+
+		.text-body{
+			color: #f1ebeb!important;
+		}
+
+		.sidebar-light .nav-sidebar .nav-item-header {
+			color: rgb(253 253 253 / 50%);
+		}
+	
+		.sidebar-light .nav-sidebar .nav-link {
+			color: rgba(255, 255, 255, 0.85);
+			font-size: 16px;
+		}
+	</style>
 </head>
 
 <body>
@@ -79,8 +95,6 @@
 			<!-- /content area -->
 		</div>
 		<!-- /main content -->
-
-		{{-- @include('includes.main_sidebar') --}}
 
 	</div>
 	<!-- /page content -->
