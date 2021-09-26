@@ -13,7 +13,6 @@ use App\Models\TraMomTypeModel as MomTypeItem;
 use App\Models\TraMomParticipantModel as MomParticipantItem;
 
 class MomService{
-
     public function create_mom($post){
         // simpan transaksi mom header 
         $header = [
@@ -61,7 +60,29 @@ class MomService{
         MomParticipantItem :: insert($item2);
 
 
-        $pesan = 'Mom telah dibuat, silahkan lanjut ke tahap selanjutnya.';
-        return $pesan;
+        // $pesan = 'Mom telah dibuat, silahkan lanjut ke tahap selanjutnya.';
+        // return $pesan;
+
+        echo json_encode($id_header);
+    }
+
+    public function create_mom_agenda($post){
+        // simpan detail transaksi mom agenda
+        $item = array();
+        if (isset($post)) {
+            foreach ($post['meeting'] as $dt1 => $r1) {
+                if ($r1 != null or $r1 = '') {
+                    $item[] = array(
+                        'mom_id'  => $id_header,
+                        'type_id' => $r1
+                    );
+                }
+            }
+        }
+        MomTypeItem :: insert($item);
+
+         
+
+        echo json_encode($id_header);
     }
 }

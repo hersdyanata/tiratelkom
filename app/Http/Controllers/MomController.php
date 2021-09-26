@@ -34,9 +34,9 @@ class MomController extends Controller
         $mom->create_mom($request->all());
     }
 
-    public function show($id)
+    public function store_agenda(MomService $mom, Request $request)
     {
-        //
+        dd($request->all());
     }
 
 

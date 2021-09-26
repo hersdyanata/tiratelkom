@@ -119,29 +119,40 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-danger" id="next_to_agenda" onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                                <button type="button" class="btn btn-danger"  onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                             </div>
                                         </div> 
-                                    </div>
-
-                                    
-
-                                    <hr>
-                                   
-
-                                    <div id="agenda">
-                                        <div class="form-group">
-                                            <label>Agenda</label>
-                                            <textarea rows="12" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
-                                        </div>
                                     </div>
                                 </fieldset>
                             </div>
                         </div>
-
-                        
                     </form>
                 </div>
+
+                <div class="card-body">
+                    <form id="form_agenda">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <fieldset>                                 
+                                    <div class="form-group">
+                                        <label>Agenda</label>
+                                        <textarea rows="12" cols="5" class="form-control" placeholder="Enter your message here" id="mom_agenda" id="mom_agenda" ></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-danger" onclick="simpan_data_agenda()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
@@ -152,31 +163,56 @@
 <script>
 
     $('document').ready(function(){
-        $('#agenda').hide();
+        $('#form_agenda').hide();
     });
 
     function simpan_data(){
-        $('#agenda').show();
-        $('html, body').animate({
-            scrollTop: $("#agenda").offset().top
-        }, 2000);
-        // $.ajax({
-        //     type: "POST",
-        //     url: "{{ route('mom.store') }}",
-        //     data: $('#form_data').serialize(),
-        //     beforeSend: function(){
-        //         small_loader_open('form_data');
-        //     },
-        //     success: function (s) {
-        //         sw_success_redirect(s, "{{ route('mom.index') }}");
-        //     },
-        //     error: function(e){
-        //         sw_multi_error(e);
-        //     },
-        //     complete: function(){
-        //         small_loader_close('form_data');
-        //     }
-        // });
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.store') }}",
+            data: $('#form_data').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_data');
+            },
+            success: function (s) {
+                // sw_success_redirect(s, "{{ route('user.index') }}");     
+                // sw_success_redirect(s,'mom');   
+                small_loader_open('form_data');  
+            },
+            error: function(e){
+                sw_multi_error(e);
+            },
+            complete: function(s){
+                small_loader_close('form_data');
+                $('#form_agenda').show();
+                $('html, body').animate({
+                    scrollTop: $("#form_agenda").offset().top
+                }, 2000);
+            }
+        });
+    }
+
+    function simpan_data_agenda(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.create_agenda') }}",
+            data: $('#form_agenda').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_agenda');
+            },
+            success: function (s) {
+                console.log(s);
+                // sw_success_redirect(s, "{{ route('user.index') }}");     
+                // sw_success_redirect(s);   
+            },
+            error: function(e){
+                sw_multi_error(e);
+            },
+            complete: function(s){
+                // small_loader_close('form_agenda'); 
+                console.log(s);
+            }
+        });
     }
 </script>
 @endsection
