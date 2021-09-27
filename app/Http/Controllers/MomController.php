@@ -31,12 +31,15 @@ class MomController extends Controller
 
     public function store(MomService $mom, Request $request)
     {
-        $mom->create_mom($request->all());
+        $res = $mom->create_mom($request->all());
+        return response()->json($res, 200);
     }
 
     public function store_agenda(MomService $mom, Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $res = $mom->create_mom_agenda($request->all());
+        return response()->json($res, 200);
     }
 
 

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\TraMomModel as MomHeader;
 use App\Models\TraMomTypeModel as MomTypeItem;
 use App\Models\TraMomParticipantModel as MomParticipantItem;
+use App\Models\TraMomAgendaModel as MomAgendaItem;
 
 class MomService{
     public function create_mom($post){
@@ -59,30 +60,26 @@ class MomService{
         }
         MomParticipantItem :: insert($item2);
 
-
-        // $pesan = 'Mom telah dibuat, silahkan lanjut ke tahap selanjutnya.';
-        // return $pesan;
-
-        echo json_encode($id_header);
+        return $id_header;
     }
 
     public function create_mom_agenda($post){
         // simpan detail transaksi mom agenda
         $item = array();
         if (isset($post)) {
-            foreach ($post['meeting'] as $dt1 => $r1) {
-                if ($r1 != null or $r1 = '') {
+            foreach ($post['mom_agenda'] as $dt => $r) {
+                if ($r != null or $r = '') {
                     $item[] = array(
-                        'mom_id'  => $id_header,
-                        'type_id' => $r1
+                        'mom_id'  => $post['agenda_mom_id'],
+                        'agenda_id' => $dt,
+                        'agenda_desc' => $r
                     );
                 }
             }
         }
-        MomTypeItem :: insert($item);
 
-         
+        MomAgendaItem :: insert($item);
 
-        echo json_encode($id_header);
+        return $item;
     }
 }

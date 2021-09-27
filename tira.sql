@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 26/09/2021 19:55:52
+ Date: 28/09/2021 02:03:26
 */
 
 SET NAMES utf8mb4;
@@ -113,8 +113,8 @@ INSERT INTO `dev_menu` VALUES (13, 3, 12, 'WAR', 'WAR', '#', '#', NULL, NULL, 2,
 INSERT INTO `dev_menu` VALUES (14, 3, 12, 'Forum Infrastruktur', 'Forum Infrastruktur', '#', '#', NULL, NULL, 2, 'Y', 2, '2021-09-18 23:16:39', '1');
 INSERT INTO `dev_menu` VALUES (15, 3, 12, 'Forum Marketing', 'Forum Marketing', '#', '#', NULL, NULL, 2, 'Y', 3, '2021-09-18 23:16:39', '1');
 INSERT INTO `dev_menu` VALUES (16, 3, 12, 'Forum Support', 'Forum Support', '#', '#', NULL, NULL, 2, 'Y', 4, '2021-09-18 23:16:39', '1');
-INSERT INTO `dev_menu` VALUES (17, 3, NULL, 'Create MoM', 'Create MoM', 'MomController', 'mom', 'mom', '\r\nicon-file-plus', 1, 'Y', 2, '2021-09-18 22:56:51', '1');
-INSERT INTO `dev_menu` VALUES (18, 3, NULL, 'Status MoM', 'Status Mom', '#', '#', NULL, '\r\nicon-list', 1, 'Y', 3, '2021-09-18 22:56:51', '1');
+INSERT INTO `dev_menu` VALUES (17, 3, NULL, 'Create MoM', 'Create MoM', 'MomController', 'mom', 'mom', 'icon-file-plus', 1, 'Y', 2, '2021-09-18 22:56:51', '1');
+INSERT INTO `dev_menu` VALUES (18, 3, NULL, 'Status MoM', 'Status Mom', '#', '#', NULL, 'icon-list', 1, 'Y', 3, '2021-09-18 22:56:51', '1');
 
 -- ----------------------------
 -- Table structure for dev_menu_divider
@@ -363,12 +363,26 @@ CREATE TABLE `tra_mom`  (
   `mom_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `mom_updated_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (8, 2, 'event title', '2021-09-26', '1:00 AM', '1', 'zoom', 1, 'aditya', 'D', '2021-09-26 19:51:59', NULL);
+
+-- ----------------------------
+-- Table structure for tra_mom_agenda
+-- ----------------------------
+DROP TABLE IF EXISTS `tra_mom_agenda`;
+CREATE TABLE `tra_mom_agenda`  (
+  `mom_id` int NOT NULL,
+  `agenda_id` int NOT NULL,
+  `agenda_desc` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`mom_id`, `agenda_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tra_mom_agenda
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tra_mom_discuss
@@ -405,11 +419,6 @@ CREATE TABLE `tra_mom_participant`  (
 -- ----------------------------
 -- Records of tra_mom_participant
 -- ----------------------------
-INSERT INTO `tra_mom_participant` VALUES (8, 1);
-INSERT INTO `tra_mom_participant` VALUES (8, 2);
-INSERT INTO `tra_mom_participant` VALUES (8, 3);
-INSERT INTO `tra_mom_participant` VALUES (8, 4);
-INSERT INTO `tra_mom_participant` VALUES (8, 5);
 
 -- ----------------------------
 -- Table structure for tra_mom_type
@@ -424,9 +433,6 @@ CREATE TABLE `tra_mom_type`  (
 -- ----------------------------
 -- Records of tra_mom_type
 -- ----------------------------
-INSERT INTO `tra_mom_type` VALUES (8, 1);
-INSERT INTO `tra_mom_type` VALUES (8, 2);
-INSERT INTO `tra_mom_type` VALUES (8, 3);
 
 -- ----------------------------
 -- Table structure for usergroup
@@ -440,7 +446,7 @@ CREATE TABLE `usergroup`  (
   `group_default_menu` int NULL DEFAULT NULL,
   PRIMARY KEY (`group_id`) USING BTREE,
   UNIQUE INDEX `index_usergroup`(`group_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of usergroup
@@ -473,7 +479,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'hersdyanata', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'lyvIMAiawTkup1dHyZDZq77RuJ4i1t3bjozqqWhYmUjaYcu6eBakrLrjK6uL', 'dark', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
+INSERT INTO `users` VALUES (1, 'hersdyanata', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'KAcU0Ii46D2rLIZ8EFqKWv4VAeK50knbebD620FO1guTYCk6nv2A0VNQNk8k', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
 INSERT INTO `users` VALUES (4, 'johndoe', 1, NULL, 'John Doe', 'johndoe@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
 INSERT INTO `users` VALUES (6, 'janedoe', 1, NULL, 'Jane Doe', 'janedoe@gmail.com', NULL, '$2y$10$.B99py5y1rz/jw6fhDsNIO12qDU2bCSK1tgkl.98yfzStMLH/r6j2', NULL, NULL, NULL, 'light', '2021-01-17 05:11:27', '2021-01-17 05:11:27');
 
