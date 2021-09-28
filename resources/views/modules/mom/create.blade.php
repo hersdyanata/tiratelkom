@@ -118,9 +118,9 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-danger" id="btn_save_mom" onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
-                                                <button type="button" class="btn btn-dark" id="btn_edit_mom" onclick="edit_mom()">Edit <i class="icon-pencil ml-2"></i></button>
-                                                <button type="button" class="btn btn-danger" id="btn_update_mom" onclick="update_mom()">Next 2 <i class="icon-arrow-right8 ml-2"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                                <button type="button" class="btn btn-dark btn-sm" id="btn_edit_mom" onclick="edit_mom()">Edit <i class="icon-pencil ml-2"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next M2 <i class="icon-arrow-right8 ml-2"></i></button>
                                             </div>
                                         </div> 
                                     </div>
@@ -148,9 +148,9 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-danger" id="btn_agenda" onclick="simpan_data_agenda()">Next <i class="icon-arrow-right8 ml-2"></i></button>
-                                            <button type="button" class="btn btn-dark" id="btn_edit_agenda" onclick="edit_agenda()">Edit <i class="icon-pencil ml-2"></i></button>
-                                            <button type="button" class="btn btn-danger" id="btn_update_agenda" onclick="update_agenda()">Next 2 <i class="icon-arrow-right8 ml-2"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" id="btn_agenda" onclick="simpan_data_agenda()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                            <button type="button" class="btn btn-dark btn-sm" id="btn_edit_agenda" onclick="edit_agenda()">Edit <i class="icon-pencil ml-2"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next A2 <i class="icon-arrow-right8 ml-2"></i></button>
                                         </div>
                                     </div> 
                                 </div>
@@ -176,10 +176,25 @@
                                     <input type="text" placeholder="discuss_test" class="form-control">
                                 </form>
 
+                                <style type="text/css"> 
+                                    tabCustom { 
+                                        padding-right:88px; 
+                                        padding-left: 88px;
+                                    }
+                                </style>
+                                <hr>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-danger" id="btn_discuss" onclick="simpan_data_diskusi()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                            <p>
+                                                <button type="button" class="btn btn-dark btn-sm">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
+                                                <button type="button" class="btn btn-primary btn-sm">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="simpan_data_diskusi()">
+                                                <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
+                                                </button>
+                                            </p>
                                         </div>
                                     </div> 
                                 </div>
@@ -197,7 +212,7 @@
 <script>
 
     $('document').ready(function(){
-        // jquery for part agenda
+        // jquery for part agenda 
         $('#div_agenda').hide();
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').hide();
@@ -252,9 +267,12 @@
         $('.input_mom').prop('disabled', false);
         $('#event_title').focus(); 
         $('#btn_edit_mom').hide();
-        $('#div_discuss').hide();
         $('#btn_update_mom').show();
+        $('#btn_agenda').hide();
+        $('#btn_edit_agenda').hide();
+        $('#btn_update_agenda').show();
         $('#div_agenda').hide();
+        $('#div_discuss').hide();
         $('html, body').animate({
             scrollTop: $("#form_data").offset().top
         }, 500);
@@ -262,8 +280,9 @@
 
     function update_mom(){
         $('.input_mom').prop('disabled', true);
+        $('.input_agenda').prop('disabled', false);
         $('#div_agenda').show();
-        $('#btn_edit_mom').hide();
+        $('#btn_edit_mom').show();
         $('#agenda_appender').focus();
         $('#btn_update_mom').hide();
         $('#btn_save_mom').hide();
