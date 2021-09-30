@@ -129,7 +129,8 @@
                         </div>
                     </form>
                 </div>
-
+            </div>
+            <div class="card" id="section_divider">
                 <div class="card-body" id="div_agenda">
                     <div class="row">
                         <div class="col-lg-12">
@@ -158,7 +159,8 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="card" id="section_divider">
                 <div class="card-body" id="div_discuss">
                     <div class="row">
                         <div class="col-lg-12">
@@ -175,34 +177,31 @@
                                     <div id="discuss_konten"></div>
                                     <input type="text" placeholder="discuss_test" class="form-control">
                                 </form>
-
-                                <style type="text/css"> 
-                                    tabCustom { 
-                                        padding-right:88px; 
-                                        padding-left: 88px;
-                                    }
-                                </style>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="text-center">
-                                            <p>
-                                                <button type="button" class="btn btn-dark btn-sm">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
-                                                <button type="button" class="btn btn-primary btn-sm">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
-                                            </p>
-                                            <p>
-                                                <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="simpan_data_diskusi()">
-                                                <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
-                                                </button>
-                                            </p>
-                                        </div>
-                                    </div> 
-                                </div>
                             </fieldset>
                         </div>
                     </div>
                 </div> 
-
+            </div>
+            <style type="text/css"> 
+                tabCustom { 
+                    padding-right:88px; 
+                    padding-left: 88px;
+                }
+            </style>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center" id="div_btn_discuss">
+                        <p>
+                            <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
+                            <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="simpan_data_diskusi()">
+                            <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
+                            </button>
+                        </p>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -214,8 +213,11 @@
     $('document').ready(function(){
         // jquery for part agenda 
         $('#div_agenda').hide();
+        $('#div_discuss').hide();
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').hide();
+        $('$div_btn_discuss').hide(); 
+
         var nomor = 0;
         $('#agenda_appender').on('keyup', function (e) {
             if (e.keyCode == 13) {
