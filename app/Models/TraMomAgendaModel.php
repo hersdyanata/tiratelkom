@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TraMomAgendaModel extends Model
 {
     protected $table = 'tra_mom_agenda';
-    protected $primaryKey = ['mom_id', 'agenda_id'];
+    protected $primaryKey = false;//['mom_id', 'agenda_id'];
     public $timestamps = false;
 
     protected $fillable = [

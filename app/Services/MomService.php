@@ -66,19 +66,21 @@ class MomService{
     public function create_mom_agenda($post){
         // simpan detail transaksi mom agenda
         $item = array();
+        $no = 0;
         if (isset($post)) {
             foreach ($post['mom_agenda'] as $dt => $r) {
+                $no++;
                 if ($r != null or $r = '') {
                     $item[] = array(
                         'mom_id'  => $post['agenda_mom_id'],
-                        'agenda_id' => $dt,
+                        'agenda_id' => $no,//$dt,
                         'agenda_desc' => $r
                     );
                 }
             }
         }
 
-        MomAgendaItem :: insert($item);
+        $agenda = MomAgendaItem :: insert($item);
 
         return $item;
     }

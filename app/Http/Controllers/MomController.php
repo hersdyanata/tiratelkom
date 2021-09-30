@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Services\Core;
 use App\Services\MomService;
 
+use App\Models\TraMomAgendaModel as MomAgendaItem;
+
 class MomController extends Controller
 {
     public $core;
@@ -38,8 +40,10 @@ class MomController extends Controller
     public function store_agenda(MomService $mom, Request $request){
         // dd($request->all());
         $res = $mom->create_mom_agenda($request->all());
-        $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $res);
-        return response()->json($res, 200);
+
+        $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();
+        $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $agenda)->render();
+        return response()->json($view_diskusi, 200);
     }
 
     public function add_row_poin(){

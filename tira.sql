@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Local
+ Source Server         : localhost_73
  Source Server Type    : MySQL
- Source Server Version : 100138
+ Source Server Version : 100140
  Source Host           : localhost:3306
  Source Schema         : tira
 
  Target Server Type    : MySQL
- Target Server Version : 100138
+ Target Server Version : 100140
  File Encoding         : 65001
 
- Date: 28/09/2021 02:03:26
+ Date: 01/10/2021 00:57:04
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `biodata`;
 CREATE TABLE `biodata`  (
-  `dt_id` int NOT NULL AUTO_INCREMENT,
+  `dt_id` int(11) NOT NULL AUTO_INCREMENT,
   `dt_nama` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `dt_alamat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `dt_phone` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `biodata`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `dev_mapping_permission_ke_menu`;
 CREATE TABLE `dev_mapping_permission_ke_menu`  (
-  `map_menu_id` int NULL DEFAULT NULL,
+  `map_menu_id` int(11) NULL DEFAULT NULL,
   `map_perm_nama` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
@@ -76,18 +76,18 @@ INSERT INTO `dev_mapping_permission_ke_menu` VALUES (7, 'delete');
 -- ----------------------------
 DROP TABLE IF EXISTS `dev_menu`;
 CREATE TABLE `dev_menu`  (
-  `menu_id` int NOT NULL AUTO_INCREMENT,
-  `menu_div_id` int NULL DEFAULT NULL,
-  `menu_parent_id` int NULL DEFAULT NULL,
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu_div_id` int(11) NULL DEFAULT NULL,
+  `menu_parent_id` int(11) NULL DEFAULT NULL,
   `menu_nama_ina` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `menu_nama_eng` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `menu_controller` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `menu_route_name` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `menu_folder_view` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `menu_icon` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `menu_level` int NULL DEFAULT NULL,
+  `menu_level` int(11) NULL DEFAULT NULL,
   `menu_publish_ke_user` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `menu_order` int NULL DEFAULT NULL,
+  `menu_order` int(11) NULL DEFAULT NULL,
   `menu_createdat` datetime(0) NULL DEFAULT NULL,
   `menu_createdby` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`menu_id`) USING BTREE,
@@ -121,10 +121,10 @@ INSERT INTO `dev_menu` VALUES (18, 3, NULL, 'Status MoM', 'Status Mom', '#', '#'
 -- ----------------------------
 DROP TABLE IF EXISTS `dev_menu_divider`;
 CREATE TABLE `dev_menu_divider`  (
-  `div_id` int NOT NULL AUTO_INCREMENT,
+  `div_id` int(11) NOT NULL AUTO_INCREMENT,
   `div_nama_ina` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `div_nama_eng` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `div_order` int NULL DEFAULT NULL,
+  `div_order` int(11) NULL DEFAULT NULL,
   `div_publish_ke_user` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`div_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
@@ -159,7 +159,7 @@ INSERT INTO `dev_permissions` VALUES ('delete', 'btn', 'Menghapus data');
 -- ----------------------------
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs`  (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -179,10 +179,10 @@ CREATE TABLE `failed_jobs`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `master_category`;
 CREATE TABLE `master_category`  (
-  `category_id` int NOT NULL,
+  `category_id` int(11) NOT NULL,
   `category_desc` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of master_category
@@ -197,10 +197,10 @@ INSERT INTO `master_category` VALUES (4, 'Forum Support');
 -- ----------------------------
 DROP TABLE IF EXISTS `master_type`;
 CREATE TABLE `master_type`  (
-  `type_id` int NOT NULL,
+  `type_id` int(11) NOT NULL,
   `type_desc` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`type_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of master_type
@@ -216,10 +216,10 @@ INSERT INTO `master_type` VALUES (5, 'Others');
 -- ----------------------------
 DROP TABLE IF EXISTS `master_uic`;
 CREATE TABLE `master_uic`  (
-  `uic_id` int NOT NULL,
+  `uic_id` int(11) NOT NULL,
   `uic_desc` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`uic_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of master_uic
@@ -243,9 +243,9 @@ INSERT INTO `master_uic` VALUES (13, 'Payment Collection & Finance');
 -- ----------------------------
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations`  (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL,
+  `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
 
@@ -279,9 +279,9 @@ CREATE TABLE `password_resets`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `personal_access_tokens`;
 CREATE TABLE `personal_access_tokens`  (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `tokenable_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
@@ -303,11 +303,11 @@ CREATE TABLE `personal_access_tokens`  (
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions`  (
   `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint UNSIGNED NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `payload` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL,
+  `last_activity` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `sessions_user_id_index`(`user_id`) USING BTREE,
   INDEX `sessions_last_activity_index`(`last_activity`) USING BTREE
@@ -323,10 +323,10 @@ INSERT INTO `sessions` VALUES ('YpB99syzolIkT1QWhMhtnZIrfQN37FBI1H6SHEBR', 5, '1
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_category_uic`;
 CREATE TABLE `tra_category_uic`  (
-  `category_id` int NOT NULL,
-  `uic_id` int NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `uic_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`, `uic_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_category_uic
@@ -350,20 +350,20 @@ INSERT INTO `tra_category_uic` VALUES (4, 13);
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_mom`;
 CREATE TABLE `tra_mom`  (
-  `mom_id` int NOT NULL AUTO_INCREMENT,
-  `mom_title` int NULL DEFAULT NULL,
+  `mom_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mom_title` int(11) NULL DEFAULT NULL,
   `mom_event` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_date` date NULL DEFAULT NULL,
   `mom_time` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_duration` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_location` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `mom_notulen_by` int NULL DEFAULT NULL,
+  `mom_notulen_by` int(11) NULL DEFAULT NULL,
   `mom_called_by` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_status` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `mom_updated_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom
@@ -374,11 +374,10 @@ CREATE TABLE `tra_mom`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_mom_agenda`;
 CREATE TABLE `tra_mom_agenda`  (
-  `mom_id` int NOT NULL,
-  `agenda_id` int NOT NULL,
-  `agenda_desc` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  PRIMARY KEY (`mom_id`, `agenda_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  `mom_id` int(11) NULL DEFAULT NULL,
+  `agenda_id` int(11) NULL DEFAULT NULL,
+  `agenda_desc` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_agenda
@@ -389,18 +388,18 @@ CREATE TABLE `tra_mom_agenda`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_mom_discuss`;
 CREATE TABLE `tra_mom_discuss`  (
-  `discuss_mom_id` int NOT NULL,
-  `discuss_id` int NOT NULL AUTO_INCREMENT,
+  `discuss_mom_id` int(11) NOT NULL,
+  `discuss_id` int(11) NOT NULL AUTO_INCREMENT,
   `discuss_pointer` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_assigment` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `discuss_uic_id` int NULL DEFAULT NULL,
+  `discuss_uic_id` int(11) NULL DEFAULT NULL,
   `discuss_due_date` date NULL DEFAULT NULL,
   `discuss_priority` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_progress` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_status` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`discuss_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_discuss
@@ -411,10 +410,10 @@ CREATE TABLE `tra_mom_discuss`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_mom_participant`;
 CREATE TABLE `tra_mom_participant`  (
-  `mom_id` int NOT NULL,
-  `user_id` int NOT NULL,
+  `mom_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`, `mom_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_participant
@@ -425,43 +424,65 @@ CREATE TABLE `tra_mom_participant`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_mom_type`;
 CREATE TABLE `tra_mom_type`  (
-  `mom_id` int NOT NULL,
-  `type_id` int NOT NULL,
+  `mom_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
   PRIMARY KEY (`type_id`, `mom_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_type
 -- ----------------------------
+INSERT INTO `tra_mom_type` VALUES (3, 1);
+INSERT INTO `tra_mom_type` VALUES (4, 1);
+INSERT INTO `tra_mom_type` VALUES (5, 1);
+INSERT INTO `tra_mom_type` VALUES (6, 1);
+INSERT INTO `tra_mom_type` VALUES (7, 1);
+INSERT INTO `tra_mom_type` VALUES (8, 1);
+INSERT INTO `tra_mom_type` VALUES (9, 1);
+INSERT INTO `tra_mom_type` VALUES (10, 1);
+INSERT INTO `tra_mom_type` VALUES (11, 1);
+INSERT INTO `tra_mom_type` VALUES (12, 1);
+INSERT INTO `tra_mom_type` VALUES (13, 1);
+INSERT INTO `tra_mom_type` VALUES (14, 1);
+INSERT INTO `tra_mom_type` VALUES (15, 1);
+INSERT INTO `tra_mom_type` VALUES (2, 2);
+INSERT INTO `tra_mom_type` VALUES (3, 2);
+INSERT INTO `tra_mom_type` VALUES (4, 2);
+INSERT INTO `tra_mom_type` VALUES (5, 2);
+INSERT INTO `tra_mom_type` VALUES (6, 2);
+INSERT INTO `tra_mom_type` VALUES (7, 2);
+INSERT INTO `tra_mom_type` VALUES (8, 2);
+INSERT INTO `tra_mom_type` VALUES (11, 2);
+INSERT INTO `tra_mom_type` VALUES (2, 4);
 
 -- ----------------------------
 -- Table structure for usergroup
 -- ----------------------------
 DROP TABLE IF EXISTS `usergroup`;
 CREATE TABLE `usergroup`  (
-  `group_id` int NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_nama` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `group_deskripsi` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `group_menu_permission` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'berisi list menu yang dapat diakses dan dari setiap menu memiliki array permission apa saja. data pada kolom ini berupa json.',
-  `group_default_menu` int NULL DEFAULT NULL,
+  `group_default_menu` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`group_id`) USING BTREE,
   UNIQUE INDEX `index_usergroup`(`group_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of usergroup
 -- ----------------------------
-INSERT INTO `usergroup` VALUES (0, 'Administrator', 'Privileges tertinggi di sisi user', '[{\"menu_id\":1,\"permissions\":[]},{\"menu_id\":9,\"permissions\":[]},{\"menu_id\":2,\"permissions\":[\"create\",\"update\"]},{\"menu_id\":3,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":4,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":5,\"permissions\":[\"create\",\"update\"]},{\"menu_id\":6,\"permissions\":[\"update\"]},{\"menu_id\":7,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":8,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":10,\"permissions\":[\"create\",\"update\",\"delete\"]}]', 1);
+INSERT INTO `usergroup` VALUES (1, 'Administrator', 'Privileges tertinggi di sisi user', '[{\"menu_id\":1,\"permissions\":[]},{\"menu_id\":9,\"permissions\":[]},{\"menu_id\":2,\"permissions\":[\"create\",\"update\"]},{\"menu_id\":3,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":4,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":5,\"permissions\":[\"create\",\"update\"]},{\"menu_id\":6,\"permissions\":[\"update\"]},{\"menu_id\":7,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":8,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":10,\"permissions\":[\"create\",\"update\",\"delete\"]}]', 1);
 
 -- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `group_id` int NULL DEFAULT NULL,
-  `parent_user_id` int NULL DEFAULT NULL,
+  `group_id` int(11) NULL DEFAULT NULL,
+  `parent_user_id` int(11) NULL DEFAULT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp(0) NULL DEFAULT NULL,
