@@ -113,6 +113,32 @@
                                                 <input type="text" class="form-control tokenfield input_mom" placeholder="Add tag" name="participant_id" id="participant_id" data-fouc>
                                             </div>
                                         </div> 
+                                    </div><br><br>
+
+                                    <div id="saved_diskusi">
+                                        <div class="row">
+                                            <h6 class="font-weight-bold"><i>1. Diskusi bla ble blo</i></h6>
+                                            <table class="table table-hover table-bordered" id="table_pointer">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th><i>Pointer</i></th>
+                                                        <th><i>Assignment</i></th>
+                                                        <th><i>UIC</i></th>
+                                                        <th><i>Due Date</i></th>
+                                                        <th><i>Priority</i></th>
+                                                        <th><i>Status</i></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="body_poin"></tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="row mt-2">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="append_row()">
+                                                <i class="icon-plus-circle2 ml-2"></i> Add Poin
+                                            </button>
+                                        </div>
                                     </div>
                                     
                                     <div class="row">
@@ -248,6 +274,28 @@
         // });
     });
 
+    function append_row(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.add_row_poin') }}",
+            data: {
+                "_token": "{{ csrf_token() }}"
+            },
+            beforeSend: function(){
+                small_loader_open('table_pointer');
+            },
+            success: function (s) {   
+                $('#body_poin').append(s);
+            },
+            complete: function(){
+                small_loader_close('table_pointer');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }
+
     function lookup_uic(par){
         console.log(par);
         $.ajax({
@@ -354,11 +402,11 @@
             },
             success: function (s) {
                 // console.log(s);
-                $.each(s, function( key, value ) {
-                    $('#discuss_konten').append('<div class="form-group row" id="mom_diskusi'+key+'">\
-                                            <label class="col-form-label col-lg-2">'+value.agenda_desc+'</label>\
-                                        </div>');
-                });
+                // $.each(s, function( key, value ) {
+                //     $('#discuss_konten').append('<div class="form-group row" id="mom_diskusi'+key+'">\
+                //                             <label class="col-form-label col-lg-2">'+value.agenda_desc+'</label>\
+                //                         </div>');
+                // });
                 small_loader_close('form_agenda'); 
                 $('#discuss_mom_id').val(s);
                 $('#discuss_agenda_id').val(s);

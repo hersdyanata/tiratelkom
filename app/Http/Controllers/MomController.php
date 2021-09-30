@@ -35,11 +35,16 @@ class MomController extends Controller
         return response()->json($res, 200);
     }
 
-    public function store_agenda(MomService $mom, Request $request)
-    {
+    public function store_agenda(MomService $mom, Request $request){
         // dd($request->all());
         $res = $mom->create_mom_agenda($request->all());
+        $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $res);
         return response()->json($res, 200);
+    }
+
+    public function add_row_poin(){
+        $row = view('modules.mom.row_poin')->render();
+        return response()->json($row, 200);
     }
 
 

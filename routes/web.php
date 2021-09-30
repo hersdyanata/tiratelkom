@@ -62,6 +62,7 @@ Route::resource('level-up', App\Http\Controllers\LevelUpController::class);
 Route::resource('level32', App\Http\Controllers\Level32Controller::class);
 Route::resource('mom', App\Http\Controllers\MomController::class);
 Route::post('mom/create_agenda', [App\Http\Controllers\MomController::class, 'store_agenda'])->name('mom.create_agenda');
+Route::post('mom/add_row_poin', [App\Http\Controllers\MomController::class, 'add_row_poin'])->name('mom.add_row_poin');
 
 
 
