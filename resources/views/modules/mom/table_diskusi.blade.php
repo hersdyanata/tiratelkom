@@ -6,7 +6,7 @@
         $no++;
     @endphp
     <div class="row">
-        <h6 class="font-weight-bold"><i>{{ $no }} {{ $r->agenda_desc }}</i></h6>
+        <h6 class="font-weight-bold"><i>{{ $no }}.{{ $r->agenda_desc }}</i></h6>
         <table class="table table-hover table-bordered" id="table_pointer">
             <thead>
                 <tr>
