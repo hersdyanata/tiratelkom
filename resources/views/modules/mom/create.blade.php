@@ -118,7 +118,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                                 <button type="button" class="btn btn-dark btn-sm" id="btn_edit_mom" onclick="edit_mom()">Edit <i class="icon-pencil ml-2"></i></button>
                                                 <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next M2 <i class="icon-arrow-right8 ml-2"></i></button>
                                             </div>
@@ -142,7 +142,7 @@
 
                                 <form id="form_agenda">
                                     @csrf
-                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id"c class="input_agenda">
+                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" hidden>
                                     <div id="agenda_konten"></div>
                                 </form>
 
@@ -167,15 +167,11 @@
                             <fieldset>                                 
                                 <div class="form-group">
                                     <label>Discussion</label>
-                                    <input type="text" placeholder="Please fill your discuss" class="form-control" id="discuss_appender">
                                 </div>
 
                                 <form id="form_discuss">
-                                    @csrf
-                                    <input type="text" readonly name="discuss_mom_id" id="discuss_mom_id">
-                                    <input type="text" readonly name="discuss_agenda_id" id="discuss_agenda_id">
-                                    <div id="discuss_konten"></div>
-                                    <input type="text" placeholder="discuss_test" class="form-control">
+                                    @csrf 
+                                    <div id="discuss_konten"></div> 
                                 </form>
                             </fieldset>
                         </div>
@@ -294,46 +290,35 @@
         }, 2000);
     }
 
-    function simpan_data(){
-        $('#agenda_mom_id').val(69);
-        $('#div_agenda').show();
-        $('#btn_edit_mom').show();
-        $('#btn_save_mom').hide();
-        $('#btn_edit_agenda').hide();
-        $('#btn_update_agenda').hide();
+    function simpan_data_mom(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.store') }}",
+            data: $('#form_data').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_data');
+            },
+            success: function (s) {   
+                // console.log(s);
+                small_loader_close('form_data');
+                $('#agenda_mom_id').val(s);
+                $('#div_agenda').show();
+                $('#btn_edit_mom').show();
+                $('#btn_save_mom').hide();
+                $('#btn_edit_agenda').hide();
+                $('#btn_update_agenda').hide();
 
-        $('.input_mom').prop('disabled', true);
-        $('#agenda_appender').focus();
+                $('.input_mom').prop('disabled', true);
+                $('#agenda_appender').focus();
 
-        $('html, body').animate({
-            scrollTop: $("#div_agenda").offset().top
-        }, 2000);
-        // $.ajax({
-        //     type: "POST",
-        //     url: "{{ route('mom.store') }}",
-        //     data: $('#form_data').serialize(),
-        //     beforeSend: function(){
-        //         small_loader_open('form_data');
-        //     },
-        //     success: function (s) {   
-        //         // console.log(s);
-        //         small_loader_close('form_data');
-        //         $('#agenda_mom_id').val(s);
-        //         $('#div_agenda').show();
-        //         $('#btn_edit_mom').show();
-        //         $('#btn_save_mom').hide();
-
-        //         $('.input_mom').prop('disabled', true);
-        //         $('#agenda_appender').focus();
-
-        //         $('html, body').animate({
-        //             scrollTop: $("#div_agenda").offset().top
-        //         }, 2000);
-        //     },
-        //     error: function(e){
-        //         sw_multi_error(e);
-        //     }
-        // });
+                $('html, body').animate({
+                    scrollTop: $("#div_agenda").offset().top
+                }, 2000);
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
     }
 
     function edit_agenda(){
@@ -360,34 +345,39 @@
     }
 
     function simpan_data_agenda(){
-        $('#discuss_mom_id').val(69);
-        $('#discuss_agenda_id').val(1);
-        $('#div_discuss').show();
-        $('#btn_agenda').hide();
-        $('#btn_edit_agenda').show();
-        $('#div_btn_discuss').show(); 
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.create_agenda') }}",
+            data: $('#form_agenda').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_agenda');
+            },
+            success: function (s) {
+                // console.log(s);
+                $.each(s, function( key, value ) {
+                    $('#discuss_konten').append('<div class="form-group row" id="mom_diskusi'+key+'">\
+                                            <label class="col-form-label col-lg-2">'+value.agenda_desc+'</label>\
+                                        </div>');
+                });
+                small_loader_close('form_agenda'); 
+                $('#discuss_mom_id').val(s);
+                $('#discuss_agenda_id').val(s);
+                $('#div_discuss').show();
+                $('#btn_agenda').hide();
+                $('#btn_edit_agenda').show();   
+                $('#div_btn_discuss').show(); 
 
-        $('.input_agenda').prop('disabled', true);
-        // $('#agenda_appender').focus();
+                $('.input_agenda').prop('disabled', true);
+                // $('#agenda_appender').focus();
 
-        $('html, body').animate({
-            scrollTop: $("#div_agenda").offset().top
-        }, 2000);
-        // $.ajax({
-        //     type: "POST",
-        //     url: "{{ route('mom.create_agenda') }}",
-        //     data: $('#form_agenda').serialize(),
-        //     beforeSend: function(){
-        //         small_loader_open('form_agenda');
-        //     },
-        //     success: function (s) {
-        //         console.log(s);
-        //         // small_loader_close('form_agenda'); 
-        //     },
-        //     error: function(e){
-        //         sw_multi_error(e);
-        //     }
-        // });
+                $('html, body').animate({
+                    scrollTop: $("#div_agenda").offset().top
+                }, 2000);
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
     }
 </script>
 @endsection
