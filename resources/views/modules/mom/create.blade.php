@@ -216,7 +216,7 @@
         $('#div_discuss').hide();
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').hide();
-        $('$div_btn_discuss').hide(); 
+        $('#div_btn_discuss').hide(); 
 
         var nomor = 0;
         $('#agenda_appender').on('keyup', function (e) {
@@ -275,6 +275,7 @@
         $('#btn_update_agenda').show();
         $('#div_agenda').hide();
         $('#div_discuss').hide();
+        $('#div_btn_discuss').hide();
         $('html, body').animate({
             scrollTop: $("#form_data").offset().top
         }, 500);
@@ -341,6 +342,7 @@
         $('#agenda_appender').focus(); 
         $('#btn_edit_agenda').hide();
         $('#btn_update_agenda').show(); 
+        $('#div_btn_discuss').hide();
         $('html, body').animate({
             scrollTop: $("#div_agenda").offset().top
         }, 500);
@@ -349,6 +351,7 @@
     function update_agenda(){
         $('.input_agenda').prop('disabled', true);
         $('#div_discuss').show();
+        $('#div_btn_discuss').show();
         $('#btn_edit_agenda').show();
         $('#btn_update_agenda').hide(); 
         $('html, body').animate({
@@ -362,6 +365,7 @@
         $('#div_discuss').show();
         $('#btn_agenda').hide();
         $('#btn_edit_agenda').show();
+        $('#div_btn_discuss').show(); 
 
         $('.input_agenda').prop('disabled', true);
         // $('#agenda_appender').focus();
