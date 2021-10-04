@@ -188,11 +188,11 @@
                 <div class="col-lg-12">
                     <div class="text-center" id="div_btn_discuss">
                         <p>
-                            <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
+                            <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
                             <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
                         </p>
                         <p>
-                            <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="simpan_data_diskusi()">
+                            <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="submit_data_mom()">
                             <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
                             </button>
                         </p>
@@ -402,5 +402,24 @@
             }
         });
     }
+
+    function simpan_data_diskusi(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.create_draft_mom') }}",
+            data: $('#form_discuss').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_discuss');
+            },
+            success: function (s) {
+                console.log(s);
+                // small_loader_close('form_discuss');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }
+
 </script>
 @endsection

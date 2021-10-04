@@ -38,7 +38,6 @@ class MomController extends Controller
     }
 
     public function store_agenda(MomService $mom, Request $request){
-        // dd($request->all());
         $res = $mom->create_mom_agenda($request->all());
 
         $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();
@@ -46,9 +45,14 @@ class MomController extends Controller
         return response()->json($view_diskusi, 200);
     }
 
-    public function add_row_poin(){
-        $row = view('modules.mom.row_poin')->render();
+    public function add_row_poin(Request $request){
+        // dd($request->all());
+        $row = view('modules.mom.row_poin')->with('agenda', $request)->render();;
         return response()->json($row, 200);
+    }
+
+    public function create_draft_mom(MomService $mom, Request $request){
+        dd($request->all()); 
     }
 
 

@@ -6,8 +6,8 @@
         $no++;
     @endphp
     <div class="row">
-        <h6 class="font-weight-bold"><i>{{ $no }}.{{ $r->agenda_desc }}</i></h6>
-        <table class="table table-hover table-bordered" id="table_pointer">
+        <h6 class="font-weight-bold"><i>{{ $no }}. {{ $r->agenda_desc }}</i></h6>
+            <table class="table table-hover table-bordered table-xs" id="table_pointer_{{ $r->agenda_id }}">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
@@ -19,13 +19,13 @@
                     <th><i>Status</i></th>
                 </tr>
             </thead>
-            <tbody id="body_poin"></tbody>
+            <tbody id="body_poin_{{ $r->agenda_id }}"></tbody>
         </table>
     </div>
 
     <div class="row mt-2">
-        <button type="button" class="btn btn-primary btn-sm" onclick="append_row_{{ $r->agenda_id }}()">
-            <i class="icon-plus-circle2 ml-2"></i> Add Poin
+        {{-- <button type="button" class="btn btn-primary btn-sm" onclick="append_row_{{ $r->agenda_id }}()"> --}}
+            <i class="icon-plus-circle2 ml-2 " onclick="append_row_{{ $r->agenda_id }}()"></i> 
         </button>
     </div>
 
@@ -37,16 +37,19 @@
                 type: "POST",
                 url: "{{ route('mom.add_row_poin') }}",
                 data: {
-                    "_token": "{{ csrf_token() }}"
+                    "_token": "{{ csrf_token() }}",
+                    "mom_id" : "{{ $r->mom_id }}",
+                    "agenda_id" : "{{ $r->agenda_id }}"
                 },
                 beforeSend: function(){
-                    small_loader_open('table_pointer');
+                    small_loader_open('table_pointer_{{ $r->agenda_id }}');
                 },
                 success: function (s) {   
-                    $('#body_poin').append(s);
+                    // console.log(s);
+                    $('#body_poin_{{ $r->agenda_id }}').append(s);
                 },
                 complete: function(){
-                    small_loader_close('table_pointer');
+                    small_loader_close('table_pointer_{{ $r->agenda_id }}');
                 },
                 error: function(e){
                     sw_multi_error(e);
