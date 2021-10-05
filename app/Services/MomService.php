@@ -12,6 +12,7 @@ use App\Models\TraMomModel as MomHeader;
 use App\Models\TraMomTypeModel as MomTypeItem;
 use App\Models\TraMomParticipantModel as MomParticipantItem;
 use App\Models\TraMomAgendaModel as MomAgendaItem;
+use App\Models\TraMomDiskusiModel as MomDiskusiItem;
 
 class MomService{
     public function create_mom($post){
@@ -103,7 +104,7 @@ class MomService{
 
         $diskusi = MomDiskusiItem :: insert($item);
 
-        return $item;
+        return $item;   
     }
 
     
