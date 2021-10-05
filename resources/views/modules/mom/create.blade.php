@@ -376,11 +376,6 @@
             },
             success: function (s) {
                 $('#discuss_konten').html(s);
-
-                $('.daterange-single').daterangepicker({
-                    parentEl: '.content-inner',
-                    singleDatePicker: true
-                });
                 // console.log(s);
                 // $.each(s, function( key, value ) {
                 //     $('#discuss_konten').append('<div class="form-group row" id="mom_diskusi'+key+'">\

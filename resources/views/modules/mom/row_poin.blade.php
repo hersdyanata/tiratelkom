@@ -32,3 +32,9 @@
         </select>
     </td>
 </tr>
+<script>
+    $('.daterange-single').daterangepicker({
+        parentEl: '.content-inner',
+        singleDatePicker: true
+    });
+</script>
