@@ -376,6 +376,11 @@
             },
             success: function (s) {
                 $('#discuss_konten').html(s);
+
+                $('.daterange-single').daterangepicker({
+                    parentEl: '.content-inner',
+                    singleDatePicker: true
+                });
                 // console.log(s);
                 // $.each(s, function( key, value ) {
                 //     $('#discuss_konten').append('<div class="form-group row" id="mom_diskusi'+key+'">\
@@ -409,7 +414,7 @@
             url: "{{ route('mom.create_draft_mom') }}",
             data: $('#form_discuss').serialize(),
             beforeSend: function(){
-                small_loader_open('form_discuss');
+                // small_loader_open('form_discuss');
             },
             success: function (s) {
                 console.log(s);
