@@ -406,7 +406,7 @@
     function simpan_data_diskusi(){
         $.ajax({
             type: "POST",
-            url: "{{ route('mom.create_draft_mom') }}",
+            url: "{{ route('mom.store_draft_mom') }}",
             data: $('#form_discuss').serialize(),
             beforeSend: function(){
                 // small_loader_open('form_discuss');

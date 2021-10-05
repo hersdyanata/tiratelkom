@@ -84,4 +84,27 @@ class MomService{
 
         return $item;
     }
+
+    public function create_draft_mom($post){
+
+        $item = array();
+        foreach($post['pointer'] as $i => $r){
+            $item[] = [
+                'mom_id'        => $post['mom_id'][$i],
+                'agenda_id'     => $post['agenda_id'][$i],
+                'pointer'       => $post['pointer'][$i],
+                'assignment'    => $post['assignment'][$i],
+                'uic'           => $post['uic'][$i],
+                'due_date'      => $post['due_date'][$i],
+                'priority'      => $post['priority'][$i],
+                'status'        => $post['status'][$i]
+            ];
+        }
+
+        $diskusi = MomDiskusiItem :: insert($item);
+
+        return $item;
+    }
+
+    
 }
