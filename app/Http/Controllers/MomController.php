@@ -52,7 +52,21 @@ class MomController extends Controller
     }
 
     public function create_draft_mom(MomService $mom, Request $request){
-        dd($request->all()); 
+        $agenda = array();
+        foreach($request->pointer as $i => $r){
+            $agenda[] = [
+                'mom_id' => $request->mom_id[$i],
+                'agenda_id' => $request->agenda_id[$i],
+                'pointer' => $request->pointer[$i],
+                'assignment' => $request->assignment[$i],
+                'uic' => $request->uic[$i],
+                'due_date' => $request->due_date[$i],
+                'priority' => $request->priority[$i],
+                'status' => $request->status[$i]
+            ];
+        }
+
+        dd($agenda);
     }
 
 
