@@ -11,7 +11,7 @@
  Target Server Version : 100315
  File Encoding         : 65001
 
- Date: 06/10/2021 17:00:18
+ Date: 07/10/2021 17:01:26
 */
 
 SET NAMES utf8mb4;
@@ -158,16 +158,17 @@ DROP TABLE IF EXISTS `master_category`;
 CREATE TABLE `master_category`  (
   `category_id` int NOT NULL,
   `category_desc` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `category_default` char(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of master_category
 -- ----------------------------
-INSERT INTO `master_category` VALUES (1, 'WAR');
-INSERT INTO `master_category` VALUES (2, 'Forum Infrastruktur');
-INSERT INTO `master_category` VALUES (3, 'Forum Meeting');
-INSERT INTO `master_category` VALUES (4, 'Forum Support');
+INSERT INTO `master_category` VALUES (1, 'WAR', 'active');
+INSERT INTO `master_category` VALUES (2, 'Forum Infrastruktur', NULL);
+INSERT INTO `master_category` VALUES (3, 'Forum Meeting', '');
+INSERT INTO `master_category` VALUES (4, 'Forum Support', NULL);
 
 -- ----------------------------
 -- Table structure for master_type
@@ -345,7 +346,7 @@ CREATE TABLE `tra_mom`  (
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (30, 2, 'Netwok Maintenance', '2021-10-06', '12:30 AM', '1', 'Zoom', 4, 'Amm', 'D', '2021-10-06 15:48:37', NULL);
+INSERT INTO `tra_mom` VALUES (30, 2, 'Netwok Maintenance', '2021-10-06', '12:30 AM', '1', 'Zoom', 4, 'Amm', 'O', '2021-10-07 15:10:32', '2021-10-07 15:10:32');
 INSERT INTO `tra_mom` VALUES (31, 1, 'test', '2021-10-06', '12:30 AM', '1', 'test', 4, 'test', 'D', '2021-10-06 15:54:59', NULL);
 
 -- ----------------------------
@@ -512,8 +513,8 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'hersdyanata', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'KAcU0Ii46D2rLIZ8EFqKWv4VAeK50knbebD620FO1guTYCk6nv2A0VNQNk8k', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
-INSERT INTO `users` VALUES (4, 'johndoe', 1, NULL, 'John Doe', 'johndoe@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'dark', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
+INSERT INTO `users` VALUES (1, 'hersdyanata', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'p4xm7YXvChD0l6jcS0KQfuA31wnpTLK42y6CmI1cvaSvVI0hjibxLjHKJ9bH', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
+INSERT INTO `users` VALUES (4, 'johndoe', 1, NULL, 'John Doe', 'johndoe@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
 INSERT INTO `users` VALUES (6, 'janedoe', 1, NULL, 'Jane Doe', 'janedoe@gmail.com', NULL, '$2y$10$.B99py5y1rz/jw6fhDsNIO12qDU2bCSK1tgkl.98yfzStMLH/r6j2', NULL, NULL, NULL, 'light', '2021-01-17 05:11:27', '2021-01-17 05:11:27');
 
 SET FOREIGN_KEY_CHECKS = 1;

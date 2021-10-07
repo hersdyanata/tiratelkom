@@ -7063,7 +7063,9 @@ button.bg-secondary {
   a.bg-secondary:hover, a.bg-secondary:focus,
   button.bg-secondary:hover,
   button.bg-secondary:focus {
-    background-color: #345768 !important; }
+    /* background-color: #345768 !important;  */
+    background: url('../../../../global_assets/imagesbg_tira.jpg');
+  }
 
 .bg-secondary-100 {
   background-color: #ecf1f3 !important; }

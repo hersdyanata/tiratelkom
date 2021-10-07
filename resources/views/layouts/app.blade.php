@@ -86,6 +86,18 @@
 			background-color: #e1cccc;
 			color: #ef5350;
 		}
+
+		.nav-tabs-solid .nav-item.show .nav-link.active, .nav-tabs-solid .nav-link.active {
+			color: #fff;
+			background-color: #ef5350;
+		}
+
+		/* .form-control-filled {
+			background-color: #ef5350;
+			border-width: 0 0 1px 0;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		} */
 	</style>
 </head>
 
