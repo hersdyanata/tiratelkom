@@ -11,7 +11,7 @@
  Target Server Version : 100315
  File Encoding         : 65001
 
- Date: 07/10/2021 17:01:26
+ Date: 08/10/2021 16:58:11
 */
 
 SET NAMES utf8mb4;
@@ -195,6 +195,7 @@ INSERT INTO `master_type` VALUES (5, 'Others');
 DROP TABLE IF EXISTS `master_uic`;
 CREATE TABLE `master_uic`  (
   `uic_id` int NOT NULL,
+  `uic_code` char(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `uic_desc` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`uic_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
@@ -202,19 +203,19 @@ CREATE TABLE `master_uic`  (
 -- ----------------------------
 -- Records of master_uic
 -- ----------------------------
-INSERT INTO `master_uic` VALUES (1, 'Regional Operation Center');
-INSERT INTO `master_uic` VALUES (2, 'Regional Network Operation');
-INSERT INTO `master_uic` VALUES (3, 'Regional Access Management');
-INSERT INTO `master_uic` VALUES (4, 'Planning Engineering & Development');
-INSERT INTO `master_uic` VALUES (5, 'Managed Service Operation');
-INSERT INTO `master_uic` VALUES (6, 'Consumer Marketing');
-INSERT INTO `master_uic` VALUES (7, 'Consumer Care');
-INSERT INTO `master_uic` VALUES (8, 'Reg Enterprise Government, Biz Service');
-INSERT INTO `master_uic` VALUES (9, 'Regional Wholesale Service');
-INSERT INTO `master_uic` VALUES (10, 'Business Planning & Performance');
-INSERT INTO `master_uic` VALUES (11, 'General Affair');
-INSERT INTO `master_uic` VALUES (12, 'Human Capital');
-INSERT INTO `master_uic` VALUES (13, 'Payment Collection & Finance');
+INSERT INTO `master_uic` VALUES (1, 'ROC', 'Regional Operation Center');
+INSERT INTO `master_uic` VALUES (2, 'RNO', 'Regional Network Operation');
+INSERT INTO `master_uic` VALUES (3, 'RAM', 'Regional Access Management');
+INSERT INTO `master_uic` VALUES (4, 'PED', 'Planning Engineering & Development');
+INSERT INTO `master_uic` VALUES (5, 'MSO', 'Managed Service Operation');
+INSERT INTO `master_uic` VALUES (6, 'CM', 'Consumer Marketing');
+INSERT INTO `master_uic` VALUES (7, 'CC', 'Consumer Care');
+INSERT INTO `master_uic` VALUES (8, 'BGES', 'Reg Enterprise Government, Biz Service');
+INSERT INTO `master_uic` VALUES (9, 'RWS', 'Regional Wholesale Service');
+INSERT INTO `master_uic` VALUES (10, 'BPP', 'Business Planning & Performance');
+INSERT INTO `master_uic` VALUES (11, 'GA', 'General Affair');
+INSERT INTO `master_uic` VALUES (12, 'HC', 'Human Capital');
+INSERT INTO `master_uic` VALUES (13, 'PCF', 'Payment Collection & Finance');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -341,13 +342,21 @@ CREATE TABLE `tra_mom`  (
   `mom_created_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `mom_updated_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (30, 2, 'Netwok Maintenance', '2021-10-06', '12:30 AM', '1', 'Zoom', 4, 'Amm', 'O', '2021-10-07 15:10:32', '2021-10-07 15:10:32');
-INSERT INTO `tra_mom` VALUES (31, 1, 'test', '2021-10-06', '12:30 AM', '1', 'test', 4, 'test', 'D', '2021-10-06 15:54:59', NULL);
+INSERT INTO `tra_mom` VALUES (38, 2, 'Network Maintenance', '2021-10-08', '12:30 AM', '1', 'Zoom', 4, 'Munggaran', 'D', '2021-10-08 14:32:17', NULL);
+INSERT INTO `tra_mom` VALUES (39, 3, 'Daily Report', '2021-10-08', '1:00 AM', '1', 'ERP', 4, 'Atun', 'D', '2021-10-08 14:35:18', NULL);
+INSERT INTO `tra_mom` VALUES (40, 1, 'Year Goal', '2021-10-08', '12:30 AM', '1', 'Sakura', 4, 'Phyur', 'D', '2021-10-08 14:41:38', NULL);
+INSERT INTO `tra_mom` VALUES (41, 2, 'test', '2021-10-08', '1:30 AM', '1', 'Test', 4, 'test', 'D', '2021-10-08 14:43:15', NULL);
+INSERT INTO `tra_mom` VALUES (42, 2, 'test', '2021-10-08', '12:30 AM', '1', 'test', 4, 'test', 'D', '2021-10-08 14:50:58', NULL);
+INSERT INTO `tra_mom` VALUES (43, 2, 'Network Maintenance', '2021-10-08', '1:00 AM', '1', 'Vicon', 4, 'amm', 'D', '2021-10-08 14:53:27', NULL);
+INSERT INTO `tra_mom` VALUES (44, 1, 'test', '2021-10-08', '12:30 AM', '1', 'test', 4, 'etset', 'O', '2021-10-08 15:08:40', '2021-10-08 15:08:40');
+INSERT INTO `tra_mom` VALUES (45, 4, 'Expanstion', '2021-10-08', '12:30 AM', '1', 'test', 4, 'test', 'D', '2021-10-08 15:39:16', NULL);
+INSERT INTO `tra_mom` VALUES (46, 2, 'Network Maintenacne', '2021-10-08', '12:30 AM', '1', 'Zoom', 4, 'Atun', 'D', '2021-10-08 16:07:45', NULL);
+INSERT INTO `tra_mom` VALUES (47, 1, 'Network Maintenance', '2021-10-08', '1:00 AM', '1', 'Zoom', 4, 'test', 'O', '2021-10-08 16:10:23', '2021-10-08 16:10:23');
 
 -- ----------------------------
 -- Table structure for tra_mom_agenda
@@ -362,10 +371,15 @@ CREATE TABLE `tra_mom_agenda`  (
 -- ----------------------------
 -- Records of tra_mom_agenda
 -- ----------------------------
-INSERT INTO `tra_mom_agenda` VALUES (30, 1, 'Agenda A');
-INSERT INTO `tra_mom_agenda` VALUES (30, 2, 'Agenda B');
-INSERT INTO `tra_mom_agenda` VALUES (31, 1, 'Agenda AA');
-INSERT INTO `tra_mom_agenda` VALUES (31, 2, 'Agenda BB');
+INSERT INTO `tra_mom_agenda` VALUES (38, 1, 'Agenda Kami Hari ini A');
+INSERT INTO `tra_mom_agenda` VALUES (38, 2, 'Agenda Kami hari ini B');
+INSERT INTO `tra_mom_agenda` VALUES (39, 1, 'Agenda A');
+INSERT INTO `tra_mom_agenda` VALUES (40, 1, 'Agenda AAA');
+INSERT INTO `tra_mom_agenda` VALUES (41, 1, 'Agebda');
+INSERT INTO `tra_mom_agenda` VALUES (42, 1, 'Agenda A');
+INSERT INTO `tra_mom_agenda` VALUES (43, 1, 'Agenda 1');
+INSERT INTO `tra_mom_agenda` VALUES (44, 1, 'Agenda AAAAAAAAAAAAA');
+INSERT INTO `tra_mom_agenda` VALUES (47, 1, 'Agenda A');
 
 -- ----------------------------
 -- Table structure for tra_mom_discuss
@@ -384,14 +398,21 @@ CREATE TABLE `tra_mom_discuss`  (
   `discuss_status` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_created_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`discuss_id`, `discuss_agenda_id`, `discuss_mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 87 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_discuss
 -- ----------------------------
-INSERT INTO `tra_mom_discuss` VALUES (31, 1, 1, 'Pointer AA1', 'Assignment AA1', 1, '2021-10-06', 'high', NULL, 'open', '2021-10-06 15:56:19');
-INSERT INTO `tra_mom_discuss` VALUES (31, 1, 2, 'Pointer AA2', 'Assignment AA2', 2, '2021-10-06', 'normal', NULL, 'open', '2021-10-06 15:56:19');
-INSERT INTO `tra_mom_discuss` VALUES (31, 2, 3, 'Pointer BB', 'Assignment BB', 3, '2021-10-06', 'low', 'Done Yes', 'closed', '2021-10-06 15:56:19');
+INSERT INTO `tra_mom_discuss` VALUES (38, 1, 77, 'Pointer Agenda A1', 'Assignment Agenda A1', 11, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:33:55');
+INSERT INTO `tra_mom_discuss` VALUES (38, 1, 78, 'Pointer Agenda A2', 'Assignment Agenda A1', 21, '2021-10-08', 'Normal', NULL, 'Open', '2021-10-08 14:33:55');
+INSERT INTO `tra_mom_discuss` VALUES (38, 2, 79, 'Pointer Agenda B1', 'Assignment Agenda B1', 31, '2021-10-08', 'Low', NULL, 'Closed', '2021-10-08 14:33:55');
+INSERT INTO `tra_mom_discuss` VALUES (39, 1, 80, 'Pointer A1', 'Assignment A1', 11, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:36:02');
+INSERT INTO `tra_mom_discuss` VALUES (40, 1, 81, 'Pointer AAA', 'Assignment AAA', 11, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:42:05');
+INSERT INTO `tra_mom_discuss` VALUES (41, 1, 82, 'Pointer 1', 'Assignment 1', 11, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:50:00');
+INSERT INTO `tra_mom_discuss` VALUES (42, 1, 83, 'Pointer A', 'Assignemtn A', 11, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:51:25');
+INSERT INTO `tra_mom_discuss` VALUES (43, 1, 84, 'Pointer 1A', 'Assignemtn 1A', 31, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:54:03');
+INSERT INTO `tra_mom_discuss` VALUES (44, 1, 85, 'Pointer AAAA', 'Assignemtn AAAA', 21, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 14:56:33');
+INSERT INTO `tra_mom_discuss` VALUES (47, 1, 86, 'Pointer A111', 'Assignment A1111', 13, '2021-10-08', 'High', NULL, 'Open', '2021-10-08 16:10:20');
 
 -- ----------------------------
 -- Table structure for tra_mom_participant
@@ -406,10 +427,17 @@ CREATE TABLE `tra_mom_participant`  (
 -- ----------------------------
 -- Records of tra_mom_participant
 -- ----------------------------
-INSERT INTO `tra_mom_participant` VALUES (31, 1);
-INSERT INTO `tra_mom_participant` VALUES (30, 11);
-INSERT INTO `tra_mom_participant` VALUES (30, 21);
-INSERT INTO `tra_mom_participant` VALUES (30, 31);
+INSERT INTO `tra_mom_participant` VALUES (42, 1);
+INSERT INTO `tra_mom_participant` VALUES (44, 2);
+INSERT INTO `tra_mom_participant` VALUES (47, 6);
+INSERT INTO `tra_mom_participant` VALUES (38, 11);
+INSERT INTO `tra_mom_participant` VALUES (41, 11);
+INSERT INTO `tra_mom_participant` VALUES (43, 12);
+INSERT INTO `tra_mom_participant` VALUES (38, 21);
+INSERT INTO `tra_mom_participant` VALUES (40, 21);
+INSERT INTO `tra_mom_participant` VALUES (38, 31);
+INSERT INTO `tra_mom_participant` VALUES (43, 31);
+INSERT INTO `tra_mom_participant` VALUES (39, 1802071);
 
 -- ----------------------------
 -- Table structure for tra_mom_type
@@ -452,6 +480,14 @@ INSERT INTO `tra_mom_type` VALUES (27, 1);
 INSERT INTO `tra_mom_type` VALUES (28, 1);
 INSERT INTO `tra_mom_type` VALUES (29, 1);
 INSERT INTO `tra_mom_type` VALUES (30, 1);
+INSERT INTO `tra_mom_type` VALUES (33, 1);
+INSERT INTO `tra_mom_type` VALUES (35, 1);
+INSERT INTO `tra_mom_type` VALUES (38, 1);
+INSERT INTO `tra_mom_type` VALUES (39, 1);
+INSERT INTO `tra_mom_type` VALUES (42, 1);
+INSERT INTO `tra_mom_type` VALUES (43, 1);
+INSERT INTO `tra_mom_type` VALUES (44, 1);
+INSERT INTO `tra_mom_type` VALUES (46, 1);
 INSERT INTO `tra_mom_type` VALUES (2, 2);
 INSERT INTO `tra_mom_type` VALUES (3, 2);
 INSERT INTO `tra_mom_type` VALUES (4, 2);
@@ -463,9 +499,23 @@ INSERT INTO `tra_mom_type` VALUES (11, 2);
 INSERT INTO `tra_mom_type` VALUES (22, 2);
 INSERT INTO `tra_mom_type` VALUES (30, 2);
 INSERT INTO `tra_mom_type` VALUES (31, 2);
+INSERT INTO `tra_mom_type` VALUES (32, 2);
+INSERT INTO `tra_mom_type` VALUES (34, 2);
+INSERT INTO `tra_mom_type` VALUES (35, 2);
+INSERT INTO `tra_mom_type` VALUES (36, 2);
+INSERT INTO `tra_mom_type` VALUES (41, 2);
+INSERT INTO `tra_mom_type` VALUES (45, 2);
+INSERT INTO `tra_mom_type` VALUES (47, 2);
 INSERT INTO `tra_mom_type` VALUES (28, 3);
 INSERT INTO `tra_mom_type` VALUES (29, 3);
+INSERT INTO `tra_mom_type` VALUES (32, 3);
+INSERT INTO `tra_mom_type` VALUES (36, 3);
+INSERT INTO `tra_mom_type` VALUES (37, 3);
+INSERT INTO `tra_mom_type` VALUES (42, 3);
 INSERT INTO `tra_mom_type` VALUES (2, 4);
+INSERT INTO `tra_mom_type` VALUES (37, 4);
+INSERT INTO `tra_mom_type` VALUES (38, 4);
+INSERT INTO `tra_mom_type` VALUES (40, 5);
 
 -- ----------------------------
 -- Table structure for usergroup
