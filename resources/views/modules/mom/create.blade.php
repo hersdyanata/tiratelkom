@@ -108,9 +108,17 @@
 
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label>Participant</label>
                                                 <input type="text" class="form-control tokenfield input_mom" placeholder="Add tag" name="participant_id" id="participant_id" data-fouc>
+                                            </div> --}}
+                                            <div class="form-group">
+                                                <label>Participant</label>
+                                                <select multiple="multiple" class="form-control select" data-fouc data-container-css-class="select2-filled" id="participant_id" name="participant_id">
+                                                    @foreach ($uics as $r)
+                                                        <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div> 
                                     </div><br><br>
@@ -187,6 +195,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center" id="div_btn_discuss">
+                        <input type="hidden" readonly id="temp_mom_id">
                         <p>
                             <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
                             <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
@@ -321,7 +330,6 @@
                 small_loader_open('form_data');
             },
             success: function (s) {   
-                // console.log(s);
                 small_loader_close('form_data');
                 $('#agenda_mom_id').val(s);
                 $('#div_agenda').show();
@@ -372,17 +380,11 @@
             url: "{{ route('mom.create_agenda') }}",
             data: $('#form_agenda').serialize(),
             beforeSend: function(){
-                // small_loader_open('form_agenda');
+                small_loader_open('form_agenda');
             },
             success: function (s) {
-                $('#discuss_konten').html(s);
-                // console.log(s);
-                // $.each(s, function( key, value ) {
-                //     $('#discuss_konten').append('<div class="form-group row" id="mom_diskusi'+key+'">\
-                //                             <label class="col-form-label col-lg-2">'+value.agenda_desc+'</label>\
-                //                         </div>');
-                // });
-                // small_loader_close('form_agenda'); 
+                $('#discuss_konten').html(s); 
+                small_loader_close('form_agenda'); 
                 $('#discuss_mom_id').val(s);
                 $('#discuss_agenda_id').val(s);
                 $('#div_discuss').show();
@@ -391,7 +393,7 @@
                 $('#div_btn_discuss').show(); 
 
                 $('.input_agenda').prop('disabled', true);
-                // $('#agenda_appender').focus();
+                $('#agenda_appender').focus();
 
                 $('html, body').animate({
                     scrollTop: $("#div_agenda").offset().top
@@ -409,11 +411,32 @@
             url: "{{ route('mom.store_draft_mom') }}",
             data: $('#form_discuss').serialize(),
             beforeSend: function(){
-                // small_loader_open('form_discuss');
+                small_loader_open('form_discuss');
             },
             success: function (s) {
-                console.log(s);
-                // small_loader_close('form_discuss');
+                $('#temp_mom_id').val(s);
+                small_loader_close('form_discuss');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }
+
+    function submit_data_mom(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.store_submit_mom') }}",
+            data: {
+                '_token': "{{ csrf_token() }}",
+                'mom_id': $('#temp_mom_id').val(),
+            },
+            beforeSend: function(){
+                small_loader_open('form_discuss');
+            },
+            success: function (s) {
+                small_loader_close('form_discuss');
+                window.location.href = "{{ route('dashboard.index') }}";
             },
             error: function(e){
                 sw_multi_error(e);

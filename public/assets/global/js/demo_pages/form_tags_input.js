@@ -287,30 +287,30 @@ var TagInputs = function() {
         //
 
         // Use Bloodhound engine
-        var citynames = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: {
-                url: '../../../../global_assets/demo_data/tags_input/citynames.json',
-                filter: function(list) {
-                    return $.map(list, function(cityname) {
-                    return { name: cityname }; });
-                }
-            }
-        });
+        // var citynames = new Bloodhound({
+        //     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+        //     queryTokenizer: Bloodhound.tokenizers.whitespace,
+        //     prefetch: {
+        //         url: '../../../../global_assets/demo_data/tags_input/citynames.json',
+        //         filter: function(list) {
+        //             return $.map(list, function(cityname) {
+        //             return { name: cityname }; });
+        //         }
+        //     }
+        // });
 
         // Initialize
-        citynames.initialize();
+        // citynames.initialize();
 
         // Attach typeahead
-        $('.tagsinput-typeahead').tagsinput({
-            typeaheadjs: {
-                name: 'citynames',
-                displayKey: 'name',
-                valueKey: 'name',
-                source: citynames.ttAdapter()
-            }
-        });
+        // $('.tagsinput-typeahead').tagsinput({
+        //     typeaheadjs: {
+        //         name: 'citynames',
+        //         displayKey: 'name',
+        //         valueKey: 'name',
+        //         source: citynames.ttAdapter()
+        //     }
+        // });
 
 
         //
@@ -318,31 +318,31 @@ var TagInputs = function() {
         //
 
         // Use Bloodhound engine
-        var countries = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            limit: 10,
-            prefetch: {
-                url: '../../../../global_assets/demo_data/tags_input/cities.json'
-            }
-        });
+        // var countries = new Bloodhound({
+        //     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
+        //     queryTokenizer: Bloodhound.tokenizers.whitespace,
+        //     limit: 10,
+        //     prefetch: {
+        //         url: '../../../../global_assets/demo_data/tags_input/cities.json'
+        //     }
+        // });
 
         // Kicks off the loading/processing of `local` and `prefetch`
-        countries.initialize();
+        // countries.initialize();
 
         // Define element
         var elt = $('.tagsinput-tag-objects');
 
         // Initialize
-        elt.tagsinput({
-            itemValue: 'value',
-            itemText: 'text',
-            typeaheadjs: {
-                name: 'countries',
-                displayKey: 'text',
-                source: countries.ttAdapter()
-            }
-        });
+        // elt.tagsinput({
+        //     itemValue: 'value',
+        //     itemText: 'text',
+        //     typeaheadjs: {
+        //         name: 'countries',
+        //         displayKey: 'text',
+        //         source: countries.ttAdapter()
+        //     }
+        // });
 
         // Add data
         elt.tagsinput('add', { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    });
@@ -357,40 +357,40 @@ var TagInputs = function() {
         //
 
         // Use Bloodhound engine
-        var continents = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('continent'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            limit: 10,
-            prefetch: {
-                url: '../../../../global_assets/demo_data/tags_input/cities.json'
-            }
-        });
+        // var continents = new Bloodhound({
+        //     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('continent'),
+        //     queryTokenizer: Bloodhound.tokenizers.whitespace,
+        //     limit: 10,
+        //     prefetch: {
+        //         url: '../../../../global_assets/demo_data/tags_input/cities.json'
+        //     }
+        // });
 
         // Kicks off the loading/processing of `local` and `prefetch`
-        continents.initialize();
+        // continents.initialize();
 
         // Define element
         var elt2 = $('.tagsinput-tag-categorizing');
 
         // Initialize
-        elt2.tagsinput({
-            tagClass: function(item) {
-                switch (item.continent) {
-                    case 'Europe'   : return 'text-white bg-indigo';
-                    case 'America'  : return 'text-white bg-danger';
-                    case 'Australia': return 'text-white bg-success';
-                    case 'Africa'   : return 'text-white bg-primary';
-                    case 'Asia'     : return 'text-white bg-pink';
-                }
-            },
-            itemValue: 'value',
-            itemText: 'text',
-            typeaheadjs: {
-                name: 'continents',
-                displayKey: 'text',
-                source: continents.ttAdapter()
-            }
-        });
+        // elt2.tagsinput({
+        //     tagClass: function(item) {
+        //         switch (item.continent) {
+        //             case 'Europe'   : return 'text-white bg-indigo';
+        //             case 'America'  : return 'text-white bg-danger';
+        //             case 'Australia': return 'text-white bg-success';
+        //             case 'Africa'   : return 'text-white bg-primary';
+        //             case 'Asia'     : return 'text-white bg-pink';
+        //         }
+        //     },
+        //     itemValue: 'value',
+        //     itemText: 'text',
+        //     typeaheadjs: {
+        //         name: 'continents',
+        //         displayKey: 'text',
+        //         source: continents.ttAdapter()
+        //     }
+        // });
 
         // Add data
         elt2.tagsinput('add', { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    });

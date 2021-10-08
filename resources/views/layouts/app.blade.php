@@ -46,10 +46,15 @@
 	<script src="{{ asset('assets/global/js/plugins/pickers/picker_date.js') }}"></script>
 
 	<script src="{{ asset('assets/global/js/demo_pages/form_input_groups.js') }}"></script>
-	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
 
 	<script src="{{ asset('assets/global/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/forms/inputs/touchspin.min.js') }}"></script>
+
+	<script src="{{ asset('assets/global/js/plugins/forms/tags/tagsinput.min.js') }}"></script>
+	<script src="{{ asset('assets/global/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
+	<script src="{{ asset('assets/global/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js') }}"></script>
+	{{-- <script src="{{ asset('assets/global/js/plugins/ui/prism.min.js') }}"></script> --}}
+	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
 
 	
 

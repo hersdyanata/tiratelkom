@@ -108,5 +108,15 @@ class MomService{
         return $diskusi;
     }
 
+    public function submit_mom($post){
+        // isi mom_status dengan huruf 'O' yang artinya mom ini telah di publish
+        $put = MomHeader::find($post['mom_id']); 
+        $put->mom_status = 'O';
+        $put->save();
+
+        $pesan = 'MoM telah dibuka.';
+        return $pesan;
+    }
+
     
 }
