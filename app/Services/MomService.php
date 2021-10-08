@@ -12,7 +12,7 @@ use App\Models\TraMomModel as MomHeader;
 use App\Models\TraMomTypeModel as MomTypeItem;
 use App\Models\TraMomParticipantModel as MomParticipantItem;
 use App\Models\TraMomAgendaModel as MomAgendaItem;
-use App\Models\TraMomDiskusiModel as MomDiskusiItem;
+use App\Models\TraMomDiscussModel as MomDiscussItem;
 
 class MomService{
     public function create_mom($post){
@@ -87,24 +87,35 @@ class MomService{
     }
 
     public function create_draft_mom($post){
-
         $item = array();
         foreach($post['pointer'] as $i => $r){
             $item[] = [
-                'mom_id'        => $post['mom_id'][$i],
-                'agenda_id'     => $post['agenda_id'][$i],
-                'pointer'       => $post['pointer'][$i],
-                'assignment'    => $post['assignment'][$i],
-                'uic'           => $post['uic'][$i],
-                'due_date'      => $post['due_date'][$i],
-                'priority'      => $post['priority'][$i],
-                'status'        => $post['status'][$i]
+                'discuss_mom_id'        => $post['mom_id'][$i],
+                'discuss_agenda_id'     => $post['agenda_id'][$i],
+                'discuss_pointer'       => $post['pointer'][$i],
+                'discuss_assignment'     => $post['assignment'][$i],
+                'discuss_uic_id'        => $post['uic'][$i],
+                'discuss_due_date'      => date('Y-m-d', strtotime($post['due_date'][$i])),
+                'discuss_priority'      => $post['priority'][$i],
+                'discuss_progress'      => $post['progress'][$i],
+                'discuss_status'        => $post['status'][$i],
+                'discuss_created_date'  => Now(), 
             ];
         }
 
-        $diskusi = MomDiskusiItem :: insert($item);
+        $diskusi = MomDiscussItem :: insert($item);
 
-        return $item;   
+        return $diskusi;
+    }
+
+    public function submit_mom($post){
+        // isi mom_status dengan huruf 'O' yang artinya mom ini telah di publish
+        $put = MomHeader::find($post['mom_id']); 
+        $put->mom_status = 'O';
+        $put->save();
+
+        $pesan = 'MoM telah dibuka.';
+        return $pesan;
     }
 
     

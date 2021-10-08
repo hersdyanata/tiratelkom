@@ -25,10 +25,10 @@
 	<div class="navbar-collapse collapse flex-lg-1 mx-lg-3 order-2 order-lg-1" id="navbar-search">
 		<div class="navbar-search d-flex align-items-center py-2 py-lg-0">
 			<div class="form-group-feedback form-group-feedback-left flex-grow-1">
-				<input type="text" class="form-control" placeholder="Search">
-				<div class="form-control-feedback">
+				{{-- <input type="text" class="form-control" placeholder="Search"> --}}
+				{{-- <div class="form-control-feedback">
 					<i class="icon-search4 text-white opacity-50"></i>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>

@@ -21,8 +21,9 @@ Route::get('/', function () {
 //     return view('modules.dashboard.index');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
-// Route::get('/menu-manager', [App\Http\Controllers\MenuManagerController::class, 'index'])->name('menu_manager');
+Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+Route::post('dashboard/extended_page', [App\Http\Controllers\DashboardController::class, 'extended_page'])->name('dashboard.extended_page');
+Route::post('dashboard/filter_mom', [App\Http\Controllers\DashboardController::class, 'filter_mom'])->name('dashboard.filter_mom');
 
 /* ======================================================================= Route List Core ======================================================================= */
 Route::post('core/switch-theme', [App\Http\Controllers\CoreController::class, 'switchTheme'])->name('switch_theme');
@@ -53,19 +54,12 @@ Route::post('user/predelete', [App\Http\Controllers\UserController::class, 'pred
 Route::post('user/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
 /* ======================================================================= Route List Core ======================================================================= */
 
-// Route::resource('mst_vendor', App\Http\Controllers\MstVendorController::class);
-// Route::resource('mst_produk', App\Http\Controllers\MstProdukController::class);
-// Route::resource('mst_customer', App\Http\Controllers\MstCustomerController::class);
-// Route::resource('global_setting', App\Http\Controllers\ParGlobalSettingController::class);
-// Route::resource('level3', App\Http\Controllers\MenuLevelController::class);
-// Route::resource('level-up', App\Http\Controllers\LevelUpController::class);
-// Route::resource('level32', App\Http\Controllers\Level32Controller::class);
-
 Route::resource('mom', App\Http\Controllers\MomController::class);
 Route::post('mom/create_agenda', [App\Http\Controllers\MomController::class, 'store_agenda'])->name('mom.create_agenda');
 Route::post('mom/add_row_poin', [App\Http\Controllers\MomController::class, 'add_row_poin'])->name('mom.add_row_poin');
+Route::post('mom/create_draft_mom', [App\Http\Controllers\MomController::class, 'create_draft_mom'])->name('mom.create_draft_mom');
 Route::post('mom/store_draft_mom', [App\Http\Controllers\MomController::class, 'store_draft_mom'])->name('mom.store_draft_mom');
-
+Route::post('mom/store_submit_mom', [App\Http\Controllers\MomController::class, 'store_submit_mom'])->name('mom.store_submit_mom'); 
 
 
 require __DIR__.'/auth.php';

@@ -46,10 +46,15 @@
 	<script src="{{ asset('assets/global/js/plugins/pickers/picker_date.js') }}"></script>
 
 	<script src="{{ asset('assets/global/js/demo_pages/form_input_groups.js') }}"></script>
-	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
 
 	<script src="{{ asset('assets/global/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
 	<script src="{{ asset('assets/global/js/plugins/forms/inputs/touchspin.min.js') }}"></script>
+
+	<script src="{{ asset('assets/global/js/plugins/forms/tags/tagsinput.min.js') }}"></script>
+	<script src="{{ asset('assets/global/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
+	<script src="{{ asset('assets/global/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js') }}"></script>
+	{{-- <script src="{{ asset('assets/global/js/plugins/ui/prism.min.js') }}"></script> --}}
+	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
 
 	
 
@@ -86,6 +91,18 @@
 			background-color: #e1cccc;
 			color: #ef5350;
 		}
+
+		.nav-tabs-solid .nav-item.show .nav-link.active, .nav-tabs-solid .nav-link.active {
+			color: #fff;
+			background-color: #ef5350;
+		}
+
+		/* .form-control-filled {
+			background-color: #ef5350;
+			border-width: 0 0 1px 0;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		} */
 	</style>
 </head>
 

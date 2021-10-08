@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\MomTypeModel as momType;
 use App\Models\MomCategoryModel as momCategory;
+use App\Models\TraMomModel as MomItem;
+use App\Models\TraMomAgendaModel as MomAgendaItem;
+use App\Models\MstUICModel as UIC;
 
 use Illuminate\Http\Request;
 use App\Services\Core;
 use App\Services\MomService;
-
-use App\Models\TraMomAgendaModel as MomAgendaItem;
 
 class MomController extends Controller
 {
@@ -20,6 +21,9 @@ class MomController extends Controller
         $this->core = $core;
     }
 
+    // tab : 9,
+    // comma : 188
+
     public function index()
     {
         $title = 'Create MoM';
@@ -28,6 +32,7 @@ class MomController extends Controller
                     'title' => $title,
                     'dataType' => momType::get(),
                     'dataCategory' => momCategory::get(),
+                    'uics' => UIC::get()
                 ]);
     }
 
@@ -52,8 +57,14 @@ class MomController extends Controller
 
     public function store_draft_mom(MomService $mom, Request $request){
         $res = $mom->create_draft_mom($request->all());
+        $mom = MomItem::where('mom_id', $request->mom_id)->pluck('mom_id')->first();
+        return response()->json($mom, 200);
     }
 
+    public function store_submit_mom(MomService $mom, Request $request){
+         $res = $mom->submit_mom($request->all());  
+        return response()->json($res, 200);
+    }
 
     public function edit($id)
     {

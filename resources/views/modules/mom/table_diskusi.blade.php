@@ -16,6 +16,7 @@
                     <th><i>UIC</i></th>
                     <th><i>Due Date</i></th>
                     <th><i>Priority</i></th>
+                    <th><i>Progress</i></th>
                     <th><i>Status</i></th>
                 </tr>
             </thead>

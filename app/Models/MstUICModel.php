@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class MstUICModel extends Model
+{
+    protected $table = 'master_uic';
+    protected $primaryKey = 'uic_id';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'uic_code',
+        'uic_desc'
+    ];
+}
