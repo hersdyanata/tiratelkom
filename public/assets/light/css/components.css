@@ -12841,7 +12841,7 @@ iframe.wait-autoplay {
  *
  * ---------------------------------------------------------------------------- */
 .login-cover {
-  background: url(../../../../../../global_assets/images/login_cover.jpg) no-repeat;
+  background: url(../../../assets/global/images/login_cover.jpg) no-repeat;
   background-size: cover; }
 
 .login-form {

@@ -1,11 +1,13 @@
 <div class="col-lg-12">
-    <h5 class="card-title">{{ $title }}</h5>
+    <h1 class="mb-0 font-weight-bold">
+        {{ $title }}
+    </h1>
     <div class="card">
         <div class="card-body">
             <input type="hidden" id="status_mom" value="{{ $status }}" readonly>
             <ul class="nav nav-tabs nav-tabs-solid nav-justified rounded">
                 @foreach ($kategori as $k)
-                    <li class="nav-item">
+                    <li class="nav-item" {{ $visible }}>
                         <a href="#kategori{{ $k->category_id }}" class="nav-link rounded-left rounded-right {{ $k->category_default }}" data-toggle="tab" onclick="filter_mom('{{ $k->category_id }}')">
                             {{ $k->category_desc }}
                         </a>

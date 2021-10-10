@@ -51,7 +51,11 @@ class MomController extends Controller
     }
 
     public function add_row_poin(Request $request){
-        $row = view('modules.mom.row_poin')->with('agenda', $request)->render();;
+        $row = view('modules.mom.row_poin')
+                ->with([
+                    'agenda' => $request,
+                    'uics'   => UIC::get()
+                ])->render();
         return response()->json($row, 200);
     }
 

@@ -1,7 +1,7 @@
 @extends('layouts.guest')
-@section('bgcolor')
+{{-- @section('bgcolor')
     bg-secondary
-@endsection
+@endsection --}}
 @section('content')
     <!-- Login card -->
     <form class="login-form" method="POST" action="{{ route('login') }}">

@@ -26,7 +26,8 @@
 
 </head>
 
-<body class="@yield('bgcolor')">
+{{-- <body class="@yield('bgcolor')"> --}}
+<body>
 
 	<!-- Page content -->
 	<div class="page-content">

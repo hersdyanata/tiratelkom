@@ -9,7 +9,7 @@
 
     <div class="navbar-collapse collapse" id="navbar-footer">
         <span class="navbar-text">
-            &copy; 2021. <a href="#">enCores</a> by <a href="#" target="_blank">Creative Software Solution</a>
+            &copy; 2021. <a href="#">Tira</a> by <a href="#" target="_blank">Creative Software Solution</a>
         </span>
     </div>
 </div>

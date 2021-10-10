@@ -14,6 +14,11 @@
     </td>
     <td>
         <input type="text" class="form-control" name="uic[]" id="uic">
+        {{-- <select multiple="multiple" class="form-control select" data-fouc data-container-css-class="select2-filled" name="uic[]" id="uic" >
+            @foreach ($uics as $r)
+                <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
+            @endforeach
+        </select> --}}
     </td>
     <td>
         <input type="text" class="form-control daterange-single" name="due_date[]" id="due_date">
@@ -40,4 +45,4 @@
         parentEl: '.content-inner',
         singleDatePicker: true
     });
-</script>
+</script> 

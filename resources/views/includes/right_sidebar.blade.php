@@ -103,9 +103,7 @@
             </div>
         </div>
         <!-- /online-users -->
-
     </div>
     <!-- /sidebar content -->
-
 </div>
 <!-- /right sidebar -->
