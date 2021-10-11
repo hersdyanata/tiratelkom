@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'theme',
         'username',
         'group_id',
-        'parent_user_id'
+        'uic_id'
     ];
 
     /**

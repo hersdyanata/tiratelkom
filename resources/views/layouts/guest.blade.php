@@ -26,6 +26,14 @@
 
 </head>
 
+<style type="text/css">
+	body
+	{
+		background-image:url('../../../assets/global/images/login_cover.jpg');
+		background-size: cover;
+	}
+</style>
+
 {{-- <body class="@yield('bgcolor')"> --}}
 <body>
 

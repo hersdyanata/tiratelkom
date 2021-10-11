@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\MstUICModel as UIC;
+use App\Models\UsergroupModel as UserGroup;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -20,7 +22,13 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $view = view('auth.register')
+                ->with([
+                    'uic' => UIC::orderBy('uic_desc')->get(),
+                    'usergroup' => UserGroup::orderBy('group_nama','desc')->get(),
+                ]);
+        return $view;
+        // return view('auth.register');
     }
 
     /**
@@ -37,13 +45,19 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'uic_id' => 'required',
+            'uic_id' => 'required',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'uic_id' => $request->uic_id,
+            'group_id' => $request->group_id,
         ]);
+
+        dd( $user);
 
         event(new Registered($user));
 
