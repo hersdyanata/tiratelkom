@@ -43,22 +43,23 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'nik' => 'required|numeric|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'uic_id' => 'required',
-            'uic_id' => 'required',
+            'group_id' => 'required',
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'nik' => $request->nik,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'uic_id' => $request->uic_id,
             'group_id' => $request->group_id,
+            'theme' => 'material'
         ]);
-
-        dd( $user);
-
+ 
         event(new Registered($user));
 
         Auth::login($user);

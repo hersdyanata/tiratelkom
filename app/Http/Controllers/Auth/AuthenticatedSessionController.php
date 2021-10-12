@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\CoreMenuModel as Menu;
 use App\Models\CoreMenuDividerModel as Divider;
+use App\Services\GrantedService;
 
 class AuthenticatedSessionController extends Controller
 {
+    public $granted;
+    public function __construct(GrantedService $granted){
+        $this->granted = $granted;
+    }
     /**
      * Display the login view.
      *
@@ -41,7 +46,8 @@ class AuthenticatedSessionController extends Controller
     public function set_permission(){
         $userLogin = Auth::user();
         if($userLogin->group_id != 0){
-            $properties = $userLogin->permissions();
+            // $properties = $userLogin->permissions();
+            $properties = $this->granted->usergroup_permission($userLogin->group_id);
             $dividers = $properties['dividers'];
             $menus = $properties['menus'];
             $permission = $properties['actions']['array_privileges'];
@@ -83,6 +89,10 @@ class AuthenticatedSessionController extends Controller
         }
 
         session($data);
+    }
+
+    public function username(){
+        return 'username';
     }
 
     /**

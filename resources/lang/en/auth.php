@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Kombinasi email dan password tidak ditemukan.',
+    'failed' => 'Kombinasi NIK dan password tidak ditemukan.',
     'password' => 'Password Anda salah.',
     'throttle' => 'Anda terlalu banyak gagal login. Silahkan mencoba lagi dalam :seconds detik.',
 

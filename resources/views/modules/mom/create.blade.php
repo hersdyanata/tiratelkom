@@ -42,11 +42,11 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Date</label>
-                                                <div class="input-group">
+                                                <div class="form-group form-group-feedback form-group-feedback-right">
                                                     <input type="text" placeholder="Set Date" class="form-control daterange-single input_mom" name="date" id="date">
-                                                    <span class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="icon-calendar22"></i></span>
-                                                    </span>
+                                                    <div class="form-control-feedback">
+                                                        <i class="icon-calendar22 text-muted"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -54,11 +54,8 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Time</label>
-                                                <div class="input-group">
-                                                    <input type="text" placeholder="Set Time" class="form-control pickatime-clear input_mom" name="time" id="time">
-                                                    <span class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="mi-schedule"></i></span>
-                                                    </span>
+                                                <div class="form-group">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="time" id="time">
                                                 </div>
                                             </div>
                                         </div>
@@ -66,7 +63,7 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Duration</label>
-                                                <input type="text" placeholder="Set Duration" class="form-control touchspin-vertical input_mom" name="duration" id="duration">
+                                                <input type="number" placeholder="Set Duration" class="form-control input_mom" name="duration" id="duration" min=0>
                                             </div>
                                         </div>
                                     </div>
@@ -107,11 +104,7 @@
  
 
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            {{-- <div class="form-group">
-                                                <label>Participant</label>
-                                                <input type="text" class="form-control tokenfield input_mom" placeholder="Add tag" name="participant_id" id="participant_id" data-fouc>
-                                            </div> --}}
+                                        <div class="col-lg-12"> 
                                             <div class="form-group">
                                                 <label>Participant</label>
                                                 <select multiple="multiple" class="form-control select" data-fouc data-container-css-class="select2-filled" id="participant_id" name="participant_id">

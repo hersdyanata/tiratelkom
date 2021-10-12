@@ -11,7 +11,7 @@
                             </td>
 
                             <td>
-                                <div class="progress rounded-pill">
+                                <div class="progress rounded-pill" style="cursor:pointer">
                                     <div class="progress-bar bg-teal" style="width: 75%">
                                         <span>85%</span>
                                     </div>

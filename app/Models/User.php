@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public $timestamps = true;
     protected $fillable = [
         'name',
+        'nik',
         'email',
         'password',
         'theme',
@@ -51,15 +52,4 @@ class User extends Authenticatable implements MustVerifyEmail
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
-
-    public $granted;
-    public function __construct(){
-        $this->granted = App::make('App\Services\GrantedService');
-    }
-
-    public function permissions(){
-        $data = $this->hasOne(UserGroupModel::class, 'group_id', 'group_id')->pluck('group_menu_permission')->first();
-        $array = $this->granted->get_accessible_menu($data);
-        return $array;
-    }
 }

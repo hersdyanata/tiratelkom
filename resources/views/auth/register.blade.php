@@ -28,6 +28,13 @@
                         </div>
 
                         <div class="form-group form-group-feedback form-group-feedback-left">
+                            <input id="nik" type="text" name="nik" value="{{ old('nik') }}" class="form-control" placeholder="NIK" autofocus style="background-color:#FFF5F4;">
+                            <div class="form-control-feedback">
+                                <i class="icon-vcard text-muted"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-left">
                             <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" required style="background-color:#FFF5F4;">
                             <div class="form-control-feedback">
                                 <i class="icon-mention text-muted"></i>

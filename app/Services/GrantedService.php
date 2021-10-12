@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Models\CoreMenuDividerModel as Divider;
 use App\Models\CoreMenuModel as Menu;
+use App\Models\UsergroupModel as UserGroup;
 
 class GrantedService{
 
@@ -78,6 +79,12 @@ class GrantedService{
 
         $collections = collect($raw_act_privs['array_privileges'])->where('menu_id', $menu_id)->first();
         return $collections['perms'];
+    }
+
+    public function usergroup_permission($group_id){
+        $data = UserGroup::where('group_id', $group_id)->pluck('group_menu_permission')->first();
+        $array = $this->get_accessible_menu($data);
+        return $array;
     }
 
     public function list_menu_and_permission(){
