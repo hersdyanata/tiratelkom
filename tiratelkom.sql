@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 12/10/2021 01:21:27
+ Date: 15/10/2021 22:24:37
 */
 
 SET NAMES utf8mb4;
@@ -298,33 +298,6 @@ CREATE TABLE `sessions`  (
 INSERT INTO `sessions` VALUES ('YpB99syzolIkT1QWhMhtnZIrfQN37FBI1H6SHEBR', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0', 'YToxMDp7czo2OiJfdG9rZW4iO3M6NDA6IjFVcGU2cUY4V3BpbHhKcXhmdGQ2Q1JPWjlROFE2Q05ZZkRVQWl5SjgiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAva2FzaXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo1O3M6NzoidXNlcl9pZCI7aTo1O3M6NDoibmFtYSI7czoxMzoiRWtreSBQcmFkaXB0YSI7czo1OiJlbWFpbCI7czoyMDoiZXFwcmFkaXB0YUBnbWFpbC5jb20iO3M6NToidGhlbWUiO3M6ODoibWF0ZXJpYWwiO3M6ODoiZ3JvdXBfaWQiO2k6MjtzOjEwOiJncm91cF9uYW1hIjtzOjU6Ikthc2lyIjt9', 1611066051);
 
 -- ----------------------------
--- Table structure for tra_category_uic
--- ----------------------------
-DROP TABLE IF EXISTS `tra_category_uic`;
-CREATE TABLE `tra_category_uic`  (
-  `category_id` int NOT NULL,
-  `uic_id` int NOT NULL,
-  PRIMARY KEY (`category_id`, `uic_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tra_category_uic
--- ----------------------------
-INSERT INTO `tra_category_uic` VALUES (2, 1);
-INSERT INTO `tra_category_uic` VALUES (2, 2);
-INSERT INTO `tra_category_uic` VALUES (2, 3);
-INSERT INTO `tra_category_uic` VALUES (2, 4);
-INSERT INTO `tra_category_uic` VALUES (2, 5);
-INSERT INTO `tra_category_uic` VALUES (3, 6);
-INSERT INTO `tra_category_uic` VALUES (3, 7);
-INSERT INTO `tra_category_uic` VALUES (3, 8);
-INSERT INTO `tra_category_uic` VALUES (3, 9);
-INSERT INTO `tra_category_uic` VALUES (4, 10);
-INSERT INTO `tra_category_uic` VALUES (4, 11);
-INSERT INTO `tra_category_uic` VALUES (4, 12);
-INSERT INTO `tra_category_uic` VALUES (4, 13);
-
--- ----------------------------
 -- Table structure for tra_mom
 -- ----------------------------
 DROP TABLE IF EXISTS `tra_mom`;
@@ -412,79 +385,6 @@ CREATE TABLE `tra_mom_type`  (
 -- ----------------------------
 -- Records of tra_mom_type
 -- ----------------------------
-INSERT INTO `tra_mom_type` VALUES (3, 1);
-INSERT INTO `tra_mom_type` VALUES (4, 1);
-INSERT INTO `tra_mom_type` VALUES (5, 1);
-INSERT INTO `tra_mom_type` VALUES (6, 1);
-INSERT INTO `tra_mom_type` VALUES (7, 1);
-INSERT INTO `tra_mom_type` VALUES (8, 1);
-INSERT INTO `tra_mom_type` VALUES (9, 1);
-INSERT INTO `tra_mom_type` VALUES (10, 1);
-INSERT INTO `tra_mom_type` VALUES (11, 1);
-INSERT INTO `tra_mom_type` VALUES (12, 1);
-INSERT INTO `tra_mom_type` VALUES (13, 1);
-INSERT INTO `tra_mom_type` VALUES (14, 1);
-INSERT INTO `tra_mom_type` VALUES (15, 1);
-INSERT INTO `tra_mom_type` VALUES (16, 1);
-INSERT INTO `tra_mom_type` VALUES (17, 1);
-INSERT INTO `tra_mom_type` VALUES (18, 1);
-INSERT INTO `tra_mom_type` VALUES (19, 1);
-INSERT INTO `tra_mom_type` VALUES (20, 1);
-INSERT INTO `tra_mom_type` VALUES (21, 1);
-INSERT INTO `tra_mom_type` VALUES (22, 1);
-INSERT INTO `tra_mom_type` VALUES (23, 1);
-INSERT INTO `tra_mom_type` VALUES (24, 1);
-INSERT INTO `tra_mom_type` VALUES (25, 1);
-INSERT INTO `tra_mom_type` VALUES (26, 1);
-INSERT INTO `tra_mom_type` VALUES (27, 1);
-INSERT INTO `tra_mom_type` VALUES (28, 1);
-INSERT INTO `tra_mom_type` VALUES (29, 1);
-INSERT INTO `tra_mom_type` VALUES (30, 1);
-INSERT INTO `tra_mom_type` VALUES (33, 1);
-INSERT INTO `tra_mom_type` VALUES (35, 1);
-INSERT INTO `tra_mom_type` VALUES (38, 1);
-INSERT INTO `tra_mom_type` VALUES (39, 1);
-INSERT INTO `tra_mom_type` VALUES (42, 1);
-INSERT INTO `tra_mom_type` VALUES (43, 1);
-INSERT INTO `tra_mom_type` VALUES (44, 1);
-INSERT INTO `tra_mom_type` VALUES (46, 1);
-INSERT INTO `tra_mom_type` VALUES (48, 1);
-INSERT INTO `tra_mom_type` VALUES (49, 1);
-INSERT INTO `tra_mom_type` VALUES (50, 1);
-INSERT INTO `tra_mom_type` VALUES (2, 2);
-INSERT INTO `tra_mom_type` VALUES (3, 2);
-INSERT INTO `tra_mom_type` VALUES (4, 2);
-INSERT INTO `tra_mom_type` VALUES (5, 2);
-INSERT INTO `tra_mom_type` VALUES (6, 2);
-INSERT INTO `tra_mom_type` VALUES (7, 2);
-INSERT INTO `tra_mom_type` VALUES (8, 2);
-INSERT INTO `tra_mom_type` VALUES (11, 2);
-INSERT INTO `tra_mom_type` VALUES (22, 2);
-INSERT INTO `tra_mom_type` VALUES (30, 2);
-INSERT INTO `tra_mom_type` VALUES (31, 2);
-INSERT INTO `tra_mom_type` VALUES (32, 2);
-INSERT INTO `tra_mom_type` VALUES (34, 2);
-INSERT INTO `tra_mom_type` VALUES (35, 2);
-INSERT INTO `tra_mom_type` VALUES (36, 2);
-INSERT INTO `tra_mom_type` VALUES (41, 2);
-INSERT INTO `tra_mom_type` VALUES (45, 2);
-INSERT INTO `tra_mom_type` VALUES (47, 2);
-INSERT INTO `tra_mom_type` VALUES (48, 2);
-INSERT INTO `tra_mom_type` VALUES (50, 2);
-INSERT INTO `tra_mom_type` VALUES (28, 3);
-INSERT INTO `tra_mom_type` VALUES (29, 3);
-INSERT INTO `tra_mom_type` VALUES (32, 3);
-INSERT INTO `tra_mom_type` VALUES (36, 3);
-INSERT INTO `tra_mom_type` VALUES (37, 3);
-INSERT INTO `tra_mom_type` VALUES (42, 3);
-INSERT INTO `tra_mom_type` VALUES (50, 3);
-INSERT INTO `tra_mom_type` VALUES (51, 3);
-INSERT INTO `tra_mom_type` VALUES (52, 3);
-INSERT INTO `tra_mom_type` VALUES (2, 4);
-INSERT INTO `tra_mom_type` VALUES (37, 4);
-INSERT INTO `tra_mom_type` VALUES (38, 4);
-INSERT INTO `tra_mom_type` VALUES (52, 4);
-INSERT INTO `tra_mom_type` VALUES (40, 5);
 
 -- ----------------------------
 -- Table structure for usergroup
@@ -512,7 +412,7 @@ INSERT INTO `usergroup` VALUES (2, 'Staff', 'Staff UIC', '[{\"menu_id\":12,\"per
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `nik` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `group_id` int NULL DEFAULT NULL,
   `uic_id` int NULL DEFAULT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -532,8 +432,8 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'hersdyanata', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'ykVLAhdJqbpGgLDqCS9U4IXeESKUbXD2PhRWRfCyVjd0T96TGTrRqrTlqEg3', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
-INSERT INTO `users` VALUES (4, 'johndoe', 1, NULL, 'John Doe', 'johndoe@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
-INSERT INTO `users` VALUES (6, 'janedoe', 1, NULL, 'Jane Doe', 'janedoe@gmail.com', NULL, '$2y$10$.B99py5y1rz/jw6fhDsNIO12qDU2bCSK1tgkl.98yfzStMLH/r6j2', NULL, NULL, NULL, 'light', '2021-01-17 05:11:27', '2021-01-17 05:11:27');
+INSERT INTO `users` VALUES (1, '1803004', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'ykVLAhdJqbpGgLDqCS9U4IXeESKUbXD2PhRWRfCyVjd0T96TGTrRqrTlqEg3', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
+INSERT INTO `users` VALUES (4, '1802071', 1, NULL, 'John Doe', 'johndoe@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
+INSERT INTO `users` VALUES (6, '1612001', 1, NULL, 'Jane Doe', 'janedoe@gmail.com', NULL, '$2y$10$.B99py5y1rz/jw6fhDsNIO12qDU2bCSK1tgkl.98yfzStMLH/r6j2', NULL, NULL, NULL, 'light', '2021-01-17 05:11:27', '2021-01-17 05:11:27');
 
 SET FOREIGN_KEY_CHECKS = 1;
