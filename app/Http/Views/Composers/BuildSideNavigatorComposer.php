@@ -5,6 +5,7 @@ namespace App\Http\Views\Composers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\Core;
+use Auth;
 
 class BuildSideNavigatorComposer
 {
@@ -42,11 +43,12 @@ class BuildSideNavigatorComposer
     // }
 
     public function compose(View $view){
-
-        $view->with([
-            'dividers' => $this->dividers,
-            'all_menus' => $this->all_menus,
-            'page_permission' => $this->page_permission['perms']
-        ]);
+        if (Auth::check()) {
+            $view->with([
+                'dividers' => $this->dividers,
+                'all_menus' => $this->all_menus,
+                'page_permission' => $this->page_permission['perms']
+            ]);
+        }
     }
 }
