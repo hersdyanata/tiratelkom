@@ -55,8 +55,9 @@ Route::post('user/delete', [App\Http\Controllers\UserController::class, 'delete'
 /* ======================================================================= Route List Core ======================================================================= */
 
 Route::resource('mom', App\Http\Controllers\MomController::class);
-Route::post('mom/update_mom', [App\Http\Controllers\MomController::class, 'update_mom'])->name('mom.update_mom');
+Route::post('mom/update_mom', [App\Http\Controllers\MomController::class, 'store_update_mom'])->name('mom.update_mom');
 Route::post('mom/create_agenda', [App\Http\Controllers\MomController::class, 'store_agenda'])->name('mom.create_agenda');
+Route::post('mom/update_agenda', [App\Http\Controllers\MomController::class, 'store_update_agenda'])->name('mom.update_agenda');
 Route::post('mom/add_row_poin', [App\Http\Controllers\MomController::class, 'add_row_poin'])->name('mom.add_row_poin');
 Route::post('mom/create_draft_mom', [App\Http\Controllers\MomController::class, 'create_draft_mom'])->name('mom.create_draft_mom');
 Route::post('mom/store_draft_mom', [App\Http\Controllers\MomController::class, 'store_draft_mom'])->name('mom.store_draft_mom');

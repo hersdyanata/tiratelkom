@@ -313,7 +313,6 @@
                 small_loader_open('form_data');
             },
             success: function (s) {   
-                // console.log(s);
                 small_loader_close('form_data');
                 $('.input_mom').prop('disabled', true);
                 $('.input_agenda').prop('disabled', false);
@@ -378,14 +377,27 @@
     }
 
     function update_agenda(){
-        $('.input_agenda').prop('disabled', true);
-        $('#div_discuss').show();
-        $('#div_btn_discuss').show();
-        $('#btn_edit_agenda').show();
-        $('#btn_update_agenda').hide(); 
-        $('html, body').animate({
-            scrollTop: $("#div_agenda").offset().top
-        }, 500);
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.update_agenda') }}",
+            data: $('#form_agenda').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_agenda');
+            },
+            success: function (s) {
+                $('.input_agenda').prop('disabled', true);
+                $('#div_discuss').show();
+                $('#div_btn_discuss').show();
+                $('#btn_edit_agenda').show();
+                $('#btn_update_agenda').hide(); 
+                $('html, body').animate({
+                    scrollTop: $("#div_agenda").offset().top
+                }, 500);
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
     }
 
     function simpan_data_agenda(){

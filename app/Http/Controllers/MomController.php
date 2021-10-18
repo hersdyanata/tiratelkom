@@ -69,10 +69,15 @@ class MomController extends Controller
         return response()->json($res, 200);
     }
 
-    public function update_mom(MomService $mom, Request $request)
+    public function store_update_mom(MomService $mom, Request $request)
     {
-        $res = $mom->store_update_mom($request->all());
+        $res = $mom->update_mom($request->all());
         return response()->json($res, 200);
+    }
+
+    public function store_update_agenda(MomService $mom, Request $request)
+    {
+        dd($request->all());
     }
 
 }

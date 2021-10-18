@@ -118,7 +118,7 @@ class MomService{
         return $pesan;
     }
 
-    public function store_update_mom($post){
+    public function update_mom($post){
         // simpan transaksi mom header  
         $put = MomHeader::find($post['agenda_mom_id']); 
         $put->mom_title         = $post['category_id'];
