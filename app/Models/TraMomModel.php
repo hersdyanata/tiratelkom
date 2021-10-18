@@ -21,7 +21,5 @@ class TraMomModel extends Model
         'mom_notulen_by',
         'mom_called_by',
         'mom_status',
-        'mom_created_date',
-        'mom_updated_date',
     ];
 }

@@ -101,13 +101,12 @@
                                             </div>
                                         </div>
                                     </div>
- 
 
                                     <div class="row">
                                         <div class="col-lg-12"> 
                                             <div class="form-group">
                                                 <label>Participant</label>
-                                                <select multiple="multiple" class="form-control select" data-fouc data-container-css-class="select2-filled" id="participant_id" name="participant_id">
+                                                <select multiple="multiple" class="form-control select input_mom" data-fouc data-container-css-class="select2-filled" id="participant_id[]" name="participant_id[]">
                                                     @foreach ($uics as $r)
                                                         <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
                                                     @endforeach
@@ -115,6 +114,9 @@
                                             </div>
                                         </div> 
                                     </div><br><br>
+
+                                    {{-- initial data for edit --}}
+                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" hidden>
                                     
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -215,6 +217,7 @@
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').hide();
         $('#div_btn_discuss').hide(); 
+        
 
         var nomor = 0;
         $('#agenda_appender').on('keyup', function (e) {
@@ -298,20 +301,38 @@
         $('#div_btn_discuss').hide();
         $('html, body').animate({
             scrollTop: $("#form_data").offset().top
-        }, 500);
+        }, 500);        
     }
 
     function update_mom(){
-        $('.input_mom').prop('disabled', true);
-        $('.input_agenda').prop('disabled', false);
-        $('#div_agenda').show();
-        $('#btn_edit_mom').show();
-        $('#agenda_appender').focus();
-        $('#btn_update_mom').hide();
-        $('#btn_save_mom').hide();
-        $('html, body').animate({
-            scrollTop: $("#div_agenda").offset().top
-        }, 2000);
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.update_mom') }}",
+            data: $('#form_data').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_data');
+            },
+            success: function (s) {   
+                // console.log(s);
+                small_loader_close('form_data');
+                $('.input_mom').prop('disabled', true);
+                $('.input_agenda').prop('disabled', false);
+                $('#div_agenda').show();
+                $('#btn_edit_mom').show();
+                $('#agenda_appender').focus();
+                $('#btn_update_mom').hide();
+                $('#btn_save_mom').hide();
+                $('html, body').animate({
+                    scrollTop: $("#div_agenda").offset().top
+                }, 2000);
+
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+
+        
     }
 
     function simpan_data_mom(){
@@ -324,7 +345,7 @@
             },
             success: function (s) {   
                 small_loader_close('form_data');
-                $('#agenda_mom_id').val(s);
+                $('#agenda_mom_id').val(s); 
                 $('#div_agenda').show();
                 $('#btn_edit_mom').show();
                 $('#btn_save_mom').hide();

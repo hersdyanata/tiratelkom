@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 15/10/2021 22:24:37
+ Date: 19/10/2021 00:32:38
 */
 
 SET NAMES utf8mb4;
@@ -82,7 +82,7 @@ CREATE TABLE `dev_menu`  (
   `menu_createdby` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`menu_id`) USING BTREE,
   UNIQUE INDEX `index_dev_menu`(`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of dev_menu
@@ -186,7 +186,7 @@ CREATE TABLE `master_type`  (
 INSERT INTO `master_type` VALUES (1, 'Review');
 INSERT INTO `master_type` VALUES (2, 'Briefing');
 INSERT INTO `master_type` VALUES (3, 'Coordination');
-INSERT INTO `master_type` VALUES (4, 'Decisioin Making');
+INSERT INTO `master_type` VALUES (4, 'Decision Making');
 INSERT INTO `master_type` VALUES (5, 'Others');
 
 -- ----------------------------
@@ -315,7 +315,7 @@ CREATE TABLE `tra_mom`  (
   `mom_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `mom_updated_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom
@@ -352,7 +352,7 @@ CREATE TABLE `tra_mom_discuss`  (
   `discuss_status` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`discuss_id`, `discuss_agenda_id`, `discuss_mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 87 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_discuss
@@ -364,8 +364,8 @@ CREATE TABLE `tra_mom_discuss`  (
 DROP TABLE IF EXISTS `tra_mom_participant`;
 CREATE TABLE `tra_mom_participant`  (
   `mom_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  PRIMARY KEY (`user_id`, `mom_id`) USING BTREE
+  `uic_id` int NOT NULL,
+  PRIMARY KEY (`uic_id`, `mom_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------

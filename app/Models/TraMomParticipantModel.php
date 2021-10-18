@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TraMomParticipantModel extends Model
 {
     protected $table = 'tra_mom_participant';
-    protected $primaryKey = ['mom_id', 'user_id'];
+    protected $primaryKey = ['mom_id', 'uic_id'];
     public $timestamps = false;
 
     protected $fillable = [
         'mom_id',
-        'user_id', 
+        'uic_id', 
     ];
 }

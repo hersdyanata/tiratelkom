@@ -47,14 +47,14 @@ class MomService{
         MomTypeItem :: insert($item1);
 
         // simpan detail transaksi mom participant
-        $explode_id = array_map('intval', explode(',', $post['participant_id']));
+        // $explode_id = array_map('intval', explode(',', $post['participant_id']));
         $item2 = array();
         if (isset($id_header)) {
-            foreach ($explode_id as $dt2 => $r2) {
+            foreach ($post['participant_id'] as $dt2 => $r2) {
                 if ($r2 != null or $r2 = '') {
                     $item2[] = array(
                         'mom_id'  => $id_header,
-                        'user_id' => $r2
+                        'uic_id' => $r2
                     );
                 }
             }
@@ -116,6 +116,55 @@ class MomService{
 
         $pesan = 'MoM telah dibuka.';
         return $pesan;
+    }
+
+    public function store_update_mom($post){
+        // simpan transaksi mom header  
+        $put = MomHeader::find($post['agenda_mom_id']); 
+        $put->mom_title         = $post['category_id'];
+        $put->mom_event         = $post['event_title'];
+        $put->mom_date          = date('Y-m-d', strtotime($post['date']));
+        $put->mom_time          = $post['time'];
+        $put->mom_duration      = $post['duration'];
+        $put->mom_location      = $post['location'];
+        $put->mom_notulen_by    = session('user_id');
+        $put->mom_called_by     = $post['meeting_called_by'];
+        $put->mom_status        = 'D';
+        $put->mom_updated_date  = Now();
+        $put->save();
+
+        DB::table('tra_mom_type')->where('mom_id',$post['agenda_mom_id'])->delete();
+        DB::table('tra_mom_participant')->where('mom_id',$post['agenda_mom_id'])->delete();
+
+        // simpan detail transaksi mom type item
+        $item1 = array();
+        if (isset($post['agenda_mom_id'])) {
+            foreach ($post['meeting'] as $dt1 => $r1) {
+                if ($r1 != null or $r1 = '') {
+                    $item1[] = array(
+                        'mom_id'  => $post['agenda_mom_id'],
+                        'type_id' => $r1
+                    );
+                }
+            }
+        }
+        MomTypeItem :: insert($item1);
+
+        // simpan detail transaksi mom participant
+        $item2 = array();
+        if (isset($post['agenda_mom_id'])) {
+            foreach ($post['participant_id'] as $dt2 => $r2) {
+                if ($r2 != null or $r2 = '') {
+                    $item2[] = array(
+                        'mom_id'  => $post['agenda_mom_id'],
+                        'uic_id' => $r2
+                    );
+                }
+            }
+        }
+        MomParticipantItem :: insert($item2);
+
+        return $post['agenda_mom_id'];
     }
 
     
