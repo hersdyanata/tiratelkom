@@ -115,8 +115,8 @@
                                         </div> 
                                     </div><br><br>
 
-                                    {{-- initial data for edit --}}
-                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" hidden>
+                                    {{-- initial data for edit mom --}}
+                                    <input type="text" readonly id="temp_edit_mom_id" name="temp_edit_mom_id" hidden>
                                     
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -145,7 +145,7 @@
 
                                 <form id="form_agenda">
                                     @csrf
-                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" hidden>
+                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda">
                                     <div id="agenda_konten"></div>
                                 </form>
 
@@ -213,7 +213,6 @@
     $('document').ready(function(){
         // jquery for part agenda 
         $('#div_agenda').hide();
-        $('#div_discuss').hide();
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').hide();
         $('#div_btn_discuss').hide(); 
@@ -222,8 +221,7 @@
         var nomor = 0;
         $('#agenda_appender').on('keyup', function (e) {
             if (e.keyCode == 13) {
-                nomor++;
-                // console.log(nomor);
+                nomor++;  
                 $('#agenda_konten').append('<div class="form-group row" id="mom_agenda'+nomor+'">\
                                             <label class="col-form-label col-lg-2">Agenda '+nomor+'</label>\
                                             <div class="col-lg-10">\
@@ -242,46 +240,9 @@
 
         // jquery for part discuss
         $('#div_discuss').hide();
-
-        // jquery for participant column
-        // $('.tokenfield').on('keyup', function(e){
-        //     if(e.keyCode == 13){
-        //         // console.log(this.val);
-        //         console.log(this.prop);
-        //         // lookup_uic(this.value);
-        //     }
-        // });
+ 
     });
 
-    // function append_row(){
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "{{ route('mom.add_row_poin') }}",
-    //         data: {
-    //             "_token": "{{ csrf_token() }}"
-    //         },
-    //         beforeSend: function(){
-    //             small_loader_open('table_pointer');
-    //         },
-    //         success: function (s) {   
-    //             $('#body_poin').append(s);
-    //         },
-    //         complete: function(){
-    //             small_loader_close('table_pointer');
-    //         },
-    //         error: function(e){
-    //             sw_multi_error(e);
-    //         }
-    //     });
-    // }
-
-    function lookup_uic(par){
-        console.log(par);
-        $.ajax({
-            // validasi si par ini ada gak di UIC????
-            // kalo ada lanjutkan, kalo ga ada kasih warning terus gak bisa diapa2in
-        });
-    }
 
     function remove_agenda(par){
         $('#mom_agenda'+par).remove();
@@ -313,7 +274,8 @@
                 small_loader_open('form_data');
             },
             success: function (s) {   
-                small_loader_close('form_data');
+                console.log('um : ' + s);
+                small_loader_close('form_data'); 
                 $('.input_mom').prop('disabled', true);
                 $('.input_agenda').prop('disabled', false);
                 $('#div_agenda').show();
@@ -343,8 +305,10 @@
                 small_loader_open('form_data');
             },
             success: function (s) {   
+                console.log('sm : ' + s);
                 small_loader_close('form_data');
                 $('#agenda_mom_id').val(s); 
+                $('#temp_edit_mom_id').val(s);
                 $('#div_agenda').show();
                 $('#btn_edit_mom').show();
                 $('#btn_save_mom').hide();
@@ -376,7 +340,7 @@
         }, 500);
     }
 
-    function update_agenda(){
+    function update_agenda(){ 
         $.ajax({
             type: "POST",
             url: "{{ route('mom.update_agenda') }}",

@@ -120,7 +120,7 @@ class MomService{
 
     public function update_mom($post){
         // simpan transaksi mom header  
-        $put = MomHeader::find($post['agenda_mom_id']); 
+        $put = MomHeader::find($post['temp_edit_mom_id']); 
         $put->mom_title         = $post['category_id'];
         $put->mom_event         = $post['event_title'];
         $put->mom_date          = date('Y-m-d', strtotime($post['date']));
@@ -130,19 +130,18 @@ class MomService{
         $put->mom_notulen_by    = session('user_id');
         $put->mom_called_by     = $post['meeting_called_by'];
         $put->mom_status        = 'D';
-        $put->mom_updated_date  = Now();
         $put->save();
 
-        DB::table('tra_mom_type')->where('mom_id',$post['agenda_mom_id'])->delete();
-        DB::table('tra_mom_participant')->where('mom_id',$post['agenda_mom_id'])->delete();
+        DB::table('tra_mom_type')->where('mom_id',$post['temp_edit_mom_id'])->delete();
+        DB::table('tra_mom_participant')->where('mom_id',$post['temp_edit_mom_id'])->delete();
 
         // simpan detail transaksi mom type item
         $item1 = array();
-        if (isset($post['agenda_mom_id'])) {
+        if (isset($post['temp_edit_mom_id'])) {
             foreach ($post['meeting'] as $dt1 => $r1) {
                 if ($r1 != null or $r1 = '') {
                     $item1[] = array(
-                        'mom_id'  => $post['agenda_mom_id'],
+                        'mom_id'  => $post['temp_edit_mom_id'],
                         'type_id' => $r1
                     );
                 }
@@ -152,11 +151,11 @@ class MomService{
 
         // simpan detail transaksi mom participant
         $item2 = array();
-        if (isset($post['agenda_mom_id'])) {
+        if (isset($post['temp_edit_mom_id'])) {
             foreach ($post['participant_id'] as $dt2 => $r2) {
                 if ($r2 != null or $r2 = '') {
                     $item2[] = array(
-                        'mom_id'  => $post['agenda_mom_id'],
+                        'mom_id'  => $post['temp_edit_mom_id'],
                         'uic_id' => $r2
                     );
                 }
@@ -164,7 +163,7 @@ class MomService{
         }
         MomParticipantItem :: insert($item2);
 
-        return $post['agenda_mom_id'];
+        return $post['temp_edit_mom_id'];
     }
 
     
