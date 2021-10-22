@@ -77,7 +77,11 @@ class MomController extends Controller
 
     public function store_update_agenda(MomService $mom, Request $request)
     {
-        dd($request->all());
+        $res = $mom->update_agenda($request->all());
+        $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();
+        $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $agenda)->render();
+        return response()->json($view_diskusi, 200);
+
     }
 
 }

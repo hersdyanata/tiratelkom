@@ -166,5 +166,28 @@ class MomService{
         return $post['temp_edit_mom_id'];
     }
 
+    public function update_agenda($post){
+        DB::table('tra_mom_agenda')->where('mom_id',$post['agenda_mom_id'])->delete(); 
+
+        $item = array();
+        $no = 0;
+        if (isset($post)) {
+            foreach ($post['mom_agenda'] as $dt => $r) {
+                $no++;
+                if ($r != null or $r = '') {
+                    $item[] = array(
+                        'mom_id'  => $post['agenda_mom_id'],
+                        'agenda_id' => $no, 
+                        'agenda_desc' => $r
+                    );
+                }
+            }
+        }
+
+        $agenda = MomAgendaItem :: insert($item);
+
+        return $item;
+    }
+
     
 }

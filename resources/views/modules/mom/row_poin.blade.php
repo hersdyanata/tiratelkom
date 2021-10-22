@@ -1,4 +1,4 @@
-<tr>
+ <tr>
     <td></td>    
     <td hidden>
         <input type="hidden" class="form-control" name="mom_id[]" value="{{ $agenda->mom_id }}">
@@ -13,12 +13,12 @@
         <input type="text" class="form-control" name="assignment[]" id="assignment">
     </td>
     <td>
-        <input type="text" class="form-control" name="uic[]" id="uic">
-        {{-- <select multiple="multiple" class="form-control select" data-fouc data-container-css-class="select2-filled" name="uic[]" id="uic" >
+        {{-- <input type="text" class="form-control" name="uic[]" id="uic"> --}}
+        <select multiple="multiple" class="form-control select" data-fouc data-container-css-class="select2-filled" name="uic[]" id="uic[]" >
             @foreach ($uics as $r)
                 <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
             @endforeach
-        </select> --}}
+        </select>
     </td>
     <td>
         <input type="text" class="form-control daterange-single" name="due_date[]" id="due_date">
@@ -45,4 +45,9 @@
         parentEl: '.content-inner',
         singleDatePicker: true
     });
-</script> 
+
+    $('.select').select2({
+            minimumResultsForSearch: Infinity
+        });
+</script>  
+

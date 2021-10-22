@@ -145,7 +145,7 @@
 
                                 <form id="form_agenda">
                                     @csrf
-                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda">
+                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" hidden>
                                     <div id="agenda_konten"></div>
                                 </form>
 
@@ -227,7 +227,7 @@
                                             <div class="col-lg-10">\
                                                 <div class="input-group">\
                                                     <input type="text" class="form-control input_agenda" name="mom_agenda[]" value="'+this.value+'" placeholder="Agenda Meeting">\
-                                                    <span class="input-group-append">\
+                                                    <span class="input-group-append btn_rm_agenda">\
                                                         <a class="btn btn-danger" onclick="remove_agenda('+nomor+')">\
                                                             <i class="icon-trash icon-large"></i> Delete</a>\
                                                     </span>\
@@ -274,11 +274,11 @@
                 small_loader_open('form_data');
             },
             success: function (s) {   
-                console.log('um : ' + s);
                 small_loader_close('form_data'); 
                 $('.input_mom').prop('disabled', true);
                 $('.input_agenda').prop('disabled', false);
                 $('#div_agenda').show();
+                $('.btn_rm_agenda').show();
                 $('#btn_edit_mom').show();
                 $('#agenda_appender').focus();
                 $('#btn_update_mom').hide();
@@ -305,7 +305,6 @@
                 small_loader_open('form_data');
             },
             success: function (s) {   
-                console.log('sm : ' + s);
                 small_loader_close('form_data');
                 $('#agenda_mom_id').val(s); 
                 $('#temp_edit_mom_id').val(s);
@@ -334,6 +333,7 @@
         $('#agenda_appender').focus(); 
         $('#btn_edit_agenda').hide();
         $('#btn_update_agenda').show(); 
+        $('.btn_rm_agenda').show();
         $('#div_btn_discuss').hide();
         $('html, body').animate({
             scrollTop: $("#div_agenda").offset().top
@@ -349,11 +349,16 @@
                 small_loader_open('form_agenda');
             },
             success: function (s) {
+                small_loader_close('form_agenda');
+                $('#discuss_konten').html(s);
+                $('#discuss_mom_id').val(s);
+                $('#discuss_agenda_id').val(s);
                 $('.input_agenda').prop('disabled', true);
                 $('#div_discuss').show();
                 $('#div_btn_discuss').show();
                 $('#btn_edit_agenda').show();
                 $('#btn_update_agenda').hide(); 
+                $('.btn_rm_agenda').hide();
                 $('html, body').animate({
                     scrollTop: $("#div_agenda").offset().top
                 }, 500);
@@ -381,10 +386,9 @@
                 $('#btn_agenda').hide();
                 $('#btn_edit_agenda').show();   
                 $('#div_btn_discuss').show(); 
-
+                $('.btn_rm_agenda').hide();
                 $('.input_agenda').prop('disabled', true);
                 $('#agenda_appender').focus();
-
                 $('html, body').animate({
                     scrollTop: $("#div_agenda").offset().top
                 }, 2000);
