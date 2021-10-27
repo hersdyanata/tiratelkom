@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Services\Core;
 use App\Services\MomService;
 
+use App\Http\Requests\MomRequest;
+
 class MomController extends Controller
 {
     public $core;
@@ -36,7 +38,7 @@ class MomController extends Controller
                 ]);
     }
 
-    public function store(MomService $mom, Request $request)
+    public function store(MomService $mom, MomRequest $request)
     {
         $res = $mom->create_mom($request->all());
         return response()->json($res, 200);

@@ -321,6 +321,9 @@
                     scrollTop: $("#div_agenda").offset().top
                 }, 2000);
             },
+            complete: function(){
+                small_loader_close('form_data');
+            },
             error: function(e){
                 sw_multi_error(e);
             }
