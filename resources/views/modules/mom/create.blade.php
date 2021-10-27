@@ -216,6 +216,8 @@
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').hide();
         $('#div_btn_discuss').hide(); 
+        $('#btn_preview_mom').prop('disabled', true);
+        $('#btn_discuss').prop('disabled', true);
         
 
         var nomor = 0;
@@ -410,6 +412,13 @@
             success: function (s) {
                 $('#temp_mom_id').val(s);
                 small_loader_close('form_discuss');
+                $('#btn_preview_mom').prop('disabled', false);
+                $('#btn_discuss').prop('disabled', false);
+                $('.input_diskusi').prop('disabled', true);
+                $('#btn_add_item_diskusi').hide();
+                $('#btn_edit_mom').prop('disabled', true);
+                $('#btn_edit_agenda').prop('disabled', true);
+                $('#btn_save_draft').prop('disabled', true);
             },
             error: function(e){
                 sw_multi_error(e);
