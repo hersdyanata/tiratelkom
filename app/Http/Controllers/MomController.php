@@ -44,7 +44,7 @@ class MomController extends Controller
         return response()->json($res, 200);
     }
 
-    public function store_agenda(MomService $mom, Request $request){
+    public function store_agenda(MomService $mom, MomRequest $request){
         $res = $mom->create_mom_agenda($request->all());
         $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();
         $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $agenda)->render();
