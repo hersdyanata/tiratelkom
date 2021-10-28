@@ -11,7 +11,7 @@
  Target Server Version : 100315
  File Encoding         : 65001
 
- Date: 19/10/2021 16:36:39
+ Date: 28/10/2021 16:34:04
 */
 
 SET NAMES utf8mb4;
@@ -310,38 +310,18 @@ CREATE TABLE `tra_mom`  (
   `mom_duration` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_location` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_notulen_by` int NULL DEFAULT NULL,
-  `mom_called_by` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `mom_called_by` int NULL DEFAULT NULL,
   `mom_status` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_created_date` datetime NULL DEFAULT NULL,
   `mom_updated_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 89 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (17, 1, 'Network Maintenance', '2021-10-19', '13:25', '2', 'Zoom', 4, 'Amm', 'D', '2021-10-19 09:24:47', '2021-10-19 09:27:15');
-INSERT INTO `tra_mom` VALUES (18, 1, 'test', '2021-10-19', '11:40', '1', 'test', 4, 'test', 'D', '2021-10-19 09:38:23', NULL);
-INSERT INTO `tra_mom` VALUES (19, 1, 'test', '2021-10-19', '09:43', '1', 'test', 4, 'test', 'D', '2021-10-19 09:40:00', NULL);
-INSERT INTO `tra_mom` VALUES (20, 3, 'test', '2021-10-19', '12:53', '1', 'test', 4, 'test', 'D', '2021-10-19 09:53:15', NULL);
-INSERT INTO `tra_mom` VALUES (21, 4, 'test', '2021-10-19', '12:57', '1', 'test', 4, 'test', 'D', '2021-10-19 09:57:29', NULL);
-INSERT INTO `tra_mom` VALUES (22, 1, 'test', '2021-10-19', '09:00', '1', 'test', 4, 'test', 'D', '2021-10-19 09:59:18', NULL);
-INSERT INTO `tra_mom` VALUES (23, 1, 'test test', '2021-10-19', '10:50', '1', 'test', 4, 'test', 'D', '2021-10-19 10:48:21', '2021-10-19 10:48:52');
-INSERT INTO `tra_mom` VALUES (24, 2, 'test', '2021-10-19', '10:53', '1', 'test', 4, 'test', 'D', '2021-10-19 10:50:12', NULL);
-INSERT INTO `tra_mom` VALUES (25, 2, 'test', '2021-10-19', '13:50', '1', 'test', 4, 'test', 'D', '2021-10-19 10:51:03', NULL);
-INSERT INTO `tra_mom` VALUES (26, 3, 'test', '2021-10-19', '14:51', '1', 'test', 4, 'etest', 'D', '2021-10-19 10:51:27', NULL);
-INSERT INTO `tra_mom` VALUES (27, 2, 'test', '2021-10-19', '14:51', '1', 'test', 4, 'test', 'D', '2021-10-19 10:52:02', NULL);
-INSERT INTO `tra_mom` VALUES (28, 1, 'test', '2021-10-19', '10:55', '1', 'test', 4, 'test', 'D', '2021-10-19 10:52:39', NULL);
-INSERT INTO `tra_mom` VALUES (29, 3, 'test', '2021-10-19', '10:58', '1', 'test', 4, 'test', 'D', '2021-10-19 10:55:31', NULL);
-INSERT INTO `tra_mom` VALUES (30, 1, 'test', '2021-10-19', '01:58', '1', 'test', 4, 'test', 'D', '2021-10-19 10:58:09', NULL);
-INSERT INTO `tra_mom` VALUES (31, 2, 'test', '2021-10-19', '10:03', '1', 'test', 4, 'test', 'D', '2021-10-19 11:00:05', NULL);
-INSERT INTO `tra_mom` VALUES (32, 1, 'test', '2021-10-19', '11:03', '1', 'test', 4, 'test', 'D', '2021-10-19 11:00:59', NULL);
-INSERT INTO `tra_mom` VALUES (33, 1, 'test', '2021-10-19', '11:05', '1', 'test', 4, 'test', 'D', '2021-10-19 11:03:19', NULL);
-INSERT INTO `tra_mom` VALUES (34, 1, 'test', '2021-10-19', '11:05', '1', 'test', 4, 'test', 'D', '2021-10-19 11:03:26', NULL);
-INSERT INTO `tra_mom` VALUES (35, 1, 'test', '2021-10-19', '11:05', '1', 'test', 4, 'test', 'D', '2021-10-19 11:03:40', NULL);
-INSERT INTO `tra_mom` VALUES (36, 2, 'test test', '2021-10-19', '14:03', '1', 'test', 4, 'test', 'D', '2021-10-19 11:03:59', '2021-10-19 11:04:08');
-INSERT INTO `tra_mom` VALUES (37, 1, 'test', '2021-10-19', '15:06', '1', 'test', 4, 'test', 'D', '2021-10-19 11:06:18', NULL);
-INSERT INTO `tra_mom` VALUES (38, 1, 'test', '2021-10-19', '11:11', '1', 'test', 4, 'test', 'D', '2021-10-19 11:07:31', NULL);
+INSERT INTO `tra_mom` VALUES (87, 1, 'MoM WAR part 1', '2021-10-28', '16:07', '1', 'Zoom', 4, 4, 'D', '2021-10-28 15:08:28', NULL);
+INSERT INTO `tra_mom` VALUES (88, 2, 'MoM Forum Infrastruktur part 1', '2021-10-29', '20:15', '1', 'Vicon', 4, 1, 'D', '2021-10-28 16:15:31', NULL);
 
 -- ----------------------------
 -- Table structure for tra_mom_agenda
@@ -356,9 +336,9 @@ CREATE TABLE `tra_mom_agenda`  (
 -- ----------------------------
 -- Records of tra_mom_agenda
 -- ----------------------------
-INSERT INTO `tra_mom_agenda` VALUES (NULL, 1, 'Agenda A');
-INSERT INTO `tra_mom_agenda` VALUES (NULL, 2, 'Agenda B');
-INSERT INTO `tra_mom_agenda` VALUES (NULL, 3, 'Agenda C');
+INSERT INTO `tra_mom_agenda` VALUES (87, 1, 'MoM WAR Agenda Part 1 A');
+INSERT INTO `tra_mom_agenda` VALUES (87, 2, 'MoM WAR Agenda Part 1 B');
+INSERT INTO `tra_mom_agenda` VALUES (88, 1, 'MoM FI Agenda Part 1 A');
 
 -- ----------------------------
 -- Table structure for tra_mom_discuss
@@ -377,11 +357,16 @@ CREATE TABLE `tra_mom_discuss`  (
   `discuss_status` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_created_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`discuss_id`, `discuss_agenda_id`, `discuss_mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_discuss
 -- ----------------------------
+INSERT INTO `tra_mom_discuss` VALUES (87, 1, 3, 'MoM WAR Pointer Part 1 A1', 'MoM WAR Assignment Part 1  A1', 1, '2021-10-28', 'High', NULL, 'Open', '2021-10-28 16:17:18');
+INSERT INTO `tra_mom_discuss` VALUES (87, 1, 4, 'MoM WAR  Pointer Part 1 A2', 'MoM WAR Assignment Part 1  A2', 2, '2021-11-04', 'Normal', NULL, 'Open', '2021-10-28 16:17:22');
+INSERT INTO `tra_mom_discuss` VALUES (87, 1, 5, 'MoM WAR  Pointer Part 1 A3', 'MoM WAR Assignment Part 1  A3', 3, '2021-11-16', 'Low', NULL, 'Open', '2021-10-28 16:17:28');
+INSERT INTO `tra_mom_discuss` VALUES (87, 2, 6, 'MoM WAR Pointer Part 1 B1', 'MoM WAR Assignment Part 1  B1', 3, '2021-10-29', 'High', NULL, 'Open', '2021-10-28 16:17:34');
+INSERT INTO `tra_mom_discuss` VALUES (88, 1, 7, 'MoM FI Pointer Part 1 A1', 'MoM FI Assignment Part 1 A1', 11, '2021-11-01', 'High', NULL, 'Open', '2021-10-28 16:18:30');
 
 -- ----------------------------
 -- Table structure for tra_mom_participant
@@ -389,38 +374,16 @@ CREATE TABLE `tra_mom_discuss`  (
 DROP TABLE IF EXISTS `tra_mom_participant`;
 CREATE TABLE `tra_mom_participant`  (
   `mom_id` int NOT NULL,
-  `uic_id` int NOT NULL,
-  PRIMARY KEY (`uic_id`, `mom_id`) USING BTREE
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`mom_id`, `user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_participant
 -- ----------------------------
-INSERT INTO `tra_mom_participant` VALUES (19, 1);
-INSERT INTO `tra_mom_participant` VALUES (23, 1);
-INSERT INTO `tra_mom_participant` VALUES (33, 1);
-INSERT INTO `tra_mom_participant` VALUES (34, 1);
-INSERT INTO `tra_mom_participant` VALUES (35, 1);
-INSERT INTO `tra_mom_participant` VALUES (21, 2);
-INSERT INTO `tra_mom_participant` VALUES (30, 2);
-INSERT INTO `tra_mom_participant` VALUES (31, 2);
-INSERT INTO `tra_mom_participant` VALUES (32, 2);
-INSERT INTO `tra_mom_participant` VALUES (36, 2);
-INSERT INTO `tra_mom_participant` VALUES (24, 3);
-INSERT INTO `tra_mom_participant` VALUES (25, 3);
-INSERT INTO `tra_mom_participant` VALUES (37, 3);
-INSERT INTO `tra_mom_participant` VALUES (38, 3);
-INSERT INTO `tra_mom_participant` VALUES (20, 4);
-INSERT INTO `tra_mom_participant` VALUES (22, 4);
-INSERT INTO `tra_mom_participant` VALUES (18, 5);
-INSERT INTO `tra_mom_participant` VALUES (20, 5);
-INSERT INTO `tra_mom_participant` VALUES (28, 5);
-INSERT INTO `tra_mom_participant` VALUES (19, 6);
-INSERT INTO `tra_mom_participant` VALUES (22, 6);
-INSERT INTO `tra_mom_participant` VALUES (26, 6);
-INSERT INTO `tra_mom_participant` VALUES (27, 6);
-INSERT INTO `tra_mom_participant` VALUES (29, 6);
-INSERT INTO `tra_mom_participant` VALUES (17, 7);
+INSERT INTO `tra_mom_participant` VALUES (87, 1);
+INSERT INTO `tra_mom_participant` VALUES (87, 6);
+INSERT INTO `tra_mom_participant` VALUES (88, 6);
 
 -- ----------------------------
 -- Table structure for tra_mom_type
@@ -435,32 +398,9 @@ CREATE TABLE `tra_mom_type`  (
 -- ----------------------------
 -- Records of tra_mom_type
 -- ----------------------------
-INSERT INTO `tra_mom_type` VALUES (17, 1);
-INSERT INTO `tra_mom_type` VALUES (21, 1);
-INSERT INTO `tra_mom_type` VALUES (22, 1);
-INSERT INTO `tra_mom_type` VALUES (24, 1);
-INSERT INTO `tra_mom_type` VALUES (25, 1);
-INSERT INTO `tra_mom_type` VALUES (26, 1);
-INSERT INTO `tra_mom_type` VALUES (27, 1);
-INSERT INTO `tra_mom_type` VALUES (28, 1);
-INSERT INTO `tra_mom_type` VALUES (29, 1);
-INSERT INTO `tra_mom_type` VALUES (30, 1);
-INSERT INTO `tra_mom_type` VALUES (31, 1);
-INSERT INTO `tra_mom_type` VALUES (32, 1);
-INSERT INTO `tra_mom_type` VALUES (33, 1);
-INSERT INTO `tra_mom_type` VALUES (34, 1);
-INSERT INTO `tra_mom_type` VALUES (35, 1);
-INSERT INTO `tra_mom_type` VALUES (36, 1);
-INSERT INTO `tra_mom_type` VALUES (37, 1);
-INSERT INTO `tra_mom_type` VALUES (38, 1);
-INSERT INTO `tra_mom_type` VALUES (18, 2);
-INSERT INTO `tra_mom_type` VALUES (19, 2);
-INSERT INTO `tra_mom_type` VALUES (20, 2);
-INSERT INTO `tra_mom_type` VALUES (23, 2);
-INSERT INTO `tra_mom_type` VALUES (24, 2);
-INSERT INTO `tra_mom_type` VALUES (32, 2);
-INSERT INTO `tra_mom_type` VALUES (36, 2);
-INSERT INTO `tra_mom_type` VALUES (17, 3);
+INSERT INTO `tra_mom_type` VALUES (87, 1);
+INSERT INTO `tra_mom_type` VALUES (87, 2);
+INSERT INTO `tra_mom_type` VALUES (88, 3);
 
 -- ----------------------------
 -- Table structure for usergroup
@@ -509,7 +449,7 @@ CREATE TABLE `users`  (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, '1803004', 0, NULL, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'ykVLAhdJqbpGgLDqCS9U4IXeESKUbXD2PhRWRfCyVjd0T96TGTrRqrTlqEg3', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
-INSERT INTO `users` VALUES (4, '1802071', 1, NULL, 'John Doe', 'johndoe@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
+INSERT INTO `users` VALUES (4, '1802071', 1, NULL, 'Aditya M Munggaran', 'adityammunggaran@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
 INSERT INTO `users` VALUES (6, '1612001', 1, NULL, 'Jane Doe', 'janedoe@gmail.com', NULL, '$2y$10$.B99py5y1rz/jw6fhDsNIO12qDU2bCSK1tgkl.98yfzStMLH/r6j2', NULL, NULL, NULL, 'light', '2021-01-17 05:11:27', '2021-01-17 05:11:27');
 
 SET FOREIGN_KEY_CHECKS = 1;

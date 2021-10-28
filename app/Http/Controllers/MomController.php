@@ -6,12 +6,15 @@ use App\Models\MomCategoryModel as momCategory;
 use App\Models\TraMomModel as MomItem;
 use App\Models\TraMomAgendaModel as MomAgendaItem;
 use App\Models\MstUICModel as UIC;
+use App\Models\User as Users;
 
 use Illuminate\Http\Request;
 use App\Services\Core;
 use App\Services\MomService;
 
 use App\Http\Requests\MomRequest;
+use App\Http\Requests\AgendaRequest;
+use App\Http\Requests\DiscussRequest;
 
 class MomController extends Controller
 {
@@ -34,7 +37,7 @@ class MomController extends Controller
                     'title' => $title,
                     'dataType' => momType::get(),
                     'dataCategory' => momCategory::get(),
-                    'uics' => UIC::get()
+                    'users' => Users::get()
                 ]);
     }
 
@@ -44,7 +47,7 @@ class MomController extends Controller
         return response()->json($res, 200);
     }
 
-    public function store_agenda(MomService $mom, MomRequest $request){
+    public function store_agenda(MomService $mom, AgendaRequest $request){
         $res = $mom->create_mom_agenda($request->all());
         $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();
         $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $agenda)->render();
@@ -60,7 +63,7 @@ class MomController extends Controller
         return response()->json($row, 200);
     }
 
-    public function store_draft_mom(MomService $mom, Request $request){
+    public function store_draft_mom(MomService $mom, DiscussRequest $request){
         $res = $mom->create_draft_mom($request->all());
         $mom = MomItem::where('mom_id', $request->mom_id)->pluck('mom_id')->first();
         return response()->json($mom, 200);
@@ -71,13 +74,13 @@ class MomController extends Controller
         return response()->json($res, 200);
     }
 
-    public function store_update_mom(MomService $mom, Request $request)
+    public function store_update_mom(MomService $mom, MomRequest $request)
     {
         $res = $mom->update_mom($request->all());
         return response()->json($res, 200);
     }
 
-    public function store_update_agenda(MomService $mom, Request $request)
+    public function store_update_agenda(MomService $mom, AgendaRequest $request)
     {
         $res = $mom->update_agenda($request->all());
         $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();

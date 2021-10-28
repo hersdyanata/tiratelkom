@@ -77,11 +77,25 @@
                                         </div> 
                                     </div>
 
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Meeting Called By</label>
                                                 <input type="text" placeholder="Meeting Called By" class="form-control input_mom" name="meeting_called_by" id="meeting_called_by">
+                                            </div>
+                                        </div> 
+                                    </div> --}}
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold">Meeting Called By</label>
+                                                <select class="form-control select input_mom" name="meeting_called_by" id="meeting_called_by">
+                                                    <option value="">-- Choose --</option>
+                                                    @foreach ($users as $du)
+                                                        <option value="{{ $du->id }}">{{ $du->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div> 
                                     </div>
@@ -107,8 +121,8 @@
                                             <div class="form-group">
                                                 <label>Participant</label>
                                                 <select multiple="multiple" class="form-control select input_mom" data-fouc data-container-css-class="select2-filled" id="participant_id[]" name="participant_id[]">
-                                                    @foreach ($uics as $r)
-                                                        <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
+                                                    @foreach ($users as $r)
+                                                        <option value="{{ $r->id }}">{{ $r->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -290,6 +304,9 @@
                 }, 2000);
 
             },
+            complete: function(){
+                small_loader_close('form_data');
+            },
             error: function(e){
                 sw_multi_error(e);
             }
@@ -368,6 +385,9 @@
                     scrollTop: $("#div_agenda").offset().top
                 }, 500);
             },
+            complete: function(){
+                small_loader_close('form_agenda');
+            },
             error: function(e){
                 sw_multi_error(e);
             }
@@ -426,6 +446,9 @@
                 $('#btn_edit_agenda').prop('disabled', true);
                 $('#btn_save_draft').prop('disabled', true);
             },
+            complete: function(){
+                small_loader_close('form_discuss');
+            },
             error: function(e){
                 sw_multi_error(e);
             }
@@ -446,6 +469,9 @@
             success: function (s) {
                 small_loader_close('form_discuss');
                 window.location.href = "{{ route('dashboard.index') }}";
+            },
+            complete: function(){
+                small_loader_close('form_discuss');
             },
             error: function(e){
                 sw_multi_error(e);

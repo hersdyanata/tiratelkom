@@ -27,7 +27,6 @@ class MomRequest extends FormRequest
     public function rules()
     {
         return [
-            //validation for mom
             'category_id' => 'required',
             'event_title' => 'required',
             'date' => 'required',
@@ -36,16 +35,12 @@ class MomRequest extends FormRequest
             'location' => 'required',
             'meeting_called_by' => 'required', 
             'participant_id' => 'required', 
-            'meeting' => 'required|array|min:1',  
-            //validation for agenda
-            'mom_agenda' => 'required',  
-            //validation for discuss
+            'meeting' => 'required|array|min:1',   
         ];
     }
 
     public function messages(){
         return [
-            //validation for mom
             'category_id.required' => 'Title cannot be empty',
             'event_title.required' => 'Event cannot be empty',
             'date.required' => 'Date cannot be empty',
@@ -54,10 +49,7 @@ class MomRequest extends FormRequest
             'location.required' => 'Location cannot be empty',
             'meeting_called_by.required' => 'Meeting called by cannot be empty',
             'meeting.required' => 'Type of meeting cannot be empty',
-            'participant_id.required' => 'Participant cannot be empty', 
-            //validation for agenda
-            'mom_agenda.required' => 'Agenda cannot be empty' 
-            //validation for discuss
+            'participant_id.required' => 'Participant cannot be empty',  
         ];
     }
 

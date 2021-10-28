@@ -54,7 +54,7 @@ class MomService{
                 if ($r2 != null or $r2 = '') {
                     $item2[] = array(
                         'mom_id'  => $id_header,
-                        'uic_id' => $r2
+                        'user_id' => $r2
                     );
                 }
             }
