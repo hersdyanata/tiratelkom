@@ -9,10 +9,12 @@
     </thead>
     <tbody>
         @forelse ($moms as $m)
-            {{-- <tr>
+            <tr>
                 <td>{{ $m->mom_event }}</td>
-                <td>{{ $m-> }}</td>
-            </tr> --}}
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+            </tr>
         @empty
             <tr>
                 <td colspan="4" class="text-center">no data found</td>

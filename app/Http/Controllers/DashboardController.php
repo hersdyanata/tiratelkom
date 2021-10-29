@@ -104,12 +104,12 @@ class DashboardController extends Controller
 
 
     public function filter_mom(Request $r){
-        if($r->mom_status == 'L' or $r->mom_status == 'O' or $r->mom_status == 'C'){
+        if($r->status_mom == 'L' or $r->status_mom == 'O' or $r->status_mom == 'C'){
             $data = MomHeader::where([
                 'mom_title' => $r->kategori_mom,
                 'mom_status' => $r->status_mom
             ])->get();
-        }elseif($r->mom_status == 'A'){
+        }elseif($r->status_mom == 'A'){
             $data = MomHeader::where([
                 'mom_title' => $r->kategori_mom
             ])->get();              
