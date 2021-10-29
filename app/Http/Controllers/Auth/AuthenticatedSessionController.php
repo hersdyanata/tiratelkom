@@ -63,6 +63,7 @@ class AuthenticatedSessionController extends Controller
             
             $data = [
                 'user_id' => $userLogin->id,
+                'uic_id' => $userLogin->uic_id,
                 'group_id' => $userLogin->group_id,
                 'group_name' => $userLogin->group_nama,
                 'theme' => $userLogin->theme,

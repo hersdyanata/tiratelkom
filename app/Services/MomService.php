@@ -189,5 +189,14 @@ class MomService{
         return $item;
     }
 
+    public function load_right_sidebar(){
+        $data = MomDiscussItem::where([
+            'discuss_uic_id' => session('uic_id'),
+            'discuss_status' => 'O'
+        ])->get();
+
+        return $data; 
+    }
+
     
 }

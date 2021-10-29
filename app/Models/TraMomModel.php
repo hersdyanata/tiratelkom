@@ -23,4 +23,10 @@ class TraMomModel extends Model
         'mom_status',
         'mom_created_date',
     ];
+
+    
+    public function getAttr_due_date_discuss(){
+        $data = $this->hasOne(MomCategoryModel::class,'category_id','mom_title')->pluck('category_desc')->first();
+        return $data;
+    }
 }

@@ -77,15 +77,6 @@
                                         </div> 
                                     </div>
 
-                                    {{-- <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-semibold">Meeting Called By</label>
-                                                <input type="text" placeholder="Meeting Called By" class="form-control input_mom" name="meeting_called_by" id="meeting_called_by">
-                                            </div>
-                                        </div> 
-                                    </div> --}}
-
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">

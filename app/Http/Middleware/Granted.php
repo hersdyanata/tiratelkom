@@ -38,7 +38,12 @@ class Granted
             $accessed_menu_id = collect(session('granted_menu'))->where('menu_route', $accessed)->collapse()->all()['menu_id'];
             $page_permission = $permission->where('menu_id', $accessed_menu_id)->collapse()->all();
             
-            $request->merge(array('page_permission' => $page_permission));
+            $request->merge(
+                array(
+                    'page_permission' => $page_permission,
+                    'crot' => $request->load_data_right_sidebar
+                )
+            );
             return $next($request);
         }else{
             // $menus = Menu::orderBy('menu_div_id')

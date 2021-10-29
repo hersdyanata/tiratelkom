@@ -23,4 +23,9 @@ class TraMomDiscussModel extends Model
         'discuss_status',
         'discuss_created_date',
     ];
+
+    public function getAttr_due_date_discuss(){
+        $data = $this->hasMany(TraMomModel::class, 'discuss_mom_id', 'mom_id')->pluck('discuss_mom_id','discuss_due_date')->get();
+        return $data;
+    }
 }
