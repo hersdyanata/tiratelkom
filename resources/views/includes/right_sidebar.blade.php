@@ -30,10 +30,15 @@
                 <div class="sidebar-section-body">
                     <ul class="media-list">
                         @forelse ($load_data_right_sidebar as $dt)
-                                 test 
+                            <li class="media">
+                                <div class="media-body">
+                                    <a href="#" class="media-title font-weight-bold text-white">{{$dt->discuss_assignment}}</a>
+                                    {{-- <span class="font-size-xs text-white d-block">{{$dt->discuss_assignment}}</span> --}}
+                                </div> 
+                            </li> 
                         @empty
                             <span class="font-size-xs text-white d-block">no data found</span>
-                        @endforelse
+                        @endforelse                       
                     </ul>
                 </div>
             </div>

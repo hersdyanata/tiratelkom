@@ -12,8 +12,8 @@
             <tr>
                 <td>{{ $m->mom_event }}</td>
                 <td>{{ $m->getAttr_due_date_discuss()}}</td>
-                <td>test</td>
-                <td>test</td>
+                <td>{{ $m->getAttr_priority_discuss()}}</td>
+                <td>{{ $m->getAttr_status_discuss()}}</td>
             </tr>
         @empty
             <tr>

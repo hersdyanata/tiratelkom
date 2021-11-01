@@ -194,7 +194,7 @@ class MomService{
             'discuss_uic_id' => session('uic_id'),
             'discuss_status' => 'O'
         ])->get();
-
+         
         return $data; 
     }
 
