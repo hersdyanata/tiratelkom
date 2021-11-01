@@ -38,7 +38,22 @@
                             </li> 
                         @empty
                             <span class="font-size-xs text-white d-block">no data found</span>
-                        @endforelse                       
+                        @endforelse       
+
+                        {{-- <li class="media">
+                            <a href="#" class="mr-3">
+                                <img src="{{ asset('assets/global/images/placeholders/placeholder.jpg') }}" width="36"
+                                    height="36" class="rounded-circle" alt="">
+                            </a>
+                            <div class="media-body">
+                                <a href="#" class="media-title font-weight-bold text-white">James Alexander</a>
+                                <span class="font-size-xs text-white d-block">Santa Ana, CA.</span>
+                            </div>
+                            <div class="ml-3 align-self-center">
+                                <span class="badge badge-mark border-success"></span>
+                            </div>
+                        </li> --}}
+
                     </ul>
                 </div>
             </div>

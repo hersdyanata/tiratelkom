@@ -1,5 +1,6 @@
 <!-- Main sidebar -->
-<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start">
+{{-- <div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start"> --}}
+<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start sidebar-main-resized">
 
     <!-- Sidebar content -->
     <div class="sidebar-content">
@@ -64,6 +65,39 @@
             </ul>
         </div>
         <!-- /main navigation -->
+         
+        <hr>
+        <!-- Latest updates -->
+        <div class="sidebar-section sidebar-resize-hide flex-1 mb-0">
+            <div class="sidebar-section-header">
+                <span class="font-weight-bold">Open Assignments</span>
+                <div class="list-icons ml-auto">
+                    <a href="#sidebar-updates" class="list-icons-item" data-toggle="collapse">
+                        <i class="icon-arrow-down12"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="collapse show" id="sidebar-updates">
+                <div class="sidebar-section-body">
+                    <ul class="media-list">
+
+                        @forelse ($load_data_right_sidebar as $dt)
+                            <li class="media">
+                                <div class="media-body">
+                                    <a href="#" class="media-title font-weight-bold">{{$dt->discuss_assignment}}</a>
+                                    {{-- <span class="font-size-xs text-white d-block">{{$dt->discuss_assignment}}</span> --}}
+                                    {{-- <div class="text-muted font-size-sm">4 minutes ago</div> --}}
+                                </div> 
+                            </li> 
+                        @empty
+                            <span class="text-muted font-size-xs d-block">no data found</span>
+                        @endforelse    
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /latest updates -->
 
     </div>
     <!-- /sidebar content -->

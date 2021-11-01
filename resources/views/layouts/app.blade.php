@@ -128,7 +128,7 @@
 		</div>
 		<!-- /main content -->
 
-		@include('includes.right_sidebar')
+		{{-- @include('includes.right_sidebar') --}}
 
 	</div>
 	<!-- /page content -->
