@@ -16,6 +16,7 @@
 
 	<!-- Core JS files -->
 	<script src="{{ asset('assets/global/js/main/jquery.min.js') }}"></script>
+	<script src="{{ asset('assets/global/js/main/jquery.printPage.js') }}"></script>
 	<script src="{{ asset('assets/global/js/main/bootstrap.bundle.min.js') }}"></script>
 	<!-- /core JS files -->
 
@@ -55,9 +56,6 @@
 	<script src="{{ asset('assets/global/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js') }}"></script>
 	{{-- <script src="{{ asset('assets/global/js/plugins/ui/prism.min.js') }}"></script> --}}
 	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
-
-	
-
 
 	@yield('page_resources')
 

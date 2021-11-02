@@ -89,4 +89,10 @@ class MomController extends Controller
 
     }
 
+    public function prnpriview()
+      {
+            $uic = UIC::all();
+            return view('modules.mom.printview_uic')->with('uic', $uic);;
+      }
+
 }

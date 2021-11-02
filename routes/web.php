@@ -63,5 +63,8 @@ Route::post('mom/create_draft_mom', [App\Http\Controllers\MomController::class, 
 Route::post('mom/store_draft_mom', [App\Http\Controllers\MomController::class, 'store_draft_mom'])->name('mom.store_draft_mom');
 Route::post('mom/store_submit_mom', [App\Http\Controllers\MomController::class, 'store_submit_mom'])->name('mom.store_submit_mom'); 
 
+Route::get('/uic', [App\Http\Controllers\PrintController::class, 'index'])->name('uic');
+Route::get('/prnpriview', [App\Http\Controllers\PrintController::class, 'prnpriview'])->name('prnpriview'); 
+
 
 require __DIR__.'/auth.php';

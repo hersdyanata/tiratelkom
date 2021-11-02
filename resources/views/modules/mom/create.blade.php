@@ -81,7 +81,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Meeting Called By</label>
-                                                <select class="form-control select input_mom" name="meeting_called_by" id="meeting_called_by">
+                                                <select class="form-control select-search input_mom" name="meeting_called_by" id="meeting_called_by">
                                                     <option value="">-- Choose --</option>
                                                     @foreach ($users as $du)
                                                         <option value="{{ $du->id }}">{{ $du->name }}</option>
@@ -128,7 +128,7 @@
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                                 <button type="button" class="btn btn-dark btn-sm" id="btn_edit_mom" onclick="edit_mom()">Edit <i class="icon-pencil ml-2"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next M2 <i class="icon-arrow-right8 ml-2"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                             </div>
                                         </div> 
                                     </div>
@@ -159,7 +159,7 @@
                                         <div class="text-center">
                                             <button type="button" class="btn btn-danger btn-sm" id="btn_agenda" onclick="simpan_data_agenda()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                             <button type="button" class="btn btn-dark btn-sm" id="btn_edit_agenda" onclick="edit_agenda()">Edit <i class="icon-pencil ml-2"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next A2 <i class="icon-arrow-right8 ml-2"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next<i class="icon-arrow-right8 ml-2"></i></button>
                                         </div>
                                     </div> 
                                 </div>
@@ -216,6 +216,9 @@
 <script>
 
     $('document').ready(function(){
+
+        sidebar_collapsed();
+
         // jquery for part agenda 
         $('#div_agenda').hide();
         $('#btn_edit_mom').hide();
@@ -468,7 +471,6 @@
                 sw_multi_error(e);
             }
         });
-    }
-
+    }    
 </script>
 @endsection
