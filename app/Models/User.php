@@ -52,4 +52,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function getAttr_nama(){
+        return "{$this->name}";
+    }
 }

@@ -58,4 +58,9 @@ class TraMomModel extends Model
         return $status;
     }
 
+    public function getAttr_user_name(){
+        $rel = $this->hasOne(User::class,'id','mom_called_by')->first();
+        return $rel->getAttr_nama();
+    }
+
 }
