@@ -1,6 +1,6 @@
 <!-- Main sidebar -->
-<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start">
-{{-- <div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start sidebar-main-resized"> --}}
+{{-- <div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start"> --}}
+<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg align-self-start sidebar-main-resized">
 
     <!-- Sidebar content -->
     <div class="sidebar-content">

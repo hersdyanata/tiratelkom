@@ -74,19 +74,28 @@ class MomController extends Controller
         return response()->json($res, 200);
     }
 
-    public function store_update_mom(MomService $mom, MomRequest $request)
-    {
+    public function store_update_mom(MomService $mom, MomRequest $request){
         $res = $mom->update_mom($request->all());
         return response()->json($res, 200);
     }
 
-    public function store_update_agenda(MomService $mom, AgendaRequest $request)
-    {
+    public function store_update_agenda(MomService $mom, AgendaRequest $request){
         $res = $mom->update_agenda($request->all());
         $agenda = MomAgendaItem::where('mom_id', $request->agenda_mom_id)->get();
         $view_diskusi = view('modules.mom.table_diskusi')->with('agenda', $agenda)->render();
         return response()->json($view_diskusi, 200);
+    }
 
+    public function show($id){
+        $title = 'Preview MoM';
+        return view('modules.mom.preview_mom')
+                ->with([
+                    'title' => $title
+                //     'title' => $title,
+                //     'dataType' => momType::get(),
+                //     'dataCategory' => momCategory::get(),
+                //     'users' => Users::get()
+                ]);
     }
 
     public function prnpriview()
