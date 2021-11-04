@@ -34,16 +34,16 @@ class TraMomModel extends Model
         $data = $this->hasOne(TraMomDiscussModel::class,'discuss_mom_id','mom_id')->pluck('discuss_priority')->max();
         
         if ($data == '3') {
-            $priority = "High";
+            $priority = '<span class="badge badge-danger">High</span>'; 
         }
         elseif($data == '2'){
-            $priority = "Normal";
+            $priority = '<span class="badge badge-yellow">Normal</span>'; 
         }
         else{
-            $priority = "Low";
+            $priority = '<span class="badge badge-success">Low</span>'; 
         }
 
-        return $priority;
+        return "{$priority}";
     }
 
     public function getAttr_status_discuss(){
@@ -61,6 +61,11 @@ class TraMomModel extends Model
     public function getAttr_user_name(){
         $rel = $this->hasOne(User::class,'id','mom_called_by')->first();
         return $rel->getAttr_nama();
+    }
+
+    public function getAttr_category_desc(){
+        $rel = $this->hasOne(User::class,'id','mom_title')->first();
+        return $rel->getAttr_description();
     }
 
 }

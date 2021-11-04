@@ -198,5 +198,25 @@ class MomService{
         return $data; 
     }
 
+    public function get_mom_by_mom_id($id){
+        $data = MomHeader::find($id);
+        return $data;
+    }
+
+    public function get_type_by_mom_id($id){
+        $data = MomTypeItem::where('mom_id', $id)->get();
+        return $data;
+    }
+
+    public function get_participant_by_mom_id($id){
+        $data = MomParticipantItem::where('mom_id', $id)->get();
+        return $data;
+    }
+
+    public function get_agenda_by_mom_id($id){
+        $data = MomAgendaItem::where('mom_id', $id)->get();
+        return $data;
+    }
+
     
 }

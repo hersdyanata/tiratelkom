@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\MomTypeModel as momType;
 use App\Models\MomCategoryModel as momCategory;
-use App\Models\TraMomModel as MomItem;
-use App\Models\TraMomAgendaModel as MomAgendaItem;
-use App\Models\TraMomTypeModel as MomTypeItem;
-use App\Models\TraMomParticipantModel as MomParticipantItem;
 use App\Models\MstUICModel as UIC;
 use App\Models\User as Users;
 
@@ -88,12 +84,12 @@ class MomController extends Controller
         return response()->json($view_diskusi, 200);
     }
 
-    public function show($id){
+    public function show(MomService $mom, $id){
         $title = 'Preview MoM';
-        $DataMoM  = MomItem::find($id);
-        $DataType = MomTypeItem::where('mom_id', $id)->get();
-        $DataParticipant = MomParticipantItem::where('mom_id', $id)->get();
-        $DataAgenda = MomAgendaItem::where('mom_id', $id)->get();
+        $DataMoM  = $mom->get_mom_by_mom_id($id);
+        $DataType = $mom->get_type_by_mom_id($id);
+        $DataParticipant = $mom->get_participant_by_mom_id($id);
+        $DataAgenda = $mom->get_agenda_by_mom_id($id);
         return view('modules.mom.preview_mom')
                 ->with([
                     'title' => $title,
@@ -101,6 +97,24 @@ class MomController extends Controller
                     'DataType' => $DataType,
                     'DataParticipant' => $DataParticipant,
                     'DataAgenda' => $DataAgenda,
+                    'MstType' => momType::get(),
+                ]);
+    }
+
+    public function edit_mom(MomService $mom, $id){
+        $title = 'MoM Review [Notulen Edit]';
+        $DataMoM  = $mom->get_mom_by_mom_id($id);
+        $DataType = $mom->get_type_by_mom_id($id);
+        $DataParticipant = $mom->get_participant_by_mom_id($id);
+        $DataAgenda = $mom->get_agenda_by_mom_id($id);
+        return view('modules.mom.edit')
+                ->with([
+                    'title' => $title,
+                    'DataMoM' => $DataMoM,
+                    'DataType' => $DataType,
+                    'DataParticipant' => $DataParticipant,
+                    'DataAgenda' => $DataAgenda,
+                    'MstType' => momType::get(),
                 ]);
     }
 

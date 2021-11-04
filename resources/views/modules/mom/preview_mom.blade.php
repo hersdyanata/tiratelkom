@@ -101,8 +101,15 @@
             </tr> 
             <tr>
                 <td colspan="3">Type of Meeting : 
-                    @foreach ($DataType as $dtt)
-                        <input type="checkbox" value="{{$dtt->type_id}}" > {{$dtt->getAttr_type_desc()}}
+                    @foreach ($MstType as $mt)
+                        <input type="checkbox" value="{{$mt->type_id}}" id="meeting_{{$mt->type_id}}" name="meeting[{{$mt->type_id}}]" disabled> {{$mt->type_desc}}
+                        @isset($DataType)
+                            @foreach ($DataType as $dtt)
+                                <script>
+                                    $('#meeting_{{ $dtt->type_id }}').prop('checked', true);
+                                </script>
+                            @endforeach
+                        @endisset
                     @endforeach
                 </td>
             </tr>
@@ -127,8 +134,16 @@
                     </ol>
                 </td>
             </tr>
+            @inject('crot', 'App\Services\MomService')
+            @php
+                // cara manggil crot dan fungsi di momservice
+                // $data = $crot->namafungsi_di_momservice;
+            @endphp
             <tr>
                 <td id="tdStyle" colspan="3"> Discussion</td>
+                {{-- @foreach ($data as $item) --}}
+                    
+                {{-- @endforeach --}}
             </tr>
             <tr>
                 <td colspan="3">

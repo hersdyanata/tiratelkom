@@ -14,4 +14,8 @@ class MomCategoryModel extends Model
     protected $fillable = [
         'category_desc'
     ];
+
+    public function getAttr_description(){
+        return "{$this->category_desc}";
+    }
 }
