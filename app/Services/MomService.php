@@ -218,5 +218,10 @@ class MomService{
         return $data;
     }
 
+    public function get_discuss_by_mom_id($id){
+        $data = MomDiscussItem::where('discuss_mom_id', $id)->get();
+        return $data;
+    }
+
     
 }

@@ -109,14 +109,17 @@
                                             </div>
                                         </div>
                                     </div>
- 
+
                                     <div class="row">
                                         <div class="col-lg-12"> 
                                             <div class="form-group">
                                                 <label>Participant</label>
-                                                <select multiple="multiple" class="form-control select input_mom" data-fouc data-container-css-class="select2-filled" id="participant_id[]" name="participant_id[]">
+                                                <select multiple="multiple" class="form-control select input_mom" data-fouc data-container-css-class="select2-filled" id="participant_id" name="participant_id[]">
                                                     @foreach ($users as $r)
-                                                        <option value="{{ $r->id }}">{{ $r->name }}</option>
+                                                        @php
+                                                            $crot = collect($DataParticipant)->where('user_id', $r->id)->pluck('user_id')->first();
+                                                        @endphp
+                                                        <option value="{{ $r->id }}" {{ ($crot != '') ? 'selected' : '' }}>{{ $r->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -135,7 +138,7 @@
                         </div>
                     </form>
                 </div>
-            {{-- </div>
+             </div>
             <div class="card" id="section_divider">
                 <div class="card-body" id="div_agenda">
                     <div class="row">
@@ -148,15 +151,32 @@
 
                                 <form id="form_agenda">
                                     @csrf
-                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" hidden>
+                                    @isset($DataAgenda)
+                                        @php $no=0; @endphp
+                                        @foreach ($DataAgenda as $da)
+                                            @php $no++; @endphp
+                                            <div class="form-group row" id="mom_agenda{{$no}}">
+                                                <label class="col-form-label col-lg-2">Agenda {{$no}}</label>
+                                                <div class="col-lg-10">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control input_agenda" name="mom_agenda[]" value="{{$da->agenda_desc}}" placeholder="Agenda Meeting">
+                                                        <span class="input-group-append btn_rm_agenda">
+                                                            <a class="btn btn-danger" onclick="remove_agenda({{$da->agenda_id}})">
+                                                                <i class="icon-trash icon-large"></i> Delete</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endisset
+
                                     <div id="agenda_konten"></div>
+
                                 </form>
 
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-danger btn-sm" id="btn_agenda" onclick="simpan_data_agenda()">Next <i class="icon-arrow-right8 ml-2"></i></button>
-                                            <button type="button" class="btn btn-dark btn-sm" id="btn_edit_agenda" onclick="edit_agenda()">Edit <i class="icon-pencil ml-2"></i></button>
+                                        <div class="text-center"> 
                                             <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next<i class="icon-arrow-right8 ml-2"></i></button>
                                         </div>
                                     </div> 
@@ -166,6 +186,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="card" id="section_divider">
                 <div class="card-body" id="div_discuss">
                     <div class="row">
@@ -205,7 +226,7 @@
                         </p>
                     </div>
                 </div> 
-            </div> --}}
+            </div>
         </div>
     </div>
 @endsection
@@ -215,7 +236,33 @@
     $(document).ready(function(){
         mom_category();   
         meeting_called_by();
+        discuss_konten({{$DataMoM->mom_id}});
+
+        var nomor = 0;
+        $('#agenda_appender').on('keyup', function (e) {
+            if (e.keyCode == 13) {
+                nomor++;  
+                $('#agenda_konten').append('<div class="form-group row" id="mom_agenda'+nomor+'">\
+                                            <label class="col-form-label col-lg-2">Agenda '+nomor+'</label>\
+                                            <div class="col-lg-10">\
+                                                <div class="input-group">\
+                                                    <input type="text" class="form-control input_agenda" name="mom_agenda[]" value="'+this.value+'" placeholder="Agenda Meeting">\
+                                                    <span class="input-group-append btn_rm_agenda">\
+                                                        <a class="btn btn-danger" onclick="remove_agenda('+nomor+')">\
+                                                            <i class="icon-trash icon-large"></i> Delete</a>\
+                                                    </span>\
+                                                </div>\
+                                            </div>\
+                                        </div>');
+                $('#agenda_appender').val('');
+            }
+        });
     });
+
+    function remove_agenda(par){
+        $('#mom_agenda'+par).remove();
+        $('#agenda_appender').focus();
+    }
 
     function mom_category(){
         $.ajax({
@@ -248,6 +295,26 @@
             },
             complete: function(){
                 $('#meeting_called_by').val({{ $DataMoM->mom_called_by }})
+            },
+            error: function(e){
+                alert(e);
+            },
+        });
+    }
+
+    function discuss_konten(mom_id){
+        $.ajax({
+            url: "{{ route('param.discuss') }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}" ,
+                "mom_id": mom_id,
+            },
+            success: function(s){
+                $('#discuss_konten').html(s);
+            },
+            complete: function(){
+                //$('#discuss_konten').val({{ $DataMoM->mom_called_by }})
             },
             error: function(e){
                 alert(e);
