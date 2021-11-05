@@ -12,7 +12,11 @@ class GlobalParamsController extends Controller
         // 
     }
 
-    public function get_category_mom(GlobalService $category){
-        return $category->get_category_mom();
+    public function get_category_mom(GlobalService $global){
+        return $global->get_category_mom();
+    } 
+
+    public function get_meeting_called_by(GlobalService $global){
+        return $global->get_meeting_called_by();
     }     
 }

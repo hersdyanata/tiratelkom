@@ -114,7 +114,8 @@ class MomController extends Controller
                     'DataType' => $DataType,
                     'DataParticipant' => $DataParticipant,
                     'DataAgenda' => $DataAgenda,
-                    'MstType' => momType::get(),
+                    'MstType' => momType::get(), 
+                    'users' => Users::get(),
                 ]);
     }
 

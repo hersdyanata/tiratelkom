@@ -79,31 +79,37 @@
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Meeting Called By</label>
                                                 <select class="form-control select-search input_mom" name="meeting_called_by" id="meeting_called_by">
-                                                    <option value="">-- Choose --</option>
-                                                    @foreach ($users as $du)
-                                                        <option value="{{ $du->id }}">{{ $du->name }}</option>
-                                                    @endforeach
+                                                    <option value="">-- Choose --</option> 
                                                 </select>
                                             </div>
                                         </div> 
                                     </div>
-{{-- 
+
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <p class="font-weight-semibold">Type of Meeting</p>
                                                 <div class="border p-3 rounded">
-                                                    @foreach ($dataType as $dt)    
+                                                    @foreach ($MstType as $mt)   
                                                         <div class="form-check form-check-inline">
-                                                            <input type="checkbox" class="form-check-input input_mom" value="{{$dt->type_id}}" id="meeting_{{$dt->type_id}}" name="meeting[{{$dt->type_id}}]">
-                                                            <label class="form-check-label" for="meeting_{{$dt->type_id}}">{{$dt->type_desc}}</label>
+                                                            <input type="checkbox" class="form-check-input input_mom" value="{{$mt->type_id}}" id="meeting_{{$mt->type_id}}" name="meeting[{{$mt->type_id}}]">
+                                                            <label class="form-check-label" for="meeting_{{$mt->type_id}}">{{$mt->type_desc}}</label>
                                                         </div> 
-                                                    @endforeach            
+                                                        @isset($DataType)
+                                                            @foreach ($DataType as $dtt)
+                                                                <script>
+                                                                    $('#meeting_{{ $dtt->type_id }}').prop('checked', true);
+                                                                </script>
+                                                            @endforeach
+                                                        @endisset
+                                                    @endforeach 
+                                                    
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+ 
                                     <div class="row">
                                         <div class="col-lg-12"> 
                                             <div class="form-group">
@@ -115,7 +121,7 @@
                                                 </select>
                                             </div>
                                         </div> 
-                                    </div><br><br> --}}
+                                    </div><br><br>
                                     
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -208,8 +214,7 @@
 <script>
     $(document).ready(function(){
         mom_category();   
-        meeting_called_by($DataMoM->mom_id);
-
+        meeting_called_by();
     });
 
     function mom_category(){
@@ -231,24 +236,25 @@
         });
     }
 
-    function meeting_called_by(mom_id){
+    function meeting_called_by(){
         $.ajax({
             url: "{{ route('param.meeting_called_by') }}",
             type: "POST",
             data: {
-                "_token": "{{ csrf_token() }}"
+                "_token": "{{ csrf_token() }}" 
             },
             success: function(s){
                 $('#meeting_called_by').html(s);
             },
             complete: function(){
-                $('#meeting_called_by').val({{ $DataMoM->meeting_called_by }})
+                $('#meeting_called_by').val({{ $DataMoM->mom_called_by }})
             },
             error: function(e){
                 alert(e);
             },
         });
     }
+ 
 
 </script>
 @endsection

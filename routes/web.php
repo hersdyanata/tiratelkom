@@ -66,6 +66,7 @@ Route::get('mom/edit_mom/{id}', [App\Http\Controllers\MomController::class, 'edi
 
 /* ======================================================================= Route List Global Parameters ======================================================================= */
 Route::post('params/category', [App\Http\Controllers\GlobalParamsController::class, 'get_category_mom'])->name('param.category'); 
+Route::post('params/meeting', [App\Http\Controllers\GlobalParamsController::class, 'get_meeting_called_by'])->name('param.meeting_called_by'); 
 
 Route::get('/uic', [App\Http\Controllers\PrintController::class, 'index'])->name('uic');
 Route::get('/prnpriview', [App\Http\Controllers\PrintController::class, 'prnpriview'])->name('prnpriview'); 
