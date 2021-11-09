@@ -223,7 +223,11 @@ class MomService{
     public function get_discuss_by_mom_id($id){
         $data = MomDiscussItem::where('discuss_mom_id', $id)->get();
         return $data;
-    }
+    }    
 
-    
+    public function get_discuss_by_mom_id_agenda($mom_id, $agenda_id){
+        $data = MomDiscussItem::where(['discuss_mom_id' => $mom_id,
+                                       'discuss_agenda_id' => $agenda_id ])->get();
+        return $data;
+    } 
 }

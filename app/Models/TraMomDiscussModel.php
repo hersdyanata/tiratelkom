@@ -25,6 +25,11 @@ class TraMomDiscussModel extends Model
         'discuss_created_date',
     ];
 
+    public function getAttr_uic_desc(){
+        $rel = $this->hasOne(MstUICModel::class,'id','discuss_uic_id')->first();
+        return $rel->getAttr_description();
+    }
+
     public function getAttr_due_date_discuss(){
         // $data = $this->hasOne(TraMomDiscussModel::class,'discuss_mom_id','mom_id')->pluck('discuss_due_date')->max();
         return 'due_date';

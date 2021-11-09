@@ -34,9 +34,4 @@ class GlobalService{
 
         return $options;
     }
-
-    public function get_discuss_konten($id){
-        $data = MomAgendaItem::where('mom_id', $id)->get();
-        return $data;
-    }
 }

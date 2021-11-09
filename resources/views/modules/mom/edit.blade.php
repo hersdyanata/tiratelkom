@@ -311,6 +311,7 @@
                 "mom_id": mom_id,
             },
             success: function(s){
+                console.log(s);
                 $('#discuss_konten').html(s);
             },
             complete: function(){

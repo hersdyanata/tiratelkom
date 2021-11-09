@@ -15,4 +15,8 @@ class MstUICModel extends Model
         'uic_code',
         'uic_desc'
     ];
+
+    public function getAttr_description(){
+        return "{$this->uic_desc}";
+    }
 }

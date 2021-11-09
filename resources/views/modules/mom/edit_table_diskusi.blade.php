@@ -21,48 +21,58 @@
                 </tr>
             </thead>
             <tbody id="body_poin_{{ $r->agenda_id }}">
-                <tr>
-                    <td></td>    
-                    <td hidden>
-                        <input type="hidden" class="form-control input_diskusi" name="mom_id[]" value="{{ $r->mom_id }}">
-                    </td>
-                    <td hidden>
-                        <input type="hidden" class="form-control input_diskusi" name="agenda_id[]" value="{{ $r->agenda_id }}">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control input_diskusi" name="pointer[]" id="pointer" value="test">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control input_diskusi" name="assignment[]" id="assignment" value ="test">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="uic[]" id="uic">
-                        {{-- <select multiple="multiple" class="form-control input_diskusi select-fixed-single" data-fouc data-container-css-class="select2-filled" name="uic[]" id="uic[]" >
-                            @foreach ($uics as $r)
-                                <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
-                            @endforeach
-                        </select> --}}
-                    </td>
-                    <td>
-                        <input type="text" class="form-control daterange-single input_diskusi" name="due_date[]" id="due_date">
-                    </td>
-                    <td>
-                        <select class="form-control select input_diskusi" name="priority[]" id="priority">
-                            <option value="High">High</option>
-                            <option value="Normal">Normal</option>
-                            <option value="Low">Low</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control input_diskusi" name="progress[]" id="progress">
-                    </td>
-                    <td>
-                        <select class="form-control select input_diskusi" name="status[]" id="status">
-                            <option value="Open">Open</option>
-                            <option value="Closed">Closed</option>
-                        </select>
-                    </td>
-                </tr>
+                @inject('mom', 'App\Services\MomService')
+                @php
+                    // cara manggil mom dan fungsi di momservice
+                    $dtDiscuss = $mom->get_discuss_by_mom_id_agenda($r->mom_id, $r->agenda_id);
+                @endphp
+
+                @foreach ($dtDiscuss as $dtd)
+                    <tr>
+                        <td></td>    
+                        <td hidden>
+                            <input type="hidden" class="form-control input_diskusi" name="mom_id[]" value="{{ $dtd->discuss_mom_id }}">
+                        </td>
+                        <td hidden>
+                            <input type="hidden" class="form-control input_diskusi" name="agenda_id[]" value="{{ $dtd->discuss_agenda_id }}">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control input_diskusi" name="pointer[]" id="pointer" value="{{ $dtd->discuss_pointer }}">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control input_diskusi" name="assignment[]" id="assignment" value ="{{ $dtd->discuss_assignment }}">
+                        </td>
+                        <td>
+                            <select class="form-control select input_diskusi" name="uic[]" id="uic">
+                                <option value="">-- Choose --</option>
+                                @foreach ($uics as $r)
+                                        <option value="{{ $r->uic_id }}" {{ ($dtDiscuss != '') ? 'selected' : '' }}>{{  $r->uic_desc}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control daterange-single input_diskusi" name="due_date[]" id="due_date">
+                        </td>
+                        <td>
+                            <select class="form-control select input_diskusi" name="priority[]" id="priority">
+                                <option value="High">High</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control input_diskusi" name="progress[]" id="progress">
+                        </td>
+                        <td>
+                            <select class="form-control select input_diskusi" name="status[]" id="status">
+                                <option value="Open">Open</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                        </td>
+                    </tr>
+                @endforeach
+
+                
                 <script>
                     $('.daterange-single').daterangepicker({
                         parentEl: '.content-inner',
