@@ -57,7 +57,7 @@
                             <button type="submit" class="btn btn-danger btn-block">Login<i class="icon-arrow-right8 ml-2"></i></button>
                         </div>
 
-                        <div class="form-group text-center text-muted content-divider">
+                        {{-- <div class="form-group text-center text-muted content-divider">
                             <span class="px-2">Jika belum punya akun</span>
                         </div>
 
@@ -65,7 +65,7 @@
                             <a href="{{ route('register') }}" class="btn btn-dark btn-block">Buat Disini</a>
                         </div>
 
-                        <span class="form-text text-center text-muted">Dengan melanjutkan, berarti Anda telah menyetujui dan telah membaca <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+                        <span class="form-text text-center text-muted">Dengan melanjutkan, berarti Anda telah menyetujui dan telah membaca <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span> --}}
                     {{-- </div> --}}
                 {{-- </div> --}}
             </form>

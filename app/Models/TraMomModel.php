@@ -17,6 +17,7 @@ class TraMomModel extends Model
         'mom_date',
         'mom_time',
         'mom_duration',
+        'mom_unit',
         'mom_location',
         'mom_notulen_by',
         'mom_called_by',

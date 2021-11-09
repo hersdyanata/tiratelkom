@@ -1,9 +1,5 @@
  <tr>
-    <td>
-        {{-- <a class="btn btn-danger" onclick="remove_discuss('+nomor+')">
-            <i class="icon-trash icon-small"></i>
-        </a> --}}
-    </td>    
+    <td></td>    
     <td hidden>
         <input type="hidden" class="form-control input_diskusi" name="mom_id[]" value="{{ $agenda->mom_id }}">
     </td>
@@ -17,8 +13,8 @@
         <input type="text" class="form-control input_diskusi" name="assignment[]" id="assignment">
     </td>
     <td>
-        <select class="form-control select input_diskusi" name="uic[]" id="uic">
-            <option value="">-- Choose --</option>
+        {{-- <input type="text" class="form-control" name="uic[]" id="uic"> --}}
+        <select multiple="multiple" class="form-control input_diskusi select-fixed-single" data-fouc data-container-css-class="select2-filled" name="uic[]" id="uic[]" >
             @foreach ($uics as $r)
                 <option value="{{ $r->uic_id }}">{{ $r->uic_code }}</option>
             @endforeach

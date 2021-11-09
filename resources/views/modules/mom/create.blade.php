@@ -60,10 +60,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Duration</label>
                                                 <input type="number" placeholder="Set Duration" class="form-control input_mom" name="duration" id="duration" min=0>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold">Unit</label>
+                                                <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit">
                                             </div>
                                         </div>
                                     </div>
@@ -128,9 +134,9 @@
                                             <div class="text-center">
                                                 <a href="{{ route('mom.show', '87') }}">Preview MoM</a>
                                                 <a href="{{ route('mom.edit_mom', '90') }}">Back to Editing</a>
-                                                {{-- <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button> --}}
+                                                {{-- <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                                 <button type="button" class="btn btn-dark btn-sm" id="btn_edit_mom" onclick="edit_mom()">Edit <i class="icon-pencil ml-2"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button> --}}
                                             </div>
                                         </div> 
                                     </div>

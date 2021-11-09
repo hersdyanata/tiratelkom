@@ -23,6 +23,7 @@ class MomService{
             'mom_date'          => date('Y-m-d', strtotime($post['date'])),
             'mom_time'          => $post['time'],
             'mom_duration'      => $post['duration'],
+            'mom_unit'          => $post['unit'],
             'mom_location'      => $post['location'],
             'mom_notulen_by'    => session('user_id'),
             'mom_called_by'     => $post['meeting_called_by'],
@@ -93,7 +94,7 @@ class MomService{
                 'discuss_mom_id'        => $post['mom_id'][$i],
                 'discuss_agenda_id'     => $post['agenda_id'][$i],
                 'discuss_pointer'       => $post['pointer'][$i],
-                'discuss_assignment'     => $post['assignment'][$i],
+                'discuss_assignment'    => $post['assignment'][$i],
                 'discuss_uic_id'        => $post['uic'][$i],
                 'discuss_due_date'      => date('Y-m-d', strtotime($post['due_date'][$i])),
                 'discuss_priority'      => $post['priority'][$i],
@@ -126,6 +127,7 @@ class MomService{
         $put->mom_date          = date('Y-m-d', strtotime($post['date']));
         $put->mom_time          = $post['time'];
         $put->mom_duration      = $post['duration'];
+        $put->mom_unit          = $post['unit'];
         $put->mom_location      = $post['location'];
         $put->mom_notulen_by    = session('user_id');
         $put->mom_called_by     = $post['meeting_called_by'];

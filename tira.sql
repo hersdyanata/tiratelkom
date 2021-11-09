@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 01/11/2021 07:36:00
+ Date: 09/11/2021 07:16:46
 */
 
 SET NAMES utf8mb4;
@@ -307,7 +307,8 @@ CREATE TABLE `tra_mom`  (
   `mom_event` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_date` date NULL DEFAULT NULL,
   `mom_time` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `mom_duration` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `mom_duration` int NULL DEFAULT NULL,
+  `mom_unit` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_location` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mom_notulen_by` int NULL DEFAULT NULL,
   `mom_called_by` int NULL DEFAULT NULL,
@@ -320,10 +321,10 @@ CREATE TABLE `tra_mom`  (
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (87, 1, 'MoM WAR part 1', '2021-10-28', '16:07', '1', 'Zoom', 4, 4, 'O', '2021-10-28 15:08:28', '2021-10-28 21:25:26');
-INSERT INTO `tra_mom` VALUES (88, 2, 'MoM Forum Infrastruktur part 1', '2021-10-29', '20:15', '1', 'Vicon', 4, 1, 'O', '2021-10-28 16:15:31', '2021-10-28 21:25:29');
-INSERT INTO `tra_mom` VALUES (89, 3, 'MoM Forum Meeting part 1', '2021-10-30', '14:10', '1', 'Sakura', 4, 6, 'C', '2021-10-28 21:11:16', '2021-10-31 17:24:41');
-INSERT INTO `tra_mom` VALUES (90, 4, 'MoM Forum Support part 1', '2021-10-26', '23:16', '1', 'Melati', 4, 1, 'D', '2021-10-28 21:17:04', NULL);
+INSERT INTO `tra_mom` VALUES (87, 1, 'MoM WAR part 1', '2021-10-28', '16:07', 1, 'Hour', 'Zoom', 4, 4, 'O', '2021-10-28 15:08:28', '2021-11-07 12:50:07');
+INSERT INTO `tra_mom` VALUES (88, 2, 'MoM Forum Infrastruktur part 1', '2021-10-29', '20:15', 1, 'Hour', 'Vicon', 4, 1, 'O', '2021-10-28 16:15:31', '2021-11-07 12:50:10');
+INSERT INTO `tra_mom` VALUES (89, 3, 'MoM Forum Meeting part 1', '2021-10-30', '14:10', 1, 'Hour', 'Sakura', 4, 6, 'C', '2021-10-28 21:11:16', '2021-11-07 12:50:11');
+INSERT INTO `tra_mom` VALUES (90, 4, 'MoM Forum Support part 1', '2021-10-26', '23:16', 1, 'Hour', 'Melati', 4, 1, 'D', '2021-10-28 21:17:04', '2021-11-07 12:50:21');
 
 -- ----------------------------
 -- Table structure for tra_mom_agenda
@@ -467,8 +468,8 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, '1803004', 0, 2, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'ykVLAhdJqbpGgLDqCS9U4IXeESKUbXD2PhRWRfCyVjd0T96TGTrRqrTlqEg3', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
-INSERT INTO `users` VALUES (4, '1802071', 1, 5, 'Aditya M Munggaran', 'adityammunggaran@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
+INSERT INTO `users` VALUES (1, '1803004', 0, 2, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'wTW818swqlawIeTrr0HpJQwCkSRtJC6qUKt9SIjvWcUxUPPl0TzbIh4p3067', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
+INSERT INTO `users` VALUES (4, '1802071', 1, 3, 'Aditya M Munggaran', 'adityammunggaran@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
 INSERT INTO `users` VALUES (6, '1612001', 1, 3, 'Jane Doe', 'janedoe@gmail.com', NULL, '$2y$10$.B99py5y1rz/jw6fhDsNIO12qDU2bCSK1tgkl.98yfzStMLH/r6j2', NULL, NULL, NULL, 'light', '2021-01-17 05:11:27', '2021-01-17 05:11:27');
 
 SET FOREIGN_KEY_CHECKS = 1;
