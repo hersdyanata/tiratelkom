@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\MstUICModel as UIC;
 use App\Models\CoreMenuModel as Menu;
 use App\Models\CoreMenuDividerModel as Divider;
 use App\Services\GrantedService;
@@ -51,6 +52,7 @@ class AuthenticatedSessionController extends Controller
             $dividers = $properties['dividers'];
             $menus = $properties['menus'];
             $permission = $properties['actions']['array_privileges'];
+            $uicDesc = UIC::where('uic_id', $userLogin->uic_id)->pluck('uic_desc')->first();
 
             $arr_granted = array();
             foreach($menus as $r){
@@ -64,6 +66,7 @@ class AuthenticatedSessionController extends Controller
             $data = [
                 'user_id' => $userLogin->id,
                 'uic_id' => $userLogin->uic_id,
+                'uic_desc' => $uicDesc,
                 'group_id' => $userLogin->group_id,
                 'group_name' => $userLogin->group_nama,
                 'theme' => $userLogin->theme,

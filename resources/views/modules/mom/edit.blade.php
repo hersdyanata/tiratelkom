@@ -57,12 +57,20 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Duration</label>
                                                 <input type="number" placeholder="Set Duration" class="form-control input_mom" name="duration" id="duration" min=0 value="{{ $DataMoM->mom_duration }}">
                                             </div>
                                         </div>
+
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold">Unit</label>
+                                                <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit" value="{{ $DataMoM->mom_unit }}">
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="row">
