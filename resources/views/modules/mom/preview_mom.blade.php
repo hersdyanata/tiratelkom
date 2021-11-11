@@ -156,4 +156,28 @@
             </tr>
         </tbody>
     </table>
+    <p>&nbsp;</p>
+    <style type="text/css"> 
+        tabCustom { 
+            padding-right:88px; 
+            padding-left: 88px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center" id="div_btn_discuss">
+                <input type="hidden" readonly id="temp_mom_id">
+                <p>
+                    <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
+                    {{-- <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom">Preview MoM <i class="icon-file-eye ml-2"></i></button>  --}}
+                    <a class="btn btn-primary btn-sm" id="btn_preview_mom" href="{{ route('mom.edit_mom', '87') }}">Editing MoM <i class="icon-file-eye ml-2"></i></a>
+                </p>
+                <p>
+                    <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="submit_data_mom()">
+                    <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
+                    </button>
+                </p>
+            </div>
+        </div> 
+    </div>
 @endsection

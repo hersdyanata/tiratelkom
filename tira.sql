@@ -11,7 +11,7 @@
  Target Server Version : 100315
  File Encoding         : 65001
 
- Date: 09/11/2021 15:26:56
+ Date: 11/11/2021 16:46:44
 */
 
 SET NAMES utf8mb4;
@@ -406,6 +406,24 @@ INSERT INTO `tra_mom_participant` VALUES (88, 6);
 INSERT INTO `tra_mom_participant` VALUES (89, 1);
 INSERT INTO `tra_mom_participant` VALUES (89, 4);
 INSERT INTO `tra_mom_participant` VALUES (90, 4);
+
+-- ----------------------------
+-- Table structure for tra_mom_progress
+-- ----------------------------
+DROP TABLE IF EXISTS `tra_mom_progress`;
+CREATE TABLE `tra_mom_progress`  (
+  `progress_mom_id` int NOT NULL,
+  `progress_agenda_id` int NOT NULL,
+  `progress_discuss_id` int NOT NULL,
+  `progress_id` int NOT NULL AUTO_INCREMENT,
+  `progress_date` date NULL DEFAULT NULL,
+  `progress_desc` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`progress_id`, `progress_discuss_id`, `progress_agenda_id`, `progress_mom_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of tra_mom_progress
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tra_mom_type

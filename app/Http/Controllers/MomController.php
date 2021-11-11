@@ -123,10 +123,16 @@ class MomController extends Controller
                 ]);
     }
 
-    public function prnpriview()
-      {
-            $uic = UIC::all();
-            return view('modules.mom.printview_uic')->with('uic', $uic);;
-      }
+    // public function prnpriview()
+    //   {
+    //         $uic = UIC::all();
+    //         return view('modules.mom.printview_uic')->with('uic', $uic);;
+    //   }
+
+    public function add_progress(Request $request){
+        $row = view('modules.mom.add_discuss_progress')
+                ->with('discuss', $request)->render();
+        return response()->json($row, 200);
+    }
 
 }

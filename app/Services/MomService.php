@@ -191,6 +191,31 @@ class MomService{
         return $item;
     }
 
+    public function xxxx($post){
+        // simpan detail transaksi mom agenda
+        $item = array();
+        $no = 0;
+        if (isset($post)) {
+            foreach ($post['mom_agenda'] as $dt => $r) {
+                $no++;
+                if ($r != null or $r = '') {
+                    $item[] = array(
+                        'mom_id'  => $post['agenda_mom_id'],
+                        'agenda_id' => $no,//$dt,
+                        'agenda_desc' => $r
+                    );
+                }
+            }
+        }
+
+        $agenda = MomAgendaItem :: insert($item);
+
+        return $item;
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------------------------------------
+    //Function for load or get data
     public function load_right_sidebar(){
         $data = MomDiscussItem::where([
             'discuss_uic_id' => session('uic_id'),

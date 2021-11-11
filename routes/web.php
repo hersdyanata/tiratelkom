@@ -62,6 +62,7 @@ Route::post('mom/add_row_poin', [App\Http\Controllers\MomController::class, 'add
 Route::post('mom/create_draft_mom', [App\Http\Controllers\MomController::class, 'create_draft_mom'])->name('mom.create_draft_mom');
 Route::post('mom/store_draft_mom', [App\Http\Controllers\MomController::class, 'store_draft_mom'])->name('mom.store_draft_mom');
 Route::post('mom/store_submit_mom', [App\Http\Controllers\MomController::class, 'store_submit_mom'])->name('mom.store_submit_mom'); 
+Route::post('mom/add_progress', [App\Http\Controllers\MomController::class, 'add_progress'])->name('mom.add_progress'); 
 Route::get('mom/edit_mom/{id}', [App\Http\Controllers\MomController::class, 'edit_mom'])->name('mom.edit_mom'); 
 
 /* ======================================================================= Route List Global Parameters ======================================================================= */

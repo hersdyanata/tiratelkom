@@ -225,7 +225,7 @@
                         <input type="hidden" readonly id="temp_mom_id">
                         <p>
                             <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
-                            <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
+                            <a class="btn btn-primary btn-sm" id="btn_preview_mom" href="{{ route('mom.show', '87') }}">Preview MoM <i class="icon-file-eye ml-2"></i></a>
                         </p>
                         <p>
                             <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="submit_data_mom()">
@@ -319,7 +319,6 @@
                 "mom_id": mom_id,
             },
             success: function(s){
-                console.log(s);
                 $('#discuss_konten').html(s);
             },
             complete: function(){
