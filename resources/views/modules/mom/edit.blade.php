@@ -137,7 +137,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
+                                                {{-- <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button> --}}
                                             </div>
                                         </div> 
                                     </div>
@@ -245,6 +245,11 @@
         mom_category();   
         meeting_called_by();
         discuss_konten({{$DataMoM->mom_id}});
+
+        $('.input_mom').prop('disabled', true);
+        $('.input_agenda').prop('disabled', true);
+        $('.input_diskusi').prop('disabled', true);
+        $('.btn_rm_agenda').hide();
 
         var nomor = 0;
         $('#agenda_appender').on('keyup', function (e) {

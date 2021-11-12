@@ -76,57 +76,9 @@
                     <tr>
                         <th></th>
                         <th colspan="5"><i class="font-weight-bold">Progress Report</i></th> 
-                        {{-- <th class="text-center"><p><span style="text-decoration: underline; color: #007ff7f6; cursor:pointer;" onclick="append_progress_{{ $dtd->discuss_id }}()">Add</span></p></th> --}}
-                    </tr>  
-                    <tr>
-                        <th></th>
-                        <th colspan="5">
-                            <table class="table table-columned table-xs"> 
-                                <tbody>
-                                    <div id="progress_konten_{{ $dtd->discuss_id }}"></div>
-
-                                    <div class="form-group"  >
-                                        <td width="10%" class="text-center">
-                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single">
-                                        </td>
-                                        <td width="90%">
-                                            <input type="text" class="form-control" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
-                                            <script>
-                                                $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
-                                                    if (e.keyCode == 13) {
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: "{{ route('mom.store_discuss_progress') }}",
-                                                            data: {
-                                                                "_token": "{{ csrf_token() }}",
-                                                                "mom_id" : "{{ $dtd->discuss_mom_id }}",
-                                                                "agenda_id" : "{{ $dtd->discuss_agenda_id }}",
-                                                                "discuss_id" : "{{ $dtd->discuss_id }}",
-                                                                "prog_date" : $('#progress_date_{{ $dtd->discuss_id }}').val(),
-                                                                "prog_desc" : $('#progress_appender_{{ $dtd->discuss_id }}').val(),
-                                                            }, 
-                                                            success: function (s) {   
-                                                                console.log(s);
-                                                                // $('#body_poin_{{ $dtd->discuss_id }}').append(s);
-                                                            },
-                                                            complete: function(){
-                                                                // small_loader_close('table_pointer_{{ $dtd->discuss_id }}');
-                                                            },
-                                                            error: function(e){
-                                                                sw_multi_error(e);
-                                                            }
-                                                        });                                                     
-                                                    }
-                                                });
-                                            </script>
-                                        </td>
-                                    </div>
-                                </tbody>
-                            </table>
-                        </th> 
-                        <th></th>
+                        <th class="text-center"><p><span style="text-decoration: underline; color: #007ff7f6; cursor:pointer;" onclick="append_progress_{{ $dtd->discuss_id }}()">Add</span></p></th>
                     </tr> 
-                    {{-- <tr>
+                    <tr>
                         <th></th>
                         <th colspan="5">
                             <table class="table table-columned table-xs" id="table_pointer_{{ $dtd->discuss_id }}"> 
@@ -136,7 +88,7 @@
                             </table>
                         </th> 
                         <th></th>
-                    </tr> --}}
+                    </tr>
 
                     <script>
                         function append_progress_{{ $dtd->discuss_id }}(){
@@ -164,25 +116,6 @@
                                 }
                             });
                         }
-                        
-                        var nomor = 0;
-                        $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
-                            if (e.keyCode == 13) {
-                                nomor++;    
-                                $('#progress_konten_{{ $dtd->discuss_id }}').append('<tr>\
-                                                                                        <td width="5%" class="text-center">\
-                                                                                            '+nomor+'\
-                                                                                        </td>\
-                                                                                        <td width="10%" class="text-center">\
-                                                                                            '+$('#progress_date_{{ $dtd->discuss_id }}').val()+'\
-                                                                                        </td>\
-                                                                                        <td width="100%">\
-                                                                                            '+$('#progress_appender_{{ $dtd->discuss_id }}').val()+'\
-                                                                                        </td>\
-                                                                                    </tr>');
-                                $('#progress_appender_{{ $dtd->discuss_id }}').val('');
-                            }
-                        });
                     </script>
                 @endforeach              
                 
