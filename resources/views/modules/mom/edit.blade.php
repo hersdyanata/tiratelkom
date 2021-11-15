@@ -324,7 +324,8 @@
                 "mom_id": mom_id,
             },
             success: function(s){
-                $('#discuss_konten').html(s);
+                console.log(s);
+                // $('#discuss_konten').html(s);
             }, 
             error: function(e){
                 alert(e);
