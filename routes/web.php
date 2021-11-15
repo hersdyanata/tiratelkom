@@ -66,11 +66,12 @@ Route::post('mom/add_progress', [App\Http\Controllers\MomController::class, 'add
 Route::post('mom/store_discuss_progress', [App\Http\Controllers\MomController::class, 'store_discuss_progress'])->name('mom.store_discuss_progress'); 
 Route::post('mom/store_status_mom', [App\Http\Controllers\MomController::class, 'store_status_mom'])->name('mom.store_status_mom');
 Route::get('mom/edit_mom/{id}', [App\Http\Controllers\MomController::class, 'edit_mom'])->name('mom.edit_mom'); 
+Route::post('mom/discuss', [App\Http\Controllers\MomController::class, 'get_discuss_konten'])->name('mom.discuss'); 
 
 /* ======================================================================= Route List Global Parameters ======================================================================= */
 Route::post('params/category', [App\Http\Controllers\GlobalParamsController::class, 'get_category_mom'])->name('param.category'); 
 Route::post('params/meeting', [App\Http\Controllers\GlobalParamsController::class, 'get_meeting_called_by'])->name('param.meeting_called_by'); 
-Route::post('params/discuss', [App\Http\Controllers\GlobalParamsController::class, 'get_discuss_konten'])->name('param.discuss'); 
+// Route::post('params/discuss', [App\Http\Controllers\GlobalParamsController::class, 'get_discuss_konten'])->name('param.discuss'); 
 
 Route::get('/uic', [App\Http\Controllers\PrintController::class, 'index'])->name('uic');
 Route::get('/prnpriview', [App\Http\Controllers\PrintController::class, 'prnpriview'])->name('prnpriview'); 

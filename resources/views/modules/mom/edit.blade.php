@@ -317,15 +317,15 @@
 
     function discuss_konten(mom_id){
         $.ajax({
-            url: "{{ route('param.discuss') }}",
+            url: "{{ route('mom.discuss') }}",
             type: "POST",
             data: {
                 "_token": "{{ csrf_token() }}" ,
                 "mom_id": mom_id,
             },
             success: function(s){
-                console.log(s);
-                // $('#discuss_konten').html(s);
+                // console.log(s);
+                $('#discuss_konten').html(s);
             }, 
             error: function(e){
                 alert(e);

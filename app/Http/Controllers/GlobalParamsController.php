@@ -23,13 +23,6 @@ class GlobalParamsController extends Controller
         return $global->get_meeting_called_by();
     }   
 
-    public function get_discuss_konten(MomService $mom, request $request){
-        $agenda = $mom->get_agenda_by_mom_id($request->mom_id);
-        $view_diskusi = view('modules.mom.edit_table_diskusi')
-                        ->with(['agenda' => $agenda,
-                                'uics' => UIC::all()
-                               ])->render();
-        return response()->json($view_diskusi, 200); 
-    }   
+    
     
 }
