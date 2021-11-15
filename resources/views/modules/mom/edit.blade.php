@@ -325,10 +325,7 @@
             },
             success: function(s){
                 $('#discuss_konten').html(s);
-            },
-            complete: function(){
-                $('#discuss_konten').html(s);
-            },
+            }, 
             error: function(e){
                 alert(e);
             },
