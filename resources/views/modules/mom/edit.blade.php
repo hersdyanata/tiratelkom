@@ -327,7 +327,7 @@
                 $('#discuss_konten').html(s);
             },
             complete: function(){
-                //$('#discuss_konten').val({{ $DataMoM->mom_called_by }})
+                $('#discuss_konten').html(s);
             },
             error: function(e){
                 alert(e);
