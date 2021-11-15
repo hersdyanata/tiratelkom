@@ -185,7 +185,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="text-center"> 
-                                            <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next<i class="icon-arrow-right8 ml-2"></i></button>
+                                            {{-- <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next<i class="icon-arrow-right8 ml-2"></i></button> --}}
                                         </div>
                                     </div> 
                                 </div>
@@ -223,13 +223,13 @@
                 <div class="col-lg-12">
                     <div class="text-center" id="div_btn_discuss">
                         <input type="hidden" readonly id="temp_mom_id">
-                        <p>
+                        {{-- <p>
                             <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
                             <a class="btn btn-primary btn-sm" id="btn_preview_mom" href="{{ route('mom.show', '87') }}">Preview MoM <i class="icon-file-eye ml-2"></i></a>
-                        </p>
+                        </p> --}}
                         <p>
-                            <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="submit_data_mom()">
-                            <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
+                            <button type="button" class="btn btn-danger btn-sm" id="btn_update_status_mom" onclick="update_status_mom()">
+                            <tabCustom> Update MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
                             </button>
                         </p>
                     </div>
@@ -333,6 +333,33 @@
                 alert(e);
             },
         });
+    }
+
+    function update_status_mom(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.store_status_mom') }}",
+            data: $('#form_discuss').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_discuss');
+            },
+            success: function (s) {   
+                small_loader_close('form_discuss'); 
+                $('.input_diskusi').prop('disabled', true);
+                $('html, body').animate({
+                    scrollTop: $("#discuss_konten").offset().top
+                }, 2000);
+
+            },
+            complete: function(){
+                small_loader_close('form_discuss');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+
+        
     }
  
 

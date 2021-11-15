@@ -29,16 +29,16 @@
                     <tr>
                         <td></td>   
                         <td hidden>
-                            <input type="hidden" class="form-control input_diskusi" name="discuss_id[]" id="discuss_id" value="{{ $dtd->discuss_id }}">
+                            <input type="hidden" class="form-control" name="discuss_id[]" id="discuss_id" value="{{ $dtd->discuss_id }}">
                         </td> 
                         <td hidden>
-                            <input type="hidden" class="form-control input_diskusi" name="mom_id[]" id="mom_id" value="{{ $dtd->discuss_mom_id }}">
+                            <input type="hidden" class="form-control" name="mom_id[]" id="mom_id" value="{{ $dtd->discuss_mom_id }}">
                         </td>
                         <td hidden>
-                            <input type="hidden" class="form-control input_diskusi" name="agenda_id[]" id="agenda_id" value="{{ $dtd->discuss_agenda_id }}">
+                            <input type="hidden" class="form-control" name="agenda_id[]" id="agenda_id" value="{{ $dtd->discuss_agenda_id }}">
                         </td>
                         <td>
-                            <input type="text" class="form-control input_diskusi" name="pointer[]" id="pointer" value="{{ $dtd->discuss_pointer }}">
+                            <input type="text" class="form-control input_diskusi" name="pointer[]" id="pointer" value="{{ $dtd->discuss_id }}">
                         </td>
                         <td>
                             <input type="text" class="form-control input_diskusi" name="assignment[]" id="assignment" value ="{{ $dtd->discuss_assignment }}">
@@ -61,15 +61,17 @@
                         </td>
                         <td>
                             <select class="form-control select input_diskusi" name="priority[]" id="priority">
-                                <option value="High">High</option>
-                                <option value="Normal">Normal</option>
-                                <option value="Low">Low</option>
+                                <option value="">-- Choose Priority --</option>
+                                <option value="3" {{ ($dtd->discuss_priority == '3') ? 'selected' : '' }}>High</option> 
+                                <option value="2" {{ ($dtd->discuss_priority == '2') ? 'selected' : '' }}>Normal</option>
+                                <option value="1" {{ ($dtd->discuss_priority == '1') ? 'selected' : '' }}>Low</option>
                             </select>
                         </td>
                         <td>
-                            <select class="form-control select input_diskusi" name="status[]" id="status">
-                                <option value="Open">Open</option>
-                                <option value="Closed">Closed</option>
+                            <select class="form-control select {{ ($dtd->discuss_status == 'C') ? 'input_diskusia' : '' }}" name="status[]" id="status">
+                                <option value="">-- Choose Priority --</option>
+                                <option value="O" {{ ($dtd->discuss_status == 'O') ? 'selected' : '' }}>Open</option> 
+                                <option value="C" {{ ($dtd->discuss_status == 'C') ? 'selected' : '' }}>Closed</option> 
                             </select>
                         </td>
                     </tr>
@@ -83,14 +85,12 @@
                         <th colspan="5">
                             <table class="table table-columned table-xs"> 
                                 <tbody>
-                                    <div id="progress_konten_{{ $dtd->discuss_id }}"></div>
-
                                     <div class="form-group"  >
                                         <td width="10%" class="text-center">
-                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single">
+                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}"">
                                         </td>
                                         <td width="90%">
-                                            <input type="text" class="form-control" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
+                                            <input type="text" class="form-control {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}"" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
                                             <script>
                                                 $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
                                                     if (e.keyCode == 13) {
@@ -106,7 +106,7 @@
                                                                 "prog_desc" : $('#progress_appender_{{ $dtd->discuss_id }}').val(),
                                                             }, 
                                                             success: function (s) {   
-                                                                console.log(s);
+                                                                // console.log(s);
                                                                 // $('#body_poin_{{ $dtd->discuss_id }}').append(s);
                                                             },
                                                             complete: function(){
@@ -123,60 +123,54 @@
                                     </div>
                                 </tbody>
                             </table>
-                        </th> 
-                        <th></th>
-                    </tr> 
-                    {{-- <tr>
-                        <th></th>
-                        <th colspan="5">
-                            <table class="table table-columned table-xs" id="table_pointer_{{ $dtd->discuss_id }}"> 
+                            <hr>
+                            <table class="table table-columned table-xs"> 
                                 <tbody>
-                                    <tbody id="body_poin_{{ $dtd->discuss_id}}"></tbody>
-                                </tbody>
+                                    <tr id="progress_konten_{{ $dtd->discuss_id }}"></tr>
+                                </tbody> 
+                            </table>
+                            <hr>
+                            <table class="table table-columned table-xs"> 
+                                <tbody>
+                                    <div>
+                                        @php
+                                            $dtProgress = $mom->get_progress_by_mom_agenda_discuss_id($dtd->discuss_mom_id, $dtd->discuss_agenda_id, $dtd->discuss_id);
+                                            $no=0;
+                                        @endphp
+
+                                        @foreach ($dtProgress as $dtp)
+                                            @php 
+                                                $no++; 
+                                            @endphp 
+                                            <tr>
+                                                <td width="5%" class="text-center">
+                                                    {{$no}}
+                                                </td>
+                                                <td width="10%" class="text-center">
+                                                    {{$dtp->progress_date}}
+                                                </td>
+                                                <td width="85%">
+                                                    {{$dtp->progress_desc}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </div>
+                                </tbody> 
                             </table>
                         </th> 
                         <th></th>
-                    </tr> --}}
+                    </tr>  
 
-                    <script>
-                        function append_progress_{{ $dtd->discuss_id }}(){
-                            $.ajax({
-                                type: "POST",
-                                url: "{{ route('mom.add_progress') }}",
-                                data: {
-                                    "_token": "{{ csrf_token() }}",
-                                    "mom_id" : "{{ $dtd->discuss_mom_id }}",
-                                    "agenda_id" : "{{ $dtd->discuss_agenda_id }}",
-                                    "discuss_id" : "{{ $dtd->discuss_id }}",
-                                },
-                                beforeSend: function(){
-                                    small_loader_open('table_pointer_{{ $dtd->discuss_id }}');
-                                },
-                                success: function (s) {   
-                                    console.log(s);
-                                    $('#body_poin_{{ $dtd->discuss_id }}').append(s);
-                                },
-                                complete: function(){
-                                    small_loader_close('table_pointer_{{ $dtd->discuss_id }}');
-                                },
-                                error: function(e){
-                                    sw_multi_error(e);
-                                }
-                            });
-                        }
-                        
+                    <script>                        
                         var nomor = 0;
                         $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
                             if (e.keyCode == 13) {
                                 nomor++;    
                                 $('#progress_konten_{{ $dtd->discuss_id }}').append('<tr>\
-                                                                                        <td width="5%" class="text-center">\
-                                                                                            '+nomor+'\
-                                                                                        </td>\
-                                                                                        <td width="10%" class="text-center">\
+                                                                                        <td width="27%" class="text-center">\
                                                                                             '+$('#progress_date_{{ $dtd->discuss_id }}').val()+'\
                                                                                         </td>\
-                                                                                        <td width="100%">\
+                                                                                        <td width="85%">\
                                                                                             '+$('#progress_appender_{{ $dtd->discuss_id }}').val()+'\
                                                                                         </td>\
                                                                                     </tr>');
@@ -195,4 +189,11 @@
             </tbody>
         </table>
     </div>
+
+<script>
+    $(document).ready(function(){
+        $('.input_diskusi').prop('disabled', true);
+    });
+</script>
+
 @endforeach

@@ -25,9 +25,9 @@
     </td>
     <td>
         <select class="form-control select input_diskusi" name="priority[]" id="priority">
-            <option value="High">High</option>
-            <option value="Normal">Normal</option>
-            <option value="Low">Low</option>
+            <option value="3">High</option>
+            <option value="2">Normal</option>
+            <option value="1">Low</option>
         </select>
     </td>
     <td>
@@ -35,8 +35,8 @@
     </td>
     <td>
         <select class="form-control select input_diskusi" name="status[]" id="status">
-            <option value="Open">Open</option>
-            <option value="Closed">Closed</option>
+            <option value="O">Open</option>
+            <option value="C">Closed</option>
         </select>
     </td>
 </tr>

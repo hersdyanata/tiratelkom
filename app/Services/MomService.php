@@ -13,6 +13,7 @@ use App\Models\TraMomTypeModel as MomTypeItem;
 use App\Models\TraMomParticipantModel as MomParticipantItem;
 use App\Models\TraMomAgendaModel as MomAgendaItem;
 use App\Models\TraMomDiscussModel as MomDiscussItem;
+use App\Models\TraMomProgressModel as MomProgressItem;
 
 class MomService{
     public function create_mom($post){
@@ -98,7 +99,6 @@ class MomService{
                 'discuss_uic_id'        => $post['uic'][$i],
                 'discuss_due_date'      => date('Y-m-d', strtotime($post['due_date'][$i])),
                 'discuss_priority'      => $post['priority'][$i],
-                'discuss_progress'      => $post['progress'][$i],
                 'discuss_status'        => $post['status'][$i],
                 'discuss_created_date'  => Now(), 
             ];
@@ -188,29 +188,52 @@ class MomService{
 
         $agenda = MomAgendaItem :: insert($item);
 
-        return $item;
+        return $agenda;
     }
-
-    public function xxxx($post){
-        // simpan detail transaksi mom agenda
-        $item = array();
-        $no = 0;
+    
+    public function create_progress($post){
+        $progress = [
+            'progress_mom_id'       => $post['mom_id'],
+            'progress_agenda_id'    => $post['agenda_id'],
+            'progress_discuss_id'   => $post['discuss_id'],
+            'progress_date'         => date('Y-m-d', strtotime($post['prog_date'])),
+            'progress_desc'         => $post['prog_desc']
+        ];
+        
+        $progress_id = MomProgressItem :: insertGetId($progress);
+        
+        return $progress_id;
+    }
+    
+    public function update_status_mom($post){
+        //update status diskusi 
         if (isset($post)) {
-            foreach ($post['mom_agenda'] as $dt => $r) {
-                $no++;
-                if ($r != null or $r = '') {
-                    $item[] = array(
-                        'mom_id'  => $post['agenda_mom_id'],
-                        'agenda_id' => $no,//$dt,
-                        'agenda_desc' => $r
-                    );
+            foreach ($post['discuss_id'] as $dt => $r) {
+                 if ($r != null or $r = '') { 
+                     MomDiscussItem::where([
+                                        'discuss_mom_id' => $post['mom_id'][$dt],
+                                        'discuss_agenda_id' => $post['agenda_id'][$dt],
+                                        'discuss_id'=> $post['discuss_id'][$dt]
+                                        ]) 
+                                    ->update([
+                                        'discuss_status' => $post['status'][$dt]
+                                            ]);
                 }
             }
-        }
+        } 
 
-        $agenda = MomAgendaItem :: insert($item);
+        $Item1 = MomDiscussItem::where(['discuss_mom_id' => $post['mom_id'],
+                                        'discuss_status' => 'O'
+                                       ])
+                                 ->count();
+        
+        //update status mom dimana jika semua diskusi close maka mom menjadi close, apbila diksusi masih ada yang open maka mom masih open
+        if ($Item1 == 0) {
+            MomHeader::where(['mom_id' => $post['mom_id']]) 
+                     ->update(['mom_status' => 'C']);
+        }    
 
-        return $item;
+        // return $item;
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -253,6 +276,14 @@ class MomService{
     public function get_discuss_by_mom_id_agenda($mom_id, $agenda_id){
         $data = MomDiscussItem::where(['discuss_mom_id' => $mom_id,
                                        'discuss_agenda_id' => $agenda_id ])->get();
+        return $data;
+    } 
+
+    public function get_progress_by_mom_agenda_discuss_id($mom_id, $agenda_id, $discuss_id){
+        $data = MomProgressItem::where(['progress_mom_id' => $mom_id,
+                                        'progress_agenda_id' => $agenda_id,
+                                        'progress_discuss_id' => $discuss_id
+                                       ])->get();
         return $data;
     } 
 }

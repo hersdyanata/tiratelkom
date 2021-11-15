@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Local_DB
+ Source Server         : Local
  Source Server Type    : MySQL
- Source Server Version : 100315
+ Source Server Version : 100138
  Source Host           : localhost:3306
  Source Schema         : tira
 
  Target Server Type    : MySQL
- Target Server Version : 100315
+ Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 12/11/2021 16:55:41
+ Date: 15/11/2021 08:22:53
 */
 
 SET NAMES utf8mb4;
@@ -78,7 +78,7 @@ CREATE TABLE `dev_menu`  (
   `menu_level` int NULL DEFAULT NULL,
   `menu_publish_ke_user` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `menu_order` int NULL DEFAULT NULL,
-  `menu_createdat` datetime NULL DEFAULT NULL,
+  `menu_createdat` datetime(0) NULL DEFAULT NULL,
   `menu_createdby` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`menu_id`) USING BTREE,
   UNIQUE INDEX `index_dev_menu`(`menu_id`) USING BTREE
@@ -142,7 +142,7 @@ CREATE TABLE `failed_jobs`  (
   `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp,
+  `failed_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
@@ -250,7 +250,7 @@ DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets`  (
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
   INDEX `password_resets_email_index`(`email`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
 
@@ -269,9 +269,9 @@ CREATE TABLE `personal_access_tokens`  (
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `last_used_at` timestamp(0) NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token`) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`) USING BTREE
@@ -318,15 +318,15 @@ CREATE TABLE `tra_mom`  (
   `mom_notulen_by` int NULL DEFAULT NULL,
   `mom_called_by` int NULL DEFAULT NULL,
   `mom_status` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `mom_created_date` datetime NULL DEFAULT NULL,
-  `mom_updated_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `mom_created_date` datetime(0) NULL DEFAULT NULL,
+  `mom_updated_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`mom_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (87, 1, 'MoM WAR part 1', '2021-10-28', '16:07', 1, 'Hour', 'Zoom', 4, 4, 'O', '2021-10-28 15:08:28', '2021-11-07 12:50:07');
+INSERT INTO `tra_mom` VALUES (87, 1, 'MoM WAR part 1', '2021-10-28', '16:07', 1, 'Hour', 'Zoom', 4, 4, 'O', '2021-10-28 15:08:28', '2021-11-15 08:18:54');
 INSERT INTO `tra_mom` VALUES (88, 2, 'MoM Forum Infrastruktur part 1', '2021-10-29', '20:15', 1, 'Hour', 'Vicon', 4, 1, 'O', '2021-10-28 16:15:31', '2021-11-07 12:50:10');
 INSERT INTO `tra_mom` VALUES (89, 3, 'MoM Forum Meeting part 1', '2021-10-30', '14:10', 1, 'Hour', 'Sakura', 4, 6, 'C', '2021-10-28 21:11:16', '2021-11-07 12:50:11');
 INSERT INTO `tra_mom` VALUES (90, 4, 'MoM Forum Support part 1', '2021-10-26', '23:16', 1, 'Hour', 'Melati', 4, 1, 'D', '2021-10-28 21:17:04', '2021-11-07 12:50:21');
@@ -368,24 +368,24 @@ CREATE TABLE `tra_mom_discuss`  (
   `discuss_priority` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_progress` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_status` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `discuss_created_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `discuss_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`discuss_id`, `discuss_agenda_id`, `discuss_mom_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_discuss
 -- ----------------------------
-INSERT INTO `tra_mom_discuss` VALUES (87, 1, 3, 'MoM WAR Pointer Part 1 A1', 'MoM WAR Assignment Part 1  A1', 1, '2021-10-28', '3', NULL, 'C', '2021-10-29 14:43:51');
-INSERT INTO `tra_mom_discuss` VALUES (87, 1, 4, 'MoM WAR  Pointer Part 1 A2', 'MoM WAR Assignment Part 1  A2', 2, '2021-11-04', '2', NULL, 'O', '2021-10-29 14:43:54');
-INSERT INTO `tra_mom_discuss` VALUES (87, 1, 5, 'MoM WAR  Pointer Part 1 A3', 'MoM WAR Assignment Part 1  A3', 3, '2021-11-16', '1', NULL, 'O', '2021-10-29 14:43:55');
-INSERT INTO `tra_mom_discuss` VALUES (87, 2, 6, 'MoM WAR Pointer Part 1 B1', 'MoM WAR Assignment Part 1  B1', 3, '2021-10-29', '3', NULL, 'O', '2021-10-29 14:43:56');
-INSERT INTO `tra_mom_discuss` VALUES (88, 1, 7, 'MoM FI Pointer Part 1 A1', 'MoM FI Assignment Part 1 A1', 11, '2021-11-01', '2', NULL, 'O', '2021-10-31 18:52:15');
-INSERT INTO `tra_mom_discuss` VALUES (89, 1, 8, 'MoM FM Pointer Part 1 A1', 'MoM FM Assignment Part 1  A1', 2, '2021-11-06', '1', NULL, 'C', '2021-10-31 18:52:50');
-INSERT INTO `tra_mom_discuss` VALUES (89, 2, 9, 'MoM FM Pointer Part 1 B1', 'MoM FM Assignment Part 1  B1', 5, '2021-11-25', '1', NULL, 'C', '2021-10-31 17:25:53');
-INSERT INTO `tra_mom_discuss` VALUES (90, 1, 10, 'MoM FS Pointer Part 1 A1', 'MoM FS Assignment Part 1 A1', 8, '2021-10-29', '3', NULL, 'D', '2021-10-31 17:26:17');
-INSERT INTO `tra_mom_discuss` VALUES (90, 1, 11, 'MoM FS Pointer Part 1 A2', 'MoM FS Assignment Part 1 A2', 12, '2021-11-06', '2', NULL, 'D', '2021-10-31 17:26:17');
-INSERT INTO `tra_mom_discuss` VALUES (90, 2, 12, 'MoM FS Pointer Part 1 B1', 'MoM FS Assignment Part 1 B1', 5, '2021-10-28', '1', NULL, 'D', '2021-10-31 17:26:17');
-INSERT INTO `tra_mom_discuss` VALUES (90, 3, 13, 'MoM FS Pointer Part 1 C1', 'MoM FS Assignment Part 1 C1', 7, '2021-11-04', '2', NULL, 'D', '2021-10-31 17:26:17');
+INSERT INTO `tra_mom_discuss` VALUES (87, 1, 3, 'MoM WAR Pointer Part 1 A1', 'MoM WAR Assignment Part 1  A1', 1, '2021-11-15', '3', NULL, 'C', '2021-11-15 06:57:13');
+INSERT INTO `tra_mom_discuss` VALUES (87, 1, 4, 'MoM WAR  Pointer Part 1 A2', 'MoM WAR Assignment Part 1  A2', 2, '2021-11-15', '2', NULL, 'O', '2021-11-15 08:18:59');
+INSERT INTO `tra_mom_discuss` VALUES (87, 1, 5, 'MoM WAR  Pointer Part 1 A3', 'MoM WAR Assignment Part 1  A3', 3, '2021-11-15', '1', NULL, 'O', '2021-11-15 08:21:36');
+INSERT INTO `tra_mom_discuss` VALUES (87, 2, 6, 'MoM WAR Pointer Part 1 B1', 'MoM WAR Assignment Part 1  B1', 3, '2021-11-15', '3', NULL, 'O', '2021-11-15 08:21:38');
+INSERT INTO `tra_mom_discuss` VALUES (88, 1, 7, 'MoM FI Pointer Part 1 A1', 'MoM FI Assignment Part 1 A1', 11, '2021-11-15', '2', NULL, 'O', '2021-11-15 06:15:35');
+INSERT INTO `tra_mom_discuss` VALUES (89, 1, 8, 'MoM FM Pointer Part 1 A1', 'MoM FM Assignment Part 1  A1', 2, '2021-11-15', '1', NULL, 'C', '2021-11-15 06:15:35');
+INSERT INTO `tra_mom_discuss` VALUES (89, 2, 9, 'MoM FM Pointer Part 1 B1', 'MoM FM Assignment Part 1  B1', 5, '2021-11-15', '1', NULL, 'C', '2021-11-15 06:15:35');
+INSERT INTO `tra_mom_discuss` VALUES (90, 1, 10, 'MoM FS Pointer Part 1 A1', 'MoM FS Assignment Part 1 A1', 8, '2021-11-15', '3', NULL, 'D', '2021-11-15 06:15:36');
+INSERT INTO `tra_mom_discuss` VALUES (90, 1, 11, 'MoM FS Pointer Part 1 A2', 'MoM FS Assignment Part 1 A2', 12, '2021-11-15', '2', NULL, 'D', '2021-11-15 06:15:36');
+INSERT INTO `tra_mom_discuss` VALUES (90, 2, 12, 'MoM FS Pointer Part 1 B1', 'MoM FS Assignment Part 1 B1', 5, '2021-11-15', '1', NULL, 'D', '2021-11-15 06:15:36');
+INSERT INTO `tra_mom_discuss` VALUES (90, 3, 13, 'MoM FS Pointer Part 1 C1', 'MoM FS Assignment Part 1 C1', 7, '2021-11-15', '2', NULL, 'D', '2021-11-15 06:15:36');
 
 -- ----------------------------
 -- Table structure for tra_mom_participant
@@ -419,11 +419,16 @@ CREATE TABLE `tra_mom_progress`  (
   `progress_date` date NULL DEFAULT NULL,
   `progress_desc` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`progress_id`, `progress_discuss_id`, `progress_agenda_id`, `progress_mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_progress
 -- ----------------------------
+INSERT INTO `tra_mom_progress` VALUES (87, 1, 3, 4, '2021-11-14', 'Progress pengerjaan tira sudah mencapai 45%');
+INSERT INTO `tra_mom_progress` VALUES (87, 1, 3, 5, '2021-11-14', 'Progress pengerjaan tira sudah mencapai 75%');
+INSERT INTO `tra_mom_progress` VALUES (87, 1, 3, 6, '2021-11-14', 'Progress pengerjaan tira sudah mencapai 100%');
+INSERT INTO `tra_mom_progress` VALUES (87, 1, 4, 7, '2021-11-14', 'Pengumpulan data sudah mencapai 60%');
+INSERT INTO `tra_mom_progress` VALUES (87, 1, 4, 8, '2021-11-14', 'Pengumpulan data sudah mencapai 100%');
 
 -- ----------------------------
 -- Table structure for tra_mom_type
@@ -476,14 +481,14 @@ CREATE TABLE `users`  (
   `uic_id` int NULL DEFAULT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `email_verified_at` timestamp(0) NULL DEFAULT NULL,
   `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `theme` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 385 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;

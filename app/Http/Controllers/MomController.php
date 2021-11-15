@@ -89,8 +89,14 @@ class MomController extends Controller
     }
 
     public function store_discuss_progress(MomService $mom, Request $request){
-        dd($request->all());  
-   }
+        $res = $mom->create_progress($request->all());
+        return response()->json($res, 200);
+    }
+
+    public function store_status_mom(MomService $mom, Request $request){
+        $res = $mom->update_status_mom($request->all());
+        // return response()->json($res, 200);
+    }
 
     public function show(MomService $mom, $id){
         $title = 'Preview MoM';
