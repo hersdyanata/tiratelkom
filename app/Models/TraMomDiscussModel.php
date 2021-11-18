@@ -25,8 +25,13 @@ class TraMomDiscussModel extends Model
         'discuss_created_date',
     ];
 
+    public function getAttr_uic_code(){
+        $rel = $this->hasOne(MstUICModel::class,'uic_id','discuss_uic_id')->first();
+        return $rel->getAttr_code();
+    }
+
     public function getAttr_uic_desc(){
-        $rel = $this->hasOne(MstUICModel::class,'id','discuss_uic_id')->first();
+        $rel = $this->hasOne(MstUICModel::class,'uic_id','discuss_uic_id')->first();
         return $rel->getAttr_description();
     }
 

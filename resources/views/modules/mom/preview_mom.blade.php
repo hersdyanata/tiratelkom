@@ -134,11 +134,7 @@
                     </ol>
                 </td>
             </tr>
-            @inject('crot', 'App\Services\MomService')
-            @php
-                // cara manggil crot dan fungsi di momservice
-                // $data = $crot->namafungsi_di_momservice;
-            @endphp
+           
             <tr>
                 <td id="tdStyle" colspan="3"> Discussion</td>
                 {{-- @foreach ($data as $item) --}}
@@ -148,9 +144,34 @@
             <tr>
                 <td colspan="3">
                     <ol>
-                        <li>..........</li>
-                        <li>..........</li>
-                        <li>..........</li>
+                        @foreach ($DataAgenda as $dta)
+                            @inject('mom', 'App\Services\MomService')
+                            @php
+                                // cara manggil crot dan fungsi di momservice
+                                $dtDiscuss = $mom->get_discuss_by_mom_id_agenda($DataMoM->mom_id, $dta->agenda_id);
+                            @endphp
+
+                            <li>{{$dta->agenda_desc}}
+                                <ol style="list-style-type: lower-alpha;">
+                                    @foreach ($dtDiscuss as $dtd)
+                                        <li>{{$dtd->discuss_pointer}}</li> 
+                                    @endforeach 
+                                </ol>
+                            </li> 
+                            Diskusi:
+                            <ol style="list-style-type: lower-alpha;">
+                                @foreach ($dtDiscuss as $dtd)
+                                    <li>{{$dtd->discuss_assignment}}</li> 
+                                @endforeach 
+                            </ol>
+                            PIC: 
+                            <ol style="list-style-type: lower-alpha;">
+                                @foreach ($dtDiscuss as $dtd)
+                                    <li>{{$dtd->getAttr_uic_code()}}</li> 
+                                @endforeach 
+                            </ol>
+                            <br>
+                        @endforeach 
                     </ol>
                 </td>
             </tr>
@@ -166,10 +187,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="text-center" id="div_btn_discuss">
-                <input type="hidden" readonly id="temp_mom_id">
+                <input type="hidden" readonly id="temp_mom_id" value="{{$DataMoM->mom_id}}">
                 <p>
                     <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
-                    {{-- <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom">Preview MoM <i class="icon-file-eye ml-2"></i></button>  --}}
                     <a class="btn btn-primary btn-sm" id="btn_preview_mom" href="{{ route('mom.edit_mom', $DataMoM->mom_id) }}">Back to Editing <i class="icon-file-eye ml-2"></i></a>
                 </p>
                 <p>
@@ -180,4 +200,36 @@
             </div>
         </div> 
     </div>
+@endsection
+
+@section('page_js')
+<script>
+    $('document').ready(function(){
+        $('#btn_save_draft').prop('disabled', true); 
+    });
+
+    function submit_data_mom(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.store_submit_mom') }}",
+            data: {
+                '_token': "{{ csrf_token() }}",
+                'mom_id': $('#temp_mom_id').val(),
+            },
+            beforeSend: function(){
+                small_loader_open('form_discuss');
+            },
+            success: function (s) {
+                small_loader_close('form_discuss');
+                window.location.href = "{{ route('dashboard.index') }}";
+            },
+            complete: function(){
+                small_loader_close('form_discuss');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }   
+</script>
 @endsection
