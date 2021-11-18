@@ -8,6 +8,8 @@ use App\Models\MomCategoryModel as Kategori;
 use App\Models\TraMomDiscussModel as Discuss;
 use App\Models\MstUICModel as UIC;
 
+use App\Services\DashboardService;
+
 class DashboardController extends Controller
 {
     public function __construct()
@@ -103,16 +105,11 @@ class DashboardController extends Controller
     }
 
 
-    public function filter_mom(Request $r){
+    public function filter_mom(DashboardService $Dashboard, Request $r){
         if($r->status_mom == 'L' or $r->status_mom == 'O' or $r->status_mom == 'C'){
-            $data = MomHeader::where([
-                'mom_title' => $r->kategori_mom,
-                'mom_status' => $r->status_mom
-            ])->get();
+            $data = $Dashboard->get_mom_by_category_and_status($r->kategori_mom, $r->status_mom);
         }elseif($r->status_mom == 'A'){
-            $data = MomHeader::where([
-                'mom_title' => $r->kategori_mom
-            ])->get();              
+            $data = $Dashboard->get_mom_by_category($r->kategori_mom);
         }else{
             $data = Discuss::where([
                 'discuss_uic_id' => $r->status_mom

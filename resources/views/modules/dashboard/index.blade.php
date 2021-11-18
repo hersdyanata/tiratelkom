@@ -31,6 +31,13 @@
         </div>
     </div>
 
+    @inject('Dashboard', 'App\Services\DashboardService')
+    @php
+        $dtMom = $Dashboard->get_mom_all();
+        $dtAllMom = $dtMom->count();
+        $dtOpenMom = $dtMom->where('mom_status', 'O')->count();
+        $dtCloseMom = $dtMom->where('mom_status', 'C')->count();
+    @endphp
 
     <div class="row">
         <div class="col-sm-6 col-xl-3" style="cursor:pointer" onclick="extended_page('A')">
@@ -38,7 +45,7 @@
                 <div class="media">
                     <div class="media-body">
                         <h3>All MoM</h3><br>
-                        <h3 class="mb-0">389,438</h3>
+                        <h3 class="mb-0">{{$dtAllMom}}</h3>
                     </div>
 
                     <div class="ml-3 align-self-center">
@@ -53,7 +60,7 @@
                 <div class="media">
                     <div class="media-body">
                         <h3>Open MoM</h3><br>
-                        <h3 class="mb-0">389,438</h3>
+                        <h3 class="mb-0">{{$dtOpenMom}}</h3>
                     </div>
 
                     <div class="ml-3 align-self-center">
@@ -68,7 +75,7 @@
                 <div class="media">
                     <div class="media-body">
                         <h3>Closed MoM</h3><br>
-                        <h3 class="mb-0">389,438</h3>
+                        <h3 class="mb-0">{{$dtCloseMom}}</h3>
                     </div>
 
                     <div class="ml-3 align-self-center">

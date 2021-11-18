@@ -22,7 +22,5 @@ class GlobalParamsController extends Controller
     public function get_meeting_called_by(GlobalService $global){
         return $global->get_meeting_called_by();
     }   
-
-    
     
 }

@@ -35,9 +35,6 @@
         </select>
     </td>
     <td>
-        <input type="text" class="form-control input_diskusi" name="progress[]" id="progress">
-    </td>
-    <td>
         <select class="form-control select input_diskusi" name="status[]" id="status">
             <option value="O">Open</option>
             <option value="C">Closed</option>
