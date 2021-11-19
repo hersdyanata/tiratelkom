@@ -186,12 +186,8 @@
             <div class="text-center" id="div_btn_discuss">
                 <input type="hidden" readonly id="temp_mom_id" value="{{$DataMoM->mom_id}}">
                 <p>
-                    <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
-                    <a class="btn btn-primary btn-sm" id="btn_preview_mom" href="{{ route('mom.edit_mom', $DataMoM->mom_id) }}">Back to Editing <i class="icon-file-eye ml-2"></i></a>
-                </p>
-                <p>
-                    <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="submit_data_mom()">
-                    <tabCustom> Submit MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
+                    <button type="button" class="btn btn-danger btn-sm" id="btn_discuss" onclick="print_data_mom()">
+                    <tabCustom> Print MoM <i class="icon-printer ml-2"></i> </tabCustom>
                     </button>
                 </p>
             </div>
@@ -218,7 +214,7 @@
             },
             success: function (s) {
                 small_loader_close('form_discuss');
-                window.location.href = "{{ route('mom.print_mom', ':x') }}".replace(':x',$('#temp_mom_id').val());
+                window.location.href = "{{ route('dashboard.index') }}";
             },
             complete: function(){
                 small_loader_close('form_discuss');

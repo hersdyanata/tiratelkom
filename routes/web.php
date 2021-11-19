@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 // Route::get('/dashboard', function () {
@@ -62,11 +66,11 @@ Route::post('mom/add_row_poin', [App\Http\Controllers\MomController::class, 'add
 Route::post('mom/create_draft_mom', [App\Http\Controllers\MomController::class, 'create_draft_mom'])->name('mom.create_draft_mom');
 Route::post('mom/store_draft_mom', [App\Http\Controllers\MomController::class, 'store_draft_mom'])->name('mom.store_draft_mom');
 Route::post('mom/store_submit_mom', [App\Http\Controllers\MomController::class, 'store_submit_mom'])->name('mom.store_submit_mom'); 
-Route::post('mom/add_progress', [App\Http\Controllers\MomController::class, 'add_progress'])->name('mom.add_progress'); 
 Route::post('mom/store_discuss_progress', [App\Http\Controllers\MomController::class, 'store_discuss_progress'])->name('mom.store_discuss_progress'); 
 Route::post('mom/store_status_mom', [App\Http\Controllers\MomController::class, 'store_status_mom'])->name('mom.store_status_mom');
 Route::get('mom/edit_mom/{id}', [App\Http\Controllers\MomController::class, 'edit_mom'])->name('mom.edit_mom'); 
 Route::post('mom/discuss', [App\Http\Controllers\MomController::class, 'get_discuss_konten'])->name('mom.discuss'); 
+Route::get('mom/print_mom/{id}', [App\Http\Controllers\MomController::class, 'print_mom'])->name('mom.print_mom'); 
 
 /* ======================================================================= Route List Global Parameters ======================================================================= */
 Route::post('params/category', [App\Http\Controllers\GlobalParamsController::class, 'get_category_mom'])->name('param.category'); 

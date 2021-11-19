@@ -154,4 +154,21 @@ class MomController extends Controller
         return response()->json($view_diskusi, 200); 
     }   
 
+    public function print_mom(MomService $mom, $id){
+        $title = 'Print MoM';
+        $DataMoM  = $mom->get_mom_by_mom_id($id);
+        $DataType = $mom->get_type_by_mom_id($id);
+        $DataParticipant = $mom->get_participant_by_mom_id($id);
+        $DataAgenda = $mom->get_agenda_by_mom_id($id);
+        return view('modules.mom.print_mom')
+                ->with([
+                    'title' => $title,
+                    'DataMoM' => $DataMoM,
+                    'DataType' => $DataType,
+                    'DataParticipant' => $DataParticipant,
+                    'DataAgenda' => $DataAgenda,
+                    'MstType' => momType::get(),
+                ]);
+    }
+
 }
