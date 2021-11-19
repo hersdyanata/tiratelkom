@@ -38,7 +38,7 @@
                             <input type="hidden" class="form-control" name="agenda_id[]" id="agenda_id" value="{{ $dtd->discuss_agenda_id }}">
                         </td>
                         <td>
-                            <input type="text" class="form-control input_diskusi" name="pointer[]" id="pointer" value="{{ $dtd->discuss_id }}">
+                            <input type="text" class="form-control input_diskusi" name="pointer[]" id="pointer" value="{{ $dtd->discuss_pointer}}">
                         </td>
                         <td>
                             <input type="text" class="form-control input_diskusi" name="assignment[]" id="assignment" value ="{{ $dtd->discuss_assignment }}">

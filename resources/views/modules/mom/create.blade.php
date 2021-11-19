@@ -127,7 +127,7 @@
                                     </div><br><br>
 
                                     {{-- initial data for edit mom --}}
-                                    <input type="text" readonly id="temp_edit_mom_id" name="temp_edit_mom_id" hidden value="87">
+                                    <input type="text" readonly id="temp_edit_mom_id" name="temp_edit_mom_id" hidden>
                                     
                                     <div class="row">
                                         <div class="col-lg-12">
