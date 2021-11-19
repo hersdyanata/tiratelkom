@@ -132,7 +132,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center"> 
-                                                <button type="button" class="btn btn-primary btn-sm" id="btn_preview_modm" onclick="preview_mom()">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
+                                                {{-- <button type="button" class="btn btn-primary btn-sm" id="btn_preview_modm" onclick="preview_mom()">Preview MoM <i class="icon-file-eye ml-2"></i></button>  --}}
                                                 <button type="button" class="btn btn-danger btn-sm" id="btn_save_mom" onclick="simpan_data_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
                                                 <button type="button" class="btn btn-dark btn-sm" id="btn_edit_mom" onclick="edit_mom()">Edit <i class="icon-pencil ml-2"></i></button>
                                                 <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button>
@@ -481,8 +481,8 @@
     }    
 
     function preview_mom(){
-        // window.location.href = "{{ route('mom.show', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
-        window.location.href = "{{ route('mom.print_mom', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
+        window.location.href = "{{ route('mom.show', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
+        // window.location.href = "{{ route('mom.print_mom', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
     }    
 
 </script>
