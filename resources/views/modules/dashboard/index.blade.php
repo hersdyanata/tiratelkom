@@ -30,64 +30,7 @@
             </div>
         </div>
     </div>
-
-    @inject('Dashboard', 'App\Services\DashboardService')
-    @php
-        $dtMom = $Dashboard->get_mom_all();
-        $dtAllMom = $dtMom->count();
-        $dtOpenMom = $dtMom->where('mom_status', 'O')->count();
-        $dtCloseMom = $dtMom->where('mom_status', 'C')->count();
-    @endphp
-
-    <div class="row">
-        <div class="col-sm-6 col-xl-3" style="cursor:pointer" onclick="extended_page('A')">
-            <div class="card card-body bg-danger text-white has-bg-image">
-                <div class="media">
-                    <div class="media-body">
-                        <h3>All MoM</h3><br>
-                        <h3 class="mb-0">{{$dtAllMom}}</h3>
-                    </div>
-
-                    <div class="ml-3 align-self-center">
-                        <i class="icon-files-empty icon-4x opacity-75"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3" style="cursor:pointer" onclick="extended_page('O')">
-            <div class="card card-body bg-danger text-white has-bg-image">
-                <div class="media">
-                    <div class="media-body">
-                        <h3>Open MoM</h3><br>
-                        <h3 class="mb-0">{{$dtOpenMom}}</h3>
-                    </div>
-
-                    <div class="ml-3 align-self-center">
-                        <i class="icon-copy4 icon-4x opacity-75"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3" style="cursor:pointer" onclick="extended_page('C')">
-            <div class="card card-body bg-danger text-white has-bg-image">
-                <div class="media">
-                    <div class="media-body">
-                        <h3>Closed MoM</h3><br>
-                        <h3 class="mb-0">{{$dtCloseMom}}</h3>
-                    </div>
-
-                    <div class="ml-3 align-self-center">
-                        <i class="icon-file-check icon-4x opacity-75"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row" id="page"></div>
+    <div id="page"></div>
 @endsection
 
 @section('page_js')
@@ -112,5 +55,27 @@
                 }
             });
         }
+
+        function extended_page_assignment(id, type_){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('dashboard.extended_page_assignment') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "uic_id" : id,
+                    "type": type_
+                },
+                beforeSend: function(){
+                    big_loader_open('page');
+                },
+                success: function (s) {
+                    $('#page').html(s);
+                },
+                complete: function(){
+                    big_loader_close('page');
+                }
+            });
+        }
+
     </script>    
 @endsection

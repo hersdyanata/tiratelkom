@@ -16,9 +16,14 @@
             margin-right: auto;
         }
 
-        table, th, td { 
+        #tbStyle{ 
             border: 1px solid rgb(0, 0, 0)!important;
         }
+
+         /*
+         table, th, td { 
+            border: 1px solid rgb(0, 0, 0)!important;
+        }  */
 
         p {
             font-size: 14px;
@@ -71,35 +76,35 @@
 
     </style>
 
-    <table>
+    <table id="tbStyle">
         <tbody>
-            <tr>
+            <tr id="tbStyle">
                 <td id="tdStyle" style="width: 45.9279%;" colspan="2">
                     <p>MINUTES OF MEETING</p> 
                     <p>Manajemen Review IMS</p> 
                 </td>
-                <td style="text-align: center;" rowspan="4">
+                <td id="tbStyle" style="text-align: center;" rowspan="4">
                     <div class="container">
                         <img src="{{ asset('assets') }}/global/images/telkom-regular.png" class="d-none d-sm-block" alt="">
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width: 11.5%;"><strong>Date</strong></td>
+            <tr id="tbStyle">
+                <td id="tbStyle" style="width: 11.5%;"><strong>Date</strong></td>
                 <td>&nbsp;{{$DataMoM->mom_date}}</td>
             </tr>
-            <tr>
-                <td><strong>Time</strong></td>
+            <tr id="tbStyle">
+                <td id="tbStyle"><strong>Time</strong></td>
                 <td>&nbsp;{{$DataMoM->mom_time}}</td>
             </tr>
-            <tr>
-                <td><strong>Media</strong></td>
+            <tr id="tbStyle">
+                <td id="tbStyle"><strong>Media</strong></td>
                 <td>&nbsp;{{$DataMoM->mom_location}}</td>
             </tr>
-            <tr>
+            <tr id="tbStyle">
                 <td colspan="3">Meeting Called by : &nbsp;{{$DataMoM->getAttr_user_name()}}</td>
             </tr> 
-            <tr>
+            <tr id="tbStyle">
                 <td colspan="3">Type of Meeting : 
                     @foreach ($MstType as $mt)
                         <input type="checkbox" value="{{$mt->type_id}}" id="meeting_{{$mt->type_id}}" name="meeting[{{$mt->type_id}}]" disabled> {{$mt->type_desc}}
@@ -113,7 +118,7 @@
                     @endforeach
                 </td>
             </tr>
-            <tr>
+            <tr id="tbStyle">
                 <td colspan="3">Attendees :
                     <ol style="list-style-type: lower-alpha;">
                         @foreach ($DataParticipant as $dtp)
@@ -122,10 +127,10 @@
                     </ol>
                 </td>
             </tr>
-            <tr>
+            <tr id="tbStyle">
                 <td id="tdStyle" colspan="3">Agenda</td>
             </tr>
-            <tr>
+            <tr id="tbStyle">
                 <td colspan="3">
                     <ol style="list-style-type: lower-alpha;">
                         @foreach ($DataAgenda as $dta)
@@ -135,10 +140,10 @@
                 </td>
             </tr>
            
-            <tr>
+            <tr id="tbStyle">
                 <td id="tdStyle" colspan="3"> Discussion</td>
             </tr>
-            <tr>
+            <tr id="tbStyle">
                 <td colspan="3">
                     <ol>
                         @foreach ($DataAgenda as $dta)
@@ -170,6 +175,27 @@
                             <br>
                         @endforeach 
                     </ol>
+
+                    <table style="width: 100%; border-collapse: collapse; height: 114px;" border="0">
+                        <tbody>
+                            <tr style="height: 18px;">
+                                <td style="width: 50%; text-align: center; height: 18px;">Notulen by</td>
+                                <td style="width: 50%; text-align: center; height: 18px;">Meeting Called by</td>
+                            </tr>
+                            <tr style="height: 78px;">
+                                <td style="width: 50%; height: 78px;">&nbsp;</td>
+                                <td style="width: 50%; height: 78px;">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+                            <tr style="height: 18px;">
+                                <td style="width: 50%; text-align: center; height: 18px;">{{$DataMoM->getAttr_notulen_by()}}</td>
+                                <td style="width: 50%; text-align: center; height: 18px;">{{$DataMoM->getAttr_user_name()}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </td>
             </tr>
         </tbody>

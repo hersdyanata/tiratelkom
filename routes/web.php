@@ -27,6 +27,7 @@ Route::get('/', function () {
 
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 Route::post('dashboard/extended_page', [App\Http\Controllers\DashboardController::class, 'extended_page'])->name('dashboard.extended_page');
+Route::post('dashboard/extended_page_assignment', [App\Http\Controllers\DashboardController::class, 'extended_page_assignment'])->name('dashboard.extended_page_assignment');
 Route::post('dashboard/filter_mom', [App\Http\Controllers\DashboardController::class, 'filter_mom'])->name('dashboard.filter_mom');
 
 /* ======================================================================= Route List Core ======================================================================= */

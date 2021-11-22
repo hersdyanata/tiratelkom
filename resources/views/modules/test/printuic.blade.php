@@ -1,6 +1,6 @@
 @extends('layouts.my')
 @section('content')
-{{-- 
+
 <script type="text/javascript">
 
     $(document).ready(function(){
@@ -16,7 +16,7 @@
 <center>
     <br><br>
     <a href="{{ route('prnpriview') }}" class="printPage btn">Print Preview</a>
-<a class="printPage" href="#">Print</a>
+    <a class="printPage" href="#">Print</a>
 </center>
 
 <center>
@@ -34,9 +34,9 @@
             <td>{{ $r->uic_desc }}</td>
         </tr>
         @endforeach
-</center> --}}
+</center>
 
-<style> 
+{{-- <style> 
     table{
         color: rgb(0, 0, 0)!important;
         font-family: arial;
@@ -140,6 +140,6 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> --}}
 
 @endsection

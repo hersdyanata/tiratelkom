@@ -16,6 +16,13 @@ use App\Models\TraMomDiscussModel as MomDiscussItem;
 use App\Models\TraMomProgressModel as MomProgressItem;
 
 class DashboardService{
+
+    protected $q_dashboard;
+
+    public function __construct(){
+        $this->q_dashboard = DB::table('tra_mom')
+                                ->leftJoin('tra_mom_discuss', 'discuss_mom_id', 'mom_id');
+    }
     
     public function get_mom_all(){
         $data = MomHeader::all();
@@ -31,6 +38,11 @@ class DashboardService{
         $data = MomHeader::where(['mom_title' => $CategoryID, 
                                   'mom_status' => $Status
                                 ])->get();
+        return $data;
+    }
+
+    public function get_mom_by_uic($id){
+        $data = $this->q_dashboard->where('discuss_uic_id', $id)->get();
         return $data;
     }
 

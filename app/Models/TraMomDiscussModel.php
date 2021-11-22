@@ -34,34 +34,4 @@ class TraMomDiscussModel extends Model
         $rel = $this->hasOne(MstUICModel::class,'uic_id','discuss_uic_id')->first();
         return $rel->getAttr_description();
     }
-
-    public function getAttr_due_date_discuss(){
-        // $data = $this->hasOne(TraMomDiscussModel::class,'discuss_mom_id','mom_id')->pluck('discuss_due_date')->max();
-        return 'due_date';
-    }
-    
-    public function getAttr_priority_discuss(){
-        if($this->discuss_priority == '3'){
-            $priority = 'High';
-        }elseif($this->discuss_priority == '2'){
-            $priority = 'Close';
-        }else{
-            $priority = 'Low';
-        } 
-
-        return max($this->discuss_priority);
-    }
-
-    public function getAttr_status_discuss(){
-        if($this->discuss_status == 'O'){
-            $status = 'Open';
-        }elseif($this->discuss_status == 'C'){
-            $status = 'Close';
-        }else{
-            $status = 'Draf';
-        }
-
-        return $status;
-    }
-
 }

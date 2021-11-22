@@ -25,16 +25,27 @@ class DashboardController extends Controller
     }
 
     public function extended_page(Request $r){
-        if($r->type == 'L'){
-            $view = $this->list_assignment('L');
-        }elseif($r->type == 'A'){
+        if($r->type == 'A'){
             $view = $this->all_mom('A');
         }elseif($r->type == 'O'){
             $view = $this->open_mom('O');
         }elseif($r->type == 'C'){
             $view = $this->closed_mom('C');
         }else{
-            $view = $this->mom_per_assignment($r->type);
+            $view = $this->list_assignment('L');
+        }
+
+        return response()->json($view, 200);
+    }
+
+    public function extended_page_assignment(Request $r){
+        $uic_code = UIC::where('uic_id', $r->uic_id)->pluck('uic_code')->first();
+        if($r->type == 'A'){
+            $view = $this->all_mom_assignment($uic_code, $r->uic_id);
+        }elseif($r->type == 'O'){
+            $view = $this->open_mom_assignment($uic_code, $r->uic_id);
+        }elseif($r->type == 'C'){
+            $view = $this->close_mom_assignment($uic_code, $r->uic_id);
         }
 
         return response()->json($view, 200);
@@ -57,6 +68,7 @@ class DashboardController extends Controller
                     'title' => 'List All MoM',
                     'kategori' => Kategori::all(),
                     'status' => $status,
+                    'uic_id' => null,
                     'visible' => "unhidden",
                 ])
                 ->render();
@@ -64,12 +76,14 @@ class DashboardController extends Controller
         return $view;
     }
 
+
     public function open_mom($status){
         $view = view('modules.dashboard.extended_page')
                 ->with([
                     'title' => 'List Open MoM',
                     'kategori' => Kategori::all(),
                     'status' => $status,
+                    'uic_id' => null,
                     'visible' => "unhidden",
                 ])
                 ->render();
@@ -83,6 +97,7 @@ class DashboardController extends Controller
                     'title' => 'List Closed MoM',
                     'kategori' => Kategori::all(),
                     'status' => $status,
+                    'uic_id' => null,
                     'visible' => "unhidden",
                 ])
                 ->render();
@@ -90,13 +105,52 @@ class DashboardController extends Controller
         return $view;
     }
 
-    public function mom_per_assignment($status){
-        $uic_code = UIC::where('uic_id', $status)->pluck('uic_code')->first();
+    public function all_mom_assignment($uic_code, $uic_id){ 
+        $view = view('modules.dashboard.assignment_page')
+                ->with([
+                    'title' => 'List All MoM ('.$uic_code.')',
+                    'status' => 'A',
+                    'uic_code' => $uic_code,
+                    'uic_id' => $uic_id
+                ])
+                ->render();
+
+        return $view;
+    }
+
+    public function open_mom_assignment($uic_code, $uic_id){ 
+        $view = view('modules.dashboard.assignment_page')
+                ->with([
+                    'title' => 'List Open MoM ('.$uic_code.')',
+                    'status' => 'O',
+                    'uic_code' => $uic_code,
+                    'uic_id' => $uic_id
+                ])
+                ->render();
+
+        return $view;
+    }
+
+    public function close_mom_assignment($uic_code, $uic_id){ 
+        $view = view('modules.dashboard.assignment_page')
+                ->with([
+                    'title' => 'List Close MoM ('.$uic_code.')',
+                    'status' => 'C',
+                    'uic_code' => $uic_code,
+                    'uic_id' => $uic_id
+                ])
+                ->render();
+
+        return $view;
+    }
+
+    public function mom_per_assignment(Request $r){
+        $uic_code = UIC::where('uic_id', $r->uic_id)->pluck('uic_code')->first();
         $view = view('modules.dashboard.extended_page')
                 ->with([
                     'title' => 'List Assignment ('.$uic_code.')',
-                    'kategori' => Kategori::all(),
-                    'status' => $status,
+                    'status' => $r->uic_id,
+                    'uic_id' => $r->uic_id,
                     'visible' => "hidden",
                 ])
                 ->render();
@@ -110,10 +164,6 @@ class DashboardController extends Controller
             $data = $Dashboard->get_mom_by_category_and_status($r->kategori_mom, $r->status_mom);
         }elseif($r->status_mom == 'A'){
             $data = $Dashboard->get_mom_by_category($r->kategori_mom);
-        }else{
-            $data = Discuss::where([
-                'discuss_uic_id' => $r->status_mom
-            ])->get();   
         }
 
         $table = view('modules.dashboard.table_mom')

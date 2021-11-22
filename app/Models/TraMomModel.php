@@ -64,6 +64,11 @@ class TraMomModel extends Model
         return $rel->getAttr_nama();
     }
 
+    public function getAttr_notulen_by(){
+        $rel = $this->hasOne(User::class,'id','mom_notulen_by')->first();
+        return $rel->getAttr_nama();
+    }
+
     public function getAttr_category_desc(){
         $rel = $this->hasOne(User::class,'id','mom_title')->first();
         return $rel->getAttr_description();
