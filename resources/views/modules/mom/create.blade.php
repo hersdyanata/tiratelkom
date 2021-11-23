@@ -481,7 +481,7 @@
     }    
 
     function preview_mom(){
-        // window.location.href = "{{ route('mom.show', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
+        window.location.href = "{{ route('mom.show', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
         // window.location.href = "{{ route('mom.print_mom', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
     }    
 
