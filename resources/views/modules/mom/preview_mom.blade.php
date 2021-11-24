@@ -76,7 +76,7 @@
             <tr>
                 <td id="tdStyle" style="width: 45.9279%;" colspan="2">
                     <p>MINUTES OF MEETING</p> 
-                    <p>Manajemen Review IMS</p> 
+                    <p>{{$DataMoM->mom_event}}</p> 
                 </td>
                 <td style="text-align: center;" rowspan="4">
                     <div class="container">

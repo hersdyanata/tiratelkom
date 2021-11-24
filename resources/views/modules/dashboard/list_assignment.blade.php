@@ -63,17 +63,37 @@
                         @foreach ($uic as $dtu)
                             <tr onclick="extended_page_assignment({{$dtu->uic_id}}, 'A')">
                                 <td width="50px">
-                                        <h5 class="text-danger mb-1 font-weight-bold"> {{$dtu->total_discuss_per_uic}}</h5>
+                                        <h5 class="text-danger mb-1 font-weight-bold"> {{$dtu->uic_code}}</h5>
                                 </td>
                                 
                                 <td>
+                                    @php
+                                        $dtAssignmentOpen = $DataAssignment->where('uic_id',  $dtu->uic_id)
+                                                                           ->where('discuss_status', 'O')
+                                                                           ->pluck('total_discuss_per_status')
+                                                                           ->first();
+
+                                        $dtAssignmentClose = $DataAssignment->where('uic_id',  $dtu->uic_id)
+                                                                           ->where('discuss_status', 'C')
+                                                                           ->pluck('total_discuss_per_status')
+                                                                           ->first();
+
+                                        if ($dtu->total_discuss_per_uic <> 0) {
+                                            $dtProgressOpen  = (($dtAssignmentOpen == null) ? 0 : $dtAssignmentOpen) / $dtu->total_discuss_per_uic * 100;
+                                            $dtProgressClose = (($dtAssignmentClose == null) ? 0 : $dtAssignmentClose) / $dtu->total_discuss_per_uic * 100;
+                                        }else{
+                                            $dtProgressOpen  = 0;
+                                            $dtProgressClose = 0;
+                                        }
+                                        
+                                    @endphp
                                     <div class="progress rounded-pill" style="cursor:pointer">
-                                        <div class="progress-bar bg-teal" style="width: 75%">
-                                            <span>85%</span>
+                                        <div class="progress-bar bg-teal" style="width: {{$dtProgressOpen}}%">
+                                            <span>{{round($dtProgressOpen,0)}} %</span>
                                         </div>
 
-                                        <div class="progress-bar bg-warning" style="width: 25%">
-                                            <span>25%</span>
+                                        <div class="progress-bar bg-warning" style="width: {{$dtProgressClose}}%">
+                                            <span>{{round($dtProgressClose,0)}} %</span>
                                         </div>
                                     </div>
                                 </td>

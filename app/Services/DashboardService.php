@@ -55,7 +55,7 @@ class DashboardService{
         return $data;
     }
 
-    public function get_assignment_per_status($uic_id, $status){
+    public function get_assignment_per_status(){
         $data = $this->q_dashboard->selectRaw('count(discuss_id) as total_discuss_per_status, uic_id, uic_code, discuss_status')
                                   ->groupby('uic_id', 'uic_code', 'discuss_status')
                                   ->get();
@@ -64,22 +64,3 @@ class DashboardService{
     }
 
 }
-
-// select uic_id, uic_code, count(discuss_id) total_discuss_per_uic
-//   from master_uic
-//   left join tra_mom_discuss on discuss_uic_id = uic_id
-// group by uic_id, uic_code;
-
-
-// select uic_id, uic_code, discuss_status, count(discuss_id) total_discuss_per_status
-//   from master_uic
-//   left join tra_mom_discuss on discuss_uic_id = uic_id
-// group by uic_id, uic_code, discuss_status;
-
- 
-
-// select uic_id, uic_code, count(discuss_id) total_discuss_per_status
-//   from master_uic
-//   left join tra_mom_discuss on discuss_uic_id = uic_id
-// 	left join tra_mom on mom_id = discuss_mom_id
-// group by uic_id, uic_code; 
