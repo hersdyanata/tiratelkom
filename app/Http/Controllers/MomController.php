@@ -121,7 +121,7 @@ class MomController extends Controller
         $DataType = $mom->get_type_by_mom_id($id);
         $DataParticipant = $mom->get_participant_by_mom_id($id);
         $DataAgenda = $mom->get_agenda_by_mom_id($id);
-        return view('modules.mom.edit')
+        return view('modules.mom.edit_mom')
                 ->with([
                     'title' => $title,
                     'DataMoM' => $DataMoM,
@@ -133,6 +133,24 @@ class MomController extends Controller
                 ]);
     }
 
+    public function edit_status_mom(MomService $mom, $id){
+        $title = 'Update Progress MoM [UIC Edit]';
+        $DataMoM  = $mom->get_mom_by_mom_id($id);
+        $DataType = $mom->get_type_by_mom_id($id);
+        $DataParticipant = $mom->get_participant_by_mom_id($id);
+        $DataAgenda = $mom->get_agenda_by_mom_id($id);
+        return view('modules.mom.edit_status_mom')
+                ->with([
+                    'title' => $title,
+                    'DataMoM' => $DataMoM,
+                    'DataType' => $DataType,
+                    'DataParticipant' => $DataParticipant,
+                    'DataAgenda' => $DataAgenda,
+                    'MstType' => momType::get(), 
+                    'users' => Users::get(),
+                ]);
+    }
+    
     // public function prnpriview()
     //   {
     //         $uic = UIC::all();
@@ -143,6 +161,15 @@ class MomController extends Controller
         $row = view('modules.mom.add_discuss_progress')
                 ->with('discuss', $request)->render();
         return response()->json($row, 200);
+    }
+
+    public function get_edit_discuss_konten(MomService $mom, request $request){
+        $agenda = $mom->get_agenda_by_mom_id($request->mom_id);
+        $view_diskusi = view('modules.mom.edit_table_diskusi')
+                        ->with(['agenda' => $agenda,
+                                'uics' => UIC::all()
+                               ])->render();
+        return response()->json($view_diskusi, 200); 
     }
 
     public function get_discuss_konten(MomService $mom, request $request){

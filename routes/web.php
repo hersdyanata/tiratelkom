@@ -69,8 +69,10 @@ Route::post('mom/store_draft_mom', [App\Http\Controllers\MomController::class, '
 Route::post('mom/store_submit_mom', [App\Http\Controllers\MomController::class, 'store_submit_mom'])->name('mom.store_submit_mom'); 
 Route::post('mom/store_discuss_progress', [App\Http\Controllers\MomController::class, 'store_discuss_progress'])->name('mom.store_discuss_progress'); 
 Route::post('mom/store_status_mom', [App\Http\Controllers\MomController::class, 'store_status_mom'])->name('mom.store_status_mom');
+Route::get('mom/edit_status_mom/{id}', [App\Http\Controllers\MomController::class, 'edit_status_mom'])->name('mom.edit_status_mom'); 
 Route::get('mom/edit_mom/{id}', [App\Http\Controllers\MomController::class, 'edit_mom'])->name('mom.edit_mom'); 
 Route::post('mom/discuss', [App\Http\Controllers\MomController::class, 'get_discuss_konten'])->name('mom.discuss'); 
+Route::post('mom/edit_discuss', [App\Http\Controllers\MomController::class, 'get_edit_discuss_konten'])->name('mom.edit_discuss'); 
 Route::get('mom/print_mom/{id}', [App\Http\Controllers\MomController::class, 'print_mom'])->name('mom.print_mom'); 
 
 /* ======================================================================= Route List Global Parameters ======================================================================= */
