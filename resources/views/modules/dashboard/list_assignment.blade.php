@@ -60,12 +60,12 @@
             <div class="card-body">
                 <table class="table table-hover table-xs">
                     <tbody >
-                        @foreach ($uic as $dt_uic)
-                            <tr onclick="extended_page_assignment({{$dt_uic->uic_id}}, 'A')">
+                        @foreach ($uic as $dtu)
+                            <tr onclick="extended_page_assignment({{$dtu->uic_id}}, 'A')">
                                 <td width="50px">
-                                        <h5 class="text-danger mb-1 font-weight-bold"> {{$dt_uic->uic_code}}</h5>
+                                        <h5 class="text-danger mb-1 font-weight-bold"> {{$dtu->total_discuss_per_uic}}</h5>
                                 </td>
-
+                                
                                 <td>
                                     <div class="progress rounded-pill" style="cursor:pointer">
                                         <div class="progress-bar bg-teal" style="width: 75%">

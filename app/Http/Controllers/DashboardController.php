@@ -24,7 +24,7 @@ class DashboardController extends Controller
                 ]);
     }
 
-    public function extended_page(Request $r){
+    public function extended_page(DashboardService $Dashboard, Request $r){
         if($r->type == 'A'){
             $view = $this->all_mom('A');
         }elseif($r->type == 'O'){
@@ -32,7 +32,8 @@ class DashboardController extends Controller
         }elseif($r->type == 'C'){
             $view = $this->closed_mom('C');
         }else{
-            $view = $this->list_assignment('L');
+            $dtAssignment = $Dashboard->get_assignment_per_uic();
+            $view = $this->list_assignment('L', $dtAssignment);
         }
 
         return response()->json($view, 200);
@@ -51,11 +52,11 @@ class DashboardController extends Controller
         return response()->json($view, 200);
     }
 
-    public function list_assignment($post){
+    public function list_assignment($post, $dtAssignment){
         $view = view('modules.dashboard.list_assignment')
                 ->with([
                     'title' => 'List Assignment Unit',
-                    'uic' => UIC::all(),
+                    'uic' => $dtAssignment,
                 ])
                 ->render();
 
@@ -144,19 +145,19 @@ class DashboardController extends Controller
         return $view;
     }
 
-    public function mom_per_assignment(Request $r){
-        $uic_code = UIC::where('uic_id', $r->uic_id)->pluck('uic_code')->first();
-        $view = view('modules.dashboard.extended_page')
-                ->with([
-                    'title' => 'List Assignment ('.$uic_code.')',
-                    'status' => $r->uic_id,
-                    'uic_id' => $r->uic_id,
-                    'visible' => "hidden",
-                ])
-                ->render();
+    // public function mom_per_assignment(Request $r){
+    //     $uic_code = UIC::where('uic_id', $r->uic_id)->pluck('uic_code')->first();
+    //     $view = view('modules.dashboard.extended_page')
+    //             ->with([
+    //                 'title' => 'List Assignment ('.$uic_code.')',
+    //                 'status' => $r->uic_id,
+    //                 'uic_id' => $r->uic_id,
+    //                 'visible' => "hidden",
+    //             ])
+    //             ->render();
 
-        return $view;
-    }
+    //     return $view;
+    // }
 
 
     public function filter_mom(DashboardService $Dashboard, Request $r){
