@@ -133,6 +133,9 @@
                                             </div>
                                         </div> 
                                     </div><br><br>
+
+                                    {{-- initial data for edit mom --}}
+                                    <input type="text" readonly id="temp_edit_mom_id" name="temp_edit_mom_id" value="{{ $DataMoM->mom_id }}" hidden>
                                     
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -178,7 +181,9 @@
                                             </div>
                                         @endforeach
                                     @endisset
-
+                                    
+                                    {{-- initial data for edit agenda --}}
+                                    <input type="text" readonly name="agenda_mom_id" id="agenda_mom_id" class="input_agenda" value="{{ $DataMoM->mom_id }}" hidden>
                                     <div id="agenda_konten"></div>
 
                                 </form>
@@ -334,6 +339,99 @@
             },
         });
     } 
+
+    function edit_mom(){
+        $('.input_mom').prop('disabled', false);
+        $('#event_title').focus(); 
+        $('#btn_edit_mom').hide();
+        $('#btn_update_mom').show();
+        $('#btn_agenda').hide();
+        $('#btn_edit_agenda').hide();
+        $('#btn_update_agenda').show();
+        $('#div_agenda').hide();
+        $('#div_discuss').hide();
+        $('#div_btn_discuss').hide();
+        $('html, body').animate({
+            scrollTop: $("#form_data").offset().top
+        }, 500);        
+    }
+
+    function update_mom(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.update_mom') }}",
+            data: $('#form_data').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_data');
+            },
+            success: function (s) {   
+                small_loader_close('form_data'); 
+                $('.input_mom').prop('disabled', true);
+                $('.input_agenda').prop('disabled', false);
+                $('#div_agenda').show();
+                $('.btn_rm_agenda').show();
+                $('#btn_edit_mom').show();
+                $('#agenda_appender').focus();
+                $('#btn_update_mom').hide();
+                $('#btn_save_mom').hide();
+                $('html, body').animate({
+                    scrollTop: $("#div_agenda").offset().top
+                }, 2000);
+
+            },
+            complete: function(){
+                small_loader_close('form_data');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }
+
+    function edit_agenda(){
+        $('.input_agenda').prop('disabled', false);
+        $('#div_discuss').hide();
+        $('#agenda_appender').focus(); 
+        $('#btn_edit_agenda').hide();
+        $('#btn_update_agenda').show(); 
+        $('.btn_rm_agenda').show();
+        $('#div_btn_discuss').hide();
+        $('html, body').animate({
+            scrollTop: $("#div_agenda").offset().top
+        }, 500);
+    }
+
+    function update_agenda(){ 
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.update_agenda') }}",
+            data: $('#form_agenda').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_agenda');
+            },
+            success: function (s) {
+                small_loader_close('form_agenda');
+                $('#discuss_konten').html(s);
+                $('#discuss_mom_id').val(s);
+                $('#discuss_agenda_id').val(s);
+                $('.input_agenda').prop('disabled', true);
+                $('#div_discuss').show();
+                $('#div_btn_discuss').show();
+                $('#btn_edit_agenda').show();
+                $('#btn_update_agenda').hide(); 
+                $('.btn_rm_agenda').hide();
+                $('html, body').animate({
+                    scrollTop: $("#div_agenda").offset().top
+                }, 500);
+            },
+            complete: function(){
+                small_loader_close('form_agenda');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }
 
 </script>
 @endsection
