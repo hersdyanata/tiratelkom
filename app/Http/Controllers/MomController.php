@@ -174,12 +174,12 @@ class MomController extends Controller
 
     public function get_discuss_konten(MomService $mom, request $request){
         $agenda = $mom->get_agenda_by_mom_id($request->mom_id);
-        $view_diskusi = view('modules.mom.edit_table_diskusi')
+        $view_diskusi = view('modules.mom.edit_table_progress')
                         ->with(['agenda' => $agenda,
                                 'uics' => UIC::all()
                                ])->render();
         return response()->json($view_diskusi, 200); 
-    }   
+    }
 
     public function print_mom(MomService $mom, $id){
         $title = 'Print MoM';

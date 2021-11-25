@@ -170,6 +170,7 @@ class MomService{
 
     public function update_agenda($post){
         DB::table('tra_mom_agenda')->where('mom_id',$post['agenda_mom_id'])->delete(); 
+        DB::table('tra_mom_discuss')->where('discuss_mom_id',$post['agenda_mom_id'])->delete(); 
 
         $item = array();
         $no = 0;

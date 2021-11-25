@@ -324,14 +324,13 @@
 
     function discuss_konten(mom_id){
         $.ajax({
-            url: "{{ route('mom.discuss') }}",
+            url: "{{ route('mom.edit_discuss') }}",
             type: "POST",
             data: {
                 "_token": "{{ csrf_token() }}" ,
                 "mom_id": mom_id,
             },
             success: function(s){
-                // console.log(s);
                 $('#discuss_konten').html(s);
             }, 
             error: function(e){
@@ -432,6 +431,38 @@
             }
         });
     }
+
+    function simpan_data_diskusi(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.store_draft_mom') }}",
+            data: $('#form_discuss').serialize(),
+            beforeSend: function(){
+                small_loader_open('form_discuss');
+            },
+            success: function (s) {
+                $('#temp_mom_id').val(s);
+                small_loader_close('form_discuss');
+                $('#btn_preview_mom').prop('disabled', false);
+                $('#btn_discuss').prop('disabled', false);
+                $('.input_diskusi').prop('disabled', true);
+                $('#btn_add_item_diskusi').hide();
+                $('#btn_edit_mom').prop('disabled', true);
+                $('#btn_edit_agenda').prop('disabled', true);
+                $('#btn_save_draft').prop('disabled', true);
+            },
+            complete: function(){
+                small_loader_close('form_discuss');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    }
+
+    function preview_mom(){
+        window.location.href = "{{ route('mom.show', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());
+    } 
 
 </script>
 @endsection

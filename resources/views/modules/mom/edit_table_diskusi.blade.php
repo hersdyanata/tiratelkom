@@ -75,111 +75,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr>
-                        <th></th>
-                        <th colspan="5"><i class="font-weight-bold">Progress Report</i></th> 
-                        {{-- <th class="text-center"><p><span style="text-decoration: underline; color: #007ff7f6; cursor:pointer;" onclick="append_progress_{{ $dtd->discuss_id }}()">Add</span></p></th> --}}
-                    </tr>  
-                    <tr>
-                        <th></th>
-                        <th colspan="5">
-                            <table class="table table-columned table-xs"> 
-                                <tbody>
-                                    <div class="form-group"  >
-                                        <td width="10%" class="text-center">
-                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}"">
-                                        </td>
-                                        <td width="90%">
-                                            <input type="text" class="form-control {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}"" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
-                                            <script>
-                                                $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
-                                                    if (e.keyCode == 13) {
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: "{{ route('mom.store_discuss_progress') }}",
-                                                            data: {
-                                                                "_token": "{{ csrf_token() }}",
-                                                                "mom_id" : "{{ $dtd->discuss_mom_id }}",
-                                                                "agenda_id" : "{{ $dtd->discuss_agenda_id }}",
-                                                                "discuss_id" : "{{ $dtd->discuss_id }}",
-                                                                "prog_date" : $('#progress_date_{{ $dtd->discuss_id }}').val(),
-                                                                "prog_desc" : $('#progress_appender_{{ $dtd->discuss_id }}').val(),
-                                                            }, 
-                                                            success: function (s) {   
-                                                                // console.log(s);
-                                                                // $('#body_poin_{{ $dtd->discuss_id }}').append(s);
-                                                            },
-                                                            complete: function(){
-                                                                // small_loader_close('table_pointer_{{ $dtd->discuss_id }}');
-                                                            },
-                                                            error: function(e){
-                                                                sw_multi_error(e);
-                                                            }
-                                                        });                                                     
-                                                    }
-                                                });
-                                            </script>
-                                        </td>
-                                    </div>
-                                </tbody>
-                            </table>
-                            <hr>
-                            <table class="table table-columned table-xs"> 
-                                <tbody>
-                                    <tr id="progress_konten_{{ $dtd->discuss_id }}"></tr>
-                                </tbody> 
-                            </table>
-                            <hr>
-                            <table class="table table-columned table-xs"> 
-                                <tbody>
-                                    <div>
-                                        @php
-                                            $dtProgress = $mom->get_progress_by_mom_agenda_discuss_id($dtd->discuss_mom_id, $dtd->discuss_agenda_id, $dtd->discuss_id);
-                                            $no=0;
-                                        @endphp
-
-                                        @foreach ($dtProgress as $dtp)
-                                            @php 
-                                                $no++; 
-                                            @endphp 
-                                            <tr>
-                                                <td width="5%" class="text-center">
-                                                    {{$no}}
-                                                </td>
-                                                <td width="10%" class="text-center">
-                                                    {{$dtp->progress_date}}
-                                                </td>
-                                                <td width="85%">
-                                                    {{$dtp->progress_desc}}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </div>
-                                </tbody> 
-                            </table>
-                        </th> 
-                        <th></th>
-                    </tr>  
-
-                    <script>                        
-                        var nomor = 0;
-                        $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
-                            if (e.keyCode == 13) {
-                                nomor++;    
-                                $('#progress_konten_{{ $dtd->discuss_id }}').append('<tr>\
-                                                                                        <td width="27%" class="text-center">\
-                                                                                            '+$('#progress_date_{{ $dtd->discuss_id }}').val()+'\
-                                                                                        </td>\
-                                                                                        <td width="85%">\
-                                                                                            '+$('#progress_appender_{{ $dtd->discuss_id }}').val()+'\
-                                                                                        </td>\
-                                                                                    </tr>');
-                                $('#progress_appender_{{ $dtd->discuss_id }}').val('');
-                            }
-                        });
-                    </script>
-                @endforeach              
-                
+                @endforeach                        
                 <script>
                     $('.daterange-single').daterangepicker({
                         parentEl: '.content-inner',
@@ -190,10 +86,39 @@
         </table>
     </div>
 
+    <div class="row mt-2" id="btn_add_item_diskusi">
+        <i class="icon-plus-circle2 ml-2 " onclick="append_row_{{ $r->agenda_id }}()"></i> 
+    </div>
+
 <script>
     $(document).ready(function(){
         $('.input_diskusi').prop('disabled', true);
     });
+
+  
+    function append_row_{{ $r->agenda_id }}(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('mom.add_row_poin') }}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "mom_id" : "{{ $r->mom_id }}",
+                "agenda_id" : "{{ $r->agenda_id }}"
+            },
+            beforeSend: function(){
+                small_loader_open('table_pointer_{{ $r->agenda_id }}');
+            },
+            success: function (s) {   
+                $('#body_poin_{{ $r->agenda_id }}').append(s);
+            },
+            complete: function(){
+                small_loader_close('table_pointer_{{ $r->agenda_id }}');
+            },
+            error: function(e){
+                sw_multi_error(e);
+            }
+        });
+    } 
 </script>
 
 @endforeach
