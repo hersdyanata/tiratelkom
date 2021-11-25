@@ -231,6 +231,7 @@
                     <div class="text-center" id="div_btn_discuss">
                         <input type="hidden" readonly id="temp_mom_id">
                         <p>
+                            <button type="button" class="btn btn-dark btn-sm" id="btn_edit_draft" onclick="edit_data_diskusi()">Edit as Draft <i class="icon-pencil ml-2"></i></button>
                             <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
                             <button type="button" class="btn btn-primary btn-sm" id="btn_preview_mom" onclick="preview_mom()">Preview MoM <i class="icon-file-eye ml-2"></i></button> 
                         </p>
@@ -252,7 +253,10 @@
         mom_category();   
         meeting_called_by();
         discuss_konten({{$DataMoM->mom_id}});
-
+ 
+        $('#btn_update_mom').hide(); 
+        $('#btn_update_agenda').hide(); 
+        $('#btn_save_draft').hide(); 
         $('.input_mom').prop('disabled', true);
         $('.input_agenda').prop('disabled', true);
         $('.input_diskusi').prop('disabled', true);
@@ -345,8 +349,8 @@
         $('#btn_edit_mom').hide();
         $('#btn_update_mom').show();
         $('#btn_agenda').hide();
-        $('#btn_edit_agenda').hide();
-        $('#btn_update_agenda').show();
+        $('#btn_edit_agenda').show();
+        $('#btn_update_agenda').hide();
         $('#div_agenda').hide();
         $('#div_discuss').hide();
         $('#div_btn_discuss').hide();
@@ -366,11 +370,12 @@
             success: function (s) {   
                 small_loader_close('form_data'); 
                 $('.input_mom').prop('disabled', true);
-                $('.input_agenda').prop('disabled', false);
+                $('.input_agenda').prop('disabled', true);
                 $('#div_agenda').show();
-                $('.btn_rm_agenda').show();
-                $('#btn_edit_mom').show();
-                $('#agenda_appender').focus();
+                $('#div_discuss').show();
+                $('.btn_rm_agenda').hide();
+                $('#btn_edit_mom').show(); 
+                $('#div_btn_discuss').show(); 
                 $('#btn_update_mom').hide();
                 $('#btn_save_mom').hide();
                 $('html, body').animate({
@@ -430,6 +435,16 @@
                 sw_multi_error(e);
             }
         });
+    }
+
+    function edit_data_diskusi(){
+        $('.input_diskusi').prop('disabled', false); 
+        $('#discuss_id').focus(); 
+        $('#btn_edit_draft').hide(); 
+        $('#btn_save_draft').show(); 
+        $('html, body').animate({
+            scrollTop: $("#form_discuss").offset().top
+        }, 500);        
     }
 
     function simpan_data_diskusi(){

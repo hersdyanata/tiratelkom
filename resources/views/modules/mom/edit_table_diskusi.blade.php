@@ -68,7 +68,7 @@
                             </select>
                         </td>
                         <td>
-                            <select class="form-control select {{ ($dtd->discuss_status == 'C') ? 'input_diskusia' : '' }}" name="status[]" id="status">
+                            <select class="form-control select input_diskusi" name="status[]" id="status">
                                 <option value="">-- Choose Priority --</option>
                                 <option value="O" {{ ($dtd->discuss_status == 'O') ? 'selected' : '' }}>Open</option> 
                                 <option value="C" {{ ($dtd->discuss_status == 'C') ? 'selected' : '' }}>Closed</option> 
@@ -90,35 +90,35 @@
         <i class="icon-plus-circle2 ml-2 " onclick="append_row_{{ $r->agenda_id }}()"></i> 
     </div>
 
-<script>
-    $(document).ready(function(){
-        $('.input_diskusi').prop('disabled', true);
-    });
-
-  
-    function append_row_{{ $r->agenda_id }}(){
-        $.ajax({
-            type: "POST",
-            url: "{{ route('mom.add_row_poin') }}",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "mom_id" : "{{ $r->mom_id }}",
-                "agenda_id" : "{{ $r->agenda_id }}"
-            },
-            beforeSend: function(){
-                small_loader_open('table_pointer_{{ $r->agenda_id }}');
-            },
-            success: function (s) {   
-                $('#body_poin_{{ $r->agenda_id }}').append(s);
-            },
-            complete: function(){
-                small_loader_close('table_pointer_{{ $r->agenda_id }}');
-            },
-            error: function(e){
-                sw_multi_error(e);
-            }
+    <script>
+        $(document).ready(function(){
+            $('.input_diskusi').prop('disabled', true);
         });
-    } 
-</script>
+
+    
+        function append_row_{{ $r->agenda_id }}(){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('mom.add_row_poin') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "mom_id" : "{{ $r->mom_id }}",
+                    "agenda_id" : "{{ $r->agenda_id }}"
+                },
+                beforeSend: function(){
+                    small_loader_open('table_pointer_{{ $r->agenda_id }}');
+                },
+                success: function (s) {   
+                    $('#body_poin_{{ $r->agenda_id }}').append(s);
+                },
+                complete: function(){
+                    small_loader_close('table_pointer_{{ $r->agenda_id }}');
+                },
+                error: function(e){
+                    sw_multi_error(e);
+                }
+            });
+        } 
+    </script>
 
 @endforeach
