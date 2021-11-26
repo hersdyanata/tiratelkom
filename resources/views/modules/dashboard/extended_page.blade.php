@@ -104,4 +104,17 @@
             }
         });
     }
+
+    function view_mom_by_status(status, id){
+        if (status == 'O') {
+            window.location.href = "{{ route('mom.edit_status_mom', ':x') }}".replace(':x',id);
+        }else{
+            if (status == 'D') {
+                window.location.href = "{{ route('mom.edit_mom', ':x') }}".replace(':x',id);
+            } else {
+                window.location.href = "{{ route('mom.print_mom', ':x') }}".replace(':x',id);
+            }  
+        }
+
+    } 
 </script>

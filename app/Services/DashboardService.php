@@ -63,4 +63,11 @@ class DashboardService{
         return $data;
     }
 
+    public function load_right_sidebar(){
+        $data = $this->q_dashboard->where(['discuss_status' => 'O',
+                                           'discuss_uic_id' => session('uic_id')
+                                          ])->get();
+        return $data; 
+    }
+
 }

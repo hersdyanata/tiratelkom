@@ -102,7 +102,7 @@
                         </thead>
                         <tbody> 
                             @forelse ($dataMom as $m)
-                                <tr>
+                                <tr onclick="view_mom_by_status('{{$m->mom_status}}', '{{$m->mom_id}}')" style="cursor:pointer">
                                     <td>{{ $m->mom_event }}</td>
                                     <td>{{ $DueDate }}</td>
                                     <td>{!! $priority !!}</td>
@@ -120,3 +120,17 @@
         </div>
     </div>
 </div>
+
+<script>         
+    function view_mom_by_status(status, id){
+        if (status == 'O') {
+            window.location.href = "{{ route('mom.edit_status_mom', ':x') }}".replace(':x',id); 
+        }else{
+            if (status == 'D') {
+                window.location.href = "{{ route('mom.edit_mom', ':x') }}".replace(':x',id);
+            } else {
+                window.location.href = "{{ route('mom.print_mom', ':x') }}".replace(':x',id);
+            }  
+        }
+    } 
+</script>

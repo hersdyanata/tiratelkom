@@ -462,9 +462,10 @@
                 $('#btn_discuss').prop('disabled', false);
                 $('.input_diskusi').prop('disabled', true);
                 $('#btn_add_item_diskusi').hide();
+                $('#btn_edit_draft').show(); 
+                $('#btn_save_draft').hide(); 
                 $('#btn_edit_mom').prop('disabled', true);
                 $('#btn_edit_agenda').prop('disabled', true);
-                $('#btn_save_draft').prop('disabled', true);
             },
             complete: function(){
                 small_loader_close('form_discuss');

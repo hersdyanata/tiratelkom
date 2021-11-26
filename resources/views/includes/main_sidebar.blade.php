@@ -84,11 +84,20 @@
                     <ul class="media-list">
         
                         @forelse ($load_data_right_sidebar as $dt)
+                            @php
+                                if ($dt->mom_status == 'O') {
+                                    $link = 'edit_status_mom';
+                                } else {
+                                    if ($dt->mom_status == 'D') {
+                                        $link = 'edit_mom';
+                                    } else {
+                                        $link = 'print_mom';
+                                    }
+                                }
+                            @endphp 
                             <li class="media">
                                 <div class="media-body">
                                     <a href="{{ route('mom.edit_status_mom', $dt->discuss_mom_id) }}" class="media-title font-weight-bold">{{$dt->discuss_assignment}}</a>
-                                    {{-- <span class="font-size-xs text-white d-block">{{$dt->discuss_assignment}}</span> --}}
-                                    {{-- <div class="text-muted font-size-sm">4 minutes ago</div> --}}
                                 </div> 
                             </li> 
                         @empty

@@ -88,12 +88,11 @@
                                         
                                     @endphp
                                     <div class="progress rounded-pill" style="cursor:pointer">
-                                        <div class="progress-bar bg-teal" style="width: {{$dtProgressOpen}}%">
-                                            <span>{{round($dtProgressOpen,0)}} %</span>
-                                        </div>
-
-                                        <div class="progress-bar bg-warning" style="width: {{$dtProgressClose}}%">
+                                        <div class="progress-bar bg-teal" style="width: {{$dtProgressClose}}%">
                                             <span>{{round($dtProgressClose,0)}} %</span>
+                                        </div>
+                                        <div class="progress-bar bg-warning" style="width: {{$dtProgressOpen}}%">
+                                            <span>{{round($dtProgressOpen,0)}} %</span>
                                         </div>
                                     </div>
                                 </td>

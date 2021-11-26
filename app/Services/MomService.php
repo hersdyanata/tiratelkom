@@ -89,6 +89,7 @@ class MomService{
     }
 
     public function create_draft_mom($post){
+        DB::table('tra_mom_discuss')->where('discuss_mom_id',$post['mom_id'])->delete();
         $item = array();
         foreach($post['pointer'] as $i => $r){
             $item[] = [

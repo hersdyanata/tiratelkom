@@ -9,7 +9,8 @@
     </thead>
     <tbody>
         @forelse ($moms as $m)
-            <tr>
+        
+            <tr onclick="view_mom_by_status('{{$m->mom_status}}', '{{$m->mom_id}}')" style="cursor:pointer">
                 <td>{{ $m->mom_event }}</td>
                 <td>{{ $m->getAttr_due_date_discuss()}}</td>
                 <td>{!! $m->getAttr_priority_discuss() !!}</td>

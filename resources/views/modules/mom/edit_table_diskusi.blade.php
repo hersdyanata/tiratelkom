@@ -89,7 +89,8 @@
     <div class="row mt-2" id="btn_add_item_diskusi">
         <i class="icon-plus-circle2 ml-2 " onclick="append_row_{{ $r->agenda_id }}()"></i> 
     </div>
-
+    <br>
+    
     <script>
         $(document).ready(function(){
             $('.input_diskusi').prop('disabled', true);

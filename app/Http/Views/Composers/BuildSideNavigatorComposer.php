@@ -5,7 +5,7 @@ namespace App\Http\Views\Composers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\Core;
-use App\Services\MomService;
+use App\Services\DashboardService;
 use Auth;
 
 class BuildSideNavigatorComposer
@@ -26,7 +26,7 @@ class BuildSideNavigatorComposer
      * @param  \App\Repositories\UserRepository  $users
      * @return void
      */
-    public function __construct(Request $request, MomService $mom)
+    public function __construct(Request $request, DashboardService $mom)
     {
         $this->all_menus = session('all_menus');
         $this->page_permission = $request['page_permission'];
