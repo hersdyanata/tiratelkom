@@ -24,8 +24,8 @@
     </div>
 
     <div class="row mt-2" id="btn_add_item_diskusi">
-        <button type="button" class="btn btn-primary btn-sm" onclick="append_row_{{ $r->agenda_id }}()">
-            {{-- <i class="icon-plus-circle2 ml-2 " onclick="append_row_{{ $r->agenda_id }}()"></i>  --}}
+        {{-- <button type="button" class="btn btn-primary btn-sm" onclick="append_row_{{ $r->agenda_id }}()"> --}}
+            <i class="icon-plus-circle2 ml-2 " onclick="append_row_{{ $r->agenda_id }}()"></i> 
         {{-- </button> --}}
     </div>
 
