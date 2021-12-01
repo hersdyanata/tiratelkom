@@ -1,12 +1,12 @@
 @php
-    $no = 0;
+    $num = 0;
 @endphp
 @foreach ($agenda as $r)
     @php
-        $no++;
+        $num++;
     @endphp
     <div class="row">
-        <h6 class="font-weight-bold"><i>{{ $no }}. {{ $r->agenda_desc }}</i></h6>
+        <h6 class="font-weight-bold"><i>{{ $num }}. {{ $r->agenda_desc }}</i></h6>
             <table class="table table-hover table-bordered table-xs" id="table_pointer_{{ $r->agenda_id }}">
             <thead>
                 <tr>
@@ -68,11 +68,19 @@
                             </select>
                         </td>
                         <td>
-                            <select class="form-control select {{ ($dtd->discuss_status == 'C') ? 'input_diskusia' : '' }}" name="status[]" id="status">
-                                <option value="">-- Choose Priority --</option>
-                                <option value="O" {{ ($dtd->discuss_status == 'O') ? 'selected' : '' }}>Open</option> 
-                                <option value="C" {{ ($dtd->discuss_status == 'C') ? 'selected' : '' }}>Closed</option> 
-                            </select>
+                            @if ($dtd->discuss_status == 'C')
+                                <input type="text" class="form-control" name="status[]" id="status" value="{{$dtd->discuss_status}}" hidden>Closed
+                            @else
+                                @if ($dtd->discuss_status)
+                                    <select class="form-control select" name="status[]" id="status">
+                                        <option value="">-- Choose Priority --</option>
+                                        <option value="O" {{ ($dtd->discuss_status == 'O') ? 'selected' : '' }}>Open</option> 
+                                        <option value="C" {{ ($dtd->discuss_status == 'C') ? 'selected' : '' }}>Closed</option> 
+                                    </select>
+                                @else
+
+                                @endif
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -87,10 +95,10 @@
                                 <tbody>
                                     <div class="form-group"  >
                                         <td width="10%" class="text-center">
-                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}"">
+                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}">
                                         </td>
                                         <td width="90%">
-                                            <input type="text" class="form-control {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}"" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
+                                            <input type="text" class="form-control {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
                                             <script>
                                                 $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
                                                     if (e.keyCode == 13) {
@@ -189,6 +197,7 @@
             </tbody>
         </table>
     </div>
+    <br>
 
 <script>
     $(document).ready(function(){

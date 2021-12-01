@@ -133,14 +133,6 @@
                                             </div>
                                         </div> 
                                     </div><br><br>
-                                    
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                {{-- <button type="button" class="btn btn-danger btn-sm" id="btn_update_mom" onclick="update_mom()">Next <i class="icon-arrow-right8 ml-2"></i></button> --}}
-                                            </div>
-                                        </div> 
-                                    </div>
                                 </fieldset>
                             </div>
                         </div>
@@ -181,14 +173,6 @@
                                     <div id="agenda_konten"></div>
 
                                 </form>
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="text-center"> 
-                                            {{-- <button type="button" class="btn btn-danger btn-sm" id="btn_update_agenda" onclick="update_agenda()">Next<i class="icon-arrow-right8 ml-2"></i></button> --}}
-                                        </div>
-                                    </div> 
-                                </div>
                             </fieldset>
                         </div>
                     </div>
@@ -223,15 +207,13 @@
                 <div class="col-lg-12">
                     <div class="text-center" id="div_btn_discuss">
                         <input type="hidden" readonly id="temp_mom_id">
-                        {{-- <p>
-                            <button type="button" class="btn btn-dark btn-sm" id="btn_save_draft" onclick="simpan_data_diskusi()">Save as Draft <i class="icon-file-plus ml-2"></i></button> &ensp;
-                            <a class="btn btn-primary btn-sm" id="btn_preview_mom" href="{{ route('mom.show', '87') }}">Preview MoM <i class="icon-file-eye ml-2"></i></a>
-                        </p> --}}
-                        <p>
-                            <button type="button" class="btn btn-danger btn-sm" id="btn_update_status_mom" onclick="update_status_mom()">
-                            <tabCustom> Update MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
-                            </button>
-                        </p>
+                        @if (session('group_id') == '2')
+                            <p>
+                                <button type="button" class="btn btn-danger btn-sm" id="btn_update_status_mom" onclick="update_status_mom()">
+                                <tabCustom> Update MoM <i class="icon-paperplane ml-2"></i> </tabCustom>
+                                </button>
+                            </p>
+                        @endif
                     </div>
                 </div> 
             </div>

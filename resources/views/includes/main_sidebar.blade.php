@@ -86,18 +86,18 @@
                         @forelse ($load_data_right_sidebar as $dt)
                             @php
                                 if ($dt->mom_status == 'O') {
-                                    $link = 'edit_status_mom';
+                                    $link = route('mom.edit_status_mom', $dt->discuss_mom_id);
                                 } else {
                                     if ($dt->mom_status == 'D') {
-                                        $link = 'edit_mom';
+                                        $link = route('mom.edit_mom', $dt->discuss_mom_id);
                                     } else {
-                                        $link = 'print_mom';
+                                        $link = route('mom.print_mom', $dt->discuss_mom_id);
                                     }
                                 }
                             @endphp 
                             <li class="media">
                                 <div class="media-body">
-                                    <a href="{{ route('mom.edit_status_mom', $dt->discuss_mom_id) }}" class="media-title font-weight-bold">{{$dt->discuss_assignment}}</a>
+                                    <a href="{{$link}}" class="media-title font-weight-bold">{{$dt->discuss_assignment}}</a>
                                 </div> 
                             </li> 
                         @empty
