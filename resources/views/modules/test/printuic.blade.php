@@ -13,11 +13,11 @@
 
 
 
-<center>
+{{-- <center>
     <br><br>
     <a href="{{ route('prnpriview') }}" class="printPage btn">Print Preview</a>
     <a class="printPage" href="#">Print</a>
-</center>
+</center> --}}
 
 <center>
     <h1>UIC Lists</h1>

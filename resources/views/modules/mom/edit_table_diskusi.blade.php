@@ -57,7 +57,7 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control daterange-single input_diskusi" name="due_date[]" id="due_date">
+                            <input type="text" class="form-control daterange-single input_diskusi" name="due_date[]" id="due_date" value="{{ date("m/d/Y", strtotime($dtd->discuss_due_date)) }}">
                         </td>
                         <td>
                             <select class="form-control select input_diskusi" name="priority[]" id="priority">

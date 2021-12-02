@@ -40,7 +40,7 @@
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Date</label>
                                                 <div class="form-group form-group-feedback form-group-feedback-right">
-                                                    <input type="text" placeholder="Set Date" class="form-control daterange-single input_mom" name="date" id="date" value="{{ date("MM/DD/YY", strtotime($DataMoM->mom_date)) }}">
+                                                    <input type="text" placeholder="Set Date" class="form-control daterange-single input_mom" name="date" id="date" value="{{ date("m/d/Y", strtotime($DataMoM->mom_date)) }}">
                                                     <div class="form-control-feedback">
                                                         <i class="icon-calendar22 text-muted"></i>
                                                     </div>

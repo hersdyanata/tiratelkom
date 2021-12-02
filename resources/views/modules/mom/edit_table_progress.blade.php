@@ -57,7 +57,7 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control daterange-single input_diskusi" name="due_date[]" id="due_date">
+                            <input type="text" class="form-control daterange-single input_diskusi" name="due_date[]" id="due_date" value="{{ date("m/d/Y", strtotime($dtd->discuss_due_date)) }}">
                         </td>
                         <td>
                             <select class="form-control select input_diskusi" name="priority[]" id="priority">
@@ -69,17 +69,17 @@
                         </td>
                         <td>
                             @if ($dtd->discuss_status == 'C')
-                                <input type="text" class="form-control" name="status[]" id="status" value="{{$dtd->discuss_status}}" hidden>Closed
+                                <input type="text" class="form-control" name="status[]" id="status" value="Closed" readonly>
                             @else
-                                @if ($dtd->discuss_status)
+                                @if ($dtd->discuss_uic_id == session('uic_id'))
                                     <select class="form-control select" name="status[]" id="status">
                                         <option value="">-- Choose Priority --</option>
                                         <option value="O" {{ ($dtd->discuss_status == 'O') ? 'selected' : '' }}>Open</option> 
                                         <option value="C" {{ ($dtd->discuss_status == 'C') ? 'selected' : '' }}>Closed</option> 
-                                    </select>
+                                    </select> 
                                 @else
-
-                                @endif
+                                    <input type="text" class="form-control" name="status[]" id="status" value="Open" readonly>
+                                @endif 
                             @endif
                         </td>
                     </tr>
@@ -95,10 +95,10 @@
                                 <tbody>
                                     <div class="form-group"  >
                                         <td width="10%" class="text-center">
-                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}">
+                                            <input type="text" id="progress_date_{{ $dtd->discuss_id }}" class="form-control daterange-single {{ ($dtd->discuss_uic_id == session('uic_id') && $dtd->discuss_status == 'O') ? '' : 'input_diskusi' }}">
                                         </td>
                                         <td width="90%">
-                                            <input type="text" class="form-control {{ ($dtd->discuss_status == 'C') ? 'input_diskusi' : '' }}" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
+                                            <input type="text" class="form-control {{ ($dtd->discuss_uic_id == session('uic_id') && $dtd->discuss_status == 'O') ? '' : 'input_diskusi' }}" placeholder="Please fill your progress" id="progress_appender_{{ $dtd->discuss_id }}">
                                             <script>
                                                 $('#progress_appender_{{ $dtd->discuss_id }}').on('keyup', function (e) {
                                                     if (e.keyCode == 13) {
@@ -155,7 +155,7 @@
                                                     {{$no}}
                                                 </td>
                                                 <td width="10%" class="text-center">
-                                                    {{$dtp->progress_date}}
+                                                    {{ date("m/d/Y", strtotime($dtp->progress_date)) }}
                                                 </td>
                                                 <td width="85%">
                                                     {{$dtp->progress_desc}}

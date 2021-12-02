@@ -27,7 +27,7 @@
         <div class="sidebar-section sidebar-user">
             <div class="sidebar-section-body d-flex justify-content-center">
                 <a href="#">
-                    <img src="{{ asset('assets/global') }}/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">
+                    <img src="{{ asset('assets/global') }}/images/placeholders/tira_logo.png" class="rounded-circle" alt="">
                 </a>
 
                 <div class="sidebar-resize-hide flex-1 ml-3">

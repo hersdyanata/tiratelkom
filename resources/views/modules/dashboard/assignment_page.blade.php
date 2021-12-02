@@ -104,7 +104,7 @@
                             @forelse ($dataMom as $m)
                                 <tr onclick="view_mom_by_status('{{$m->mom_status}}', '{{$m->mom_id}}')" style="cursor:pointer">
                                     <td>{{ $m->mom_event }}</td>
-                                    <td>{{ $DueDate }}</td>
+                                    <td>{{ date("m/d/Y", strtotime($DueDate)) }}</td>
                                     <td>{!! $priority !!}</td>
                                     <td>{{ ($m->discuss_status == 'O') ? 'Open' : 'Close'}}</td> 
                                 </tr>

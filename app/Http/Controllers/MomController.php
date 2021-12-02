@@ -96,7 +96,7 @@ class MomController extends Controller
     }
 
     public function store_status_mom(MomService $mom, Request $request){
-        dd($request->all());
+        // dd($request->all());
         $res = $mom->update_status_mom($request->all());
         // return response()->json($res, 200);
     }

@@ -212,14 +212,24 @@ class MomService{
         if (isset($post)) {
             foreach ($post['discuss_id'] as $dt => $r) {
                  if ($r != null or $r = '') { 
+
+                     if ($post['status'][$dt] == 'O' or $post['status'][$dt] == 'Open') {
+                        $retVal = 'O';
+                     } else {
+                        $retVal = 'C';
+                     }
+                     
                      MomDiscussItem::where([
                                         'discuss_mom_id' => $post['mom_id'][$dt],
                                         'discuss_agenda_id' => $post['agenda_id'][$dt],
                                         'discuss_id'=> $post['discuss_id'][$dt]
                                         ]) 
                                     ->update([
-                                        'discuss_status' => $post['status'][$dt]
+                                        'discuss_status' => $retVal
                                             ]);
+
+                                            
+                                            
                 }
             }
         } 

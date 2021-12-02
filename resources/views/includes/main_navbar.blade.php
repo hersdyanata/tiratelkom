@@ -16,8 +16,8 @@
 	</div>
 
 	<div class="navbar-brand text-center text-lg-left">
-		<a href="index.html" class="d-inline-block">
-			<img src="{{ asset('assets') }}/global/images/logo_light.png" class="d-none d-sm-block" alt="">
+		<a href="{{route('dashboard.index')}}" class="d-inline-block">
+			<img src="{{ asset('assets') }}/global/images/logo_light_tira.png" class="d-none d-sm-block" alt="">
 			<img src="{{ asset('assets') }}/global/images/logo_icon_light.png" class="d-sm-none" alt="">
 		</a>
 	</div>
