@@ -225,6 +225,9 @@
 <script>
     $('document').ready(function(){
         $('#btn_save_draft').prop('disabled', true); 
+        
+        $(".printPage").click(function(){
+            window.print();
     });
 
     function submit_data_mom(){

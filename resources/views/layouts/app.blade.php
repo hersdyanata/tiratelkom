@@ -58,6 +58,8 @@
 	{{-- <script src="{{ asset('assets/global/js/plugins/ui/prism.min.js') }}"></script> --}}
 	<script src="{{ asset('assets/global/js/demo_pages/form_tags_input.js') }}"></script>
 
+	<script type="text/javascript" src="{{ asset('assets/global/js/main/jquery.printPage.js')}}"></script>
+
 	@yield('page_resources')
 
 	<script src="{{ asset('assets/'.session('theme').'/js/app.js') }}"></script>

@@ -2,12 +2,19 @@
 @section('content')
 
 <script type="text/javascript">
-        $(function(){
-            $("#btnPrint").printPreview({
-                obj2print:'#masterContent',
-                width:'810'
-            });
+        // $(function(){
+        //     $("#btnPrint").printPreview({
+        //         obj2print:'#masterContent',
+        //         width:'810'
+        //     });
+        // });
+
+        $(document).ready(function(){
+         $(".printPage").click(function(){
+            window.print();
         });
+    }); 
+
     </script>
 <style>
     *{
@@ -135,7 +142,8 @@
 
                 </ol>
             </p>
-            <button id="btnPrint">Print Preview</button>
+            {{-- <button id="btnPrint">Print Preview</button> --}}
+            <a class="printPage" href="#">Print</a>
         </div>
         <div class="clear"></div>
     </div>
