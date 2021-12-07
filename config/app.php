@@ -179,6 +179,9 @@ return [
 
         App\Providers\MenuBuilderServiceProvider::class,
 
+        Adldap\Laravel\AdldapServiceProvider::class,
+        Adldap\Laravel\AdldapAuthServiceProvider::class
+
     ],
 
     /*
