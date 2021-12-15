@@ -14,11 +14,12 @@
         ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
 
         // binding to ldap server
-        $ldapbind = ldap_bind($ldapconn, $ldaprdn, $ldappass);
+        $ldapbind = ldap_bind($ldapconn, $ldaprdn, $ldappass);     
 
         // verify binding
         if ($ldapbind) {
-            echo "LDAP bind successful...";
+             
+            echo "LDAP bind sukses...";
         } else {
             echo "LDAP bind failed...";
         }

@@ -171,7 +171,7 @@ return [
             |
             */
 
-            'username_column' => 'email',
+            'username_column' => 'uid',
 
         ],
 
@@ -289,10 +289,13 @@ return [
 
     'sync_attributes' => [
 
-        'email' => 'userprincipalname',
+        // 'email' => 'userprincipalname',
+
+        // 'name' => 'cn',
+
+        'email' => 'uid',
 
         'name' => 'cn',
-
     ],
 
     /*
