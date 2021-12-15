@@ -101,8 +101,7 @@ return [
                 |
                 */
 
-                // 'schema' => Adldap\Schemas\ActiveDirectory::class,
-                'schema' => Adldap\Schemas\OpenLDAP::class,
+                'schema' => Adldap\Schemas\ActiveDirectory::class,
 
                 /*
                 |--------------------------------------------------------------------------
@@ -144,7 +143,8 @@ return [
                 |
                 */
 
-                'hosts' => explode(' ', env('LDAP_HOSTS', 'corp-dc1.corp.acme.org corp-dc2.corp.acme.org')),
+                // 'hosts' => explode(' ', env('LDAP_HOSTS', 'corp-dc1.corp.acme.org corp-dc2.corp.acme.org')),
+                'hosts' => explode(' ', env('LDAP_HOSTS', 'ldap.forumsys.com')),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -184,7 +184,8 @@ return [
                 |
                 */
 
-                'base_dn' => env('LDAP_BASE_DN', 'dc=corp,dc=acme,dc=org'),
+                // 'base_dn' => env('LDAP_BASE_DN', 'dc=corp,dc=acme,dc=org'),
+                'base_dn' => env('LDAP_BASE_DN', 'ou=scientists,dc=example,dc=com'),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -199,8 +200,10 @@ return [
                 |
                 */
 
-                'username' => env('LDAP_USERNAME', 'username'),
-                'password' => env('LDAP_PASSWORD', 'secret'),
+                // 'username' => env('LDAP_USERNAME', 'username'),
+                // 'password' => env('LDAP_PASSWORD', 'secret'),
+                'username' => env('LDAP_USERNAME', 'tesla'),
+                'password' => env('LDAP_PASSWORD', 'password'),
 
                 /*
                 |--------------------------------------------------------------------------

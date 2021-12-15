@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "adldap2/adldap2",
-            "version": "v10.3.3",
+            "version": "v10.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Adldap2/Adldap2.git",
-                "reference": "c2a8f72455d3438377d955fc0f4b9ed836b47463"
+                "reference": "b91df8c0f0f614f3b96c0c11996c3124030d395e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Adldap2/Adldap2/zipball/c2a8f72455d3438377d955fc0f4b9ed836b47463",
-                "reference": "c2a8f72455d3438377d955fc0f4b9ed836b47463",
+                "url": "https://api.github.com/repos/Adldap2/Adldap2/zipball/b91df8c0f0f614f3b96c0c11996c3124030d395e",
+                "reference": "b91df8c0f0f614f3b96c0c11996c3124030d395e",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             },
             "require-dev": {
                 "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~6.0|~7.0|~8.0"
+                "symfony/phpunit-bridge": "~5.2|~6.0"
             },
             "suggest": {
                 "ext-fileinfo": "fileinfo is required when retrieving user encoded thumbnails"
@@ -69,7 +69,7 @@
                 "issues": "https://github.com/Adldap2/Adldap2/issues",
                 "source": "https://github.com/Adldap2/Adldap2"
             },
-            "time": "2021-08-09T15:22:35+00:00"
+            "time": "2021-12-09T14:12:47+00:00"
         },
         {
             "name": "adldap2/adldap2-laravel",
