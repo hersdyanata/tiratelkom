@@ -179,8 +179,8 @@ return [
 
         App\Providers\MenuBuilderServiceProvider::class,
 
-        Adldap\Laravel\AdldapServiceProvider::class,
-        Adldap\Laravel\AdldapAuthServiceProvider::class,
+        //Adldap\Laravel\AdldapServiceProvider::class,
+        //Adldap\Laravel\AdldapAuthServiceProvider::class,
 
     ],
 
@@ -236,7 +236,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Adldap' => Adldap\Laravel\Facades\Adldap::class,
+        //'Adldap' => Adldap\Laravel\Facades\Adldap::class,
 
     ],
 

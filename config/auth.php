@@ -63,7 +63,8 @@ return [
         'users' => [
             'driver' => 'ldap',
             // 'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            // 'model' => App\Models\User::class,
+            'model' => LdapRecord\Models\OpenLDAP\User::class,
         ],
 
         // 'users' => [
