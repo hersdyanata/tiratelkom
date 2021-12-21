@@ -32,14 +32,6 @@ class AuthenticatedSessionController extends Controller
     public function username(){
         return 'username';
     }
-
-    // protected function credentials(Request $request)
-    // {
-    //     return[
-    //         'uid' => $request->username,
-    //         'password' => $request->password,
-    //     ];
-    // }
     
     /**
      * Handle an incoming authentication request.
