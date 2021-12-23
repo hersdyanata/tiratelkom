@@ -48,10 +48,10 @@ class BuildSideNavigatorComposer
     public function compose(View $view){
         if (Auth::check()) {
             $view->with([
-                'dividers' => $this->dividers,
-                'all_menus' => $this->all_menus,
-                'page_permission' => $this->page_permission['perms'],
-                'load_data_right_sidebar' => $this->load_data_right_sidebar,
+                'dividers' => isset($this->dividers) ? $this->dividers : '',
+                'all_menus' => isset($this->all_menus) ? $this->all_menus : '',
+                'page_permission' => isset($this->page_permission['perms']) ? $this->page_permission['perms'] : '',
+                'load_data_right_sidebar' => isset($this->load_data_right_sidebar) ? $this->load_data_right_sidebar : '',
             ]);
         }
     }
