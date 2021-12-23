@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Services\CustDataTables;
 use App\Models\User;
 use App\Models\UsergroupModel as Usergroup;
+use App\Models\MstUICModel as UIC;
 
 use App\Services\Core;
 
@@ -19,7 +20,7 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller{
     public $core;
     public function __construct(Core $core)
-    {
+    {               
         $this->core = $core;
         $this->middleware(['auth', 'granted']);
     }
@@ -61,11 +62,11 @@ class UserController extends Controller{
 
     public function list_user(CustDataTables $dtt, Request $request){
         $colSearch = array(
-            'name', 'email', 'group_nama', 'parent_user_name'
+            'name', 'email', 'nik', 'group_nama', 'created_at'
         );
         
         $colOrder = array(
-            null, 'name', 'email', 'group_nama', null, null
+            null, 'name', 'email', 'nik', 'group_nama', 'created_at', null
         );
 
         $devOnly = '';
@@ -75,10 +76,10 @@ class UserController extends Controller{
             $parentUser = "and a.parent_user_id = ".session('user_id');
         }
 
-        $q = "SELECT a.*, b.group_nama, c.name parent_user_name
+        $q = "SELECT a.*, b.group_nama, c.uic_desc
                 from users a 
-                left join usergroup b on a.group_id = b.group_id
-                left join users c on a.parent_user_id = c.id
+                left join usergroup b on a.group_id = b.group_id 
+                left join master_uic c on c.uic_id =  a.uic_id
                 $devOnly $parentUser";
         $order = 'order by id asc';
         
@@ -93,25 +94,23 @@ class UserController extends Controller{
         foreach($posts as $r){
             $no++;
 
-            if($r->group_id == 0){
-                $parentUserRow = '<code>Developer</code>';
-            }elseif($r->group_id != 0){
-                $parentUserRow = ($r->parent_user_name == null) ? 'Owner' : $r->parent_user_name;
-            }
+            // if($r->group_id == 0){
+            //     $parentUserRow = '<code>Developer</code>';
+            // }
+            // elseif($r->group_id != 0){
+            //     $parentUserRow = ($r->parent_user_name == null) ? 'Owner' : $r->parent_user_name;
+            // }
 
-            $show_parent_user = '';
-            if(session('group_id') == 0){
-                $show_parent_user = $parentUserRow;
-            }
+            // $show_parent_user = '';
+            // if(session('group_id') == 0){
+            //     $show_parent_user = $parentUserRow;
+            // }
 
             $dtRow = array();
             $dtRow[] = '<div class="text-center">'.$no.'</div>';
             $dtRow[] = $r->name;
-            $dtRow[] = $r->email;
-            if(session('group_id') == 0){
-                $dtRow[] = $parentUserRow;
-            }
-            $dtRow[] = $r->username;
+            $dtRow[] = $r->uic_desc;
+            $dtRow[] = $r->nik;
             $dtRow[] = ($r->group_id == 0) ? 'Developer' : $r->group_nama;
             $dtRow[] = date('Y-m-d', strtotime($r->created_at));
             $dtRow[] = '<div class="text-center">'.$this->action_buttons('user.edit', $r->id, $request->page_permission).'</div>';
@@ -139,7 +138,8 @@ class UserController extends Controller{
         return view('modules.user.create')
                 ->with([
                     'title' => $title,
-                    'groups' => Usergroup::get()
+                    'groups' => Usergroup::get(),
+                    'uics' => UIC::get()
                 ]);
     }
 
@@ -153,7 +153,7 @@ class UserController extends Controller{
         // User::create([
         //     'name' => $req->name,
         //     'email' => $req->email,
-        //     'username' => $req->username,
+        //     'nik' => $req->nik,
         //     'group_id' => $req->group_id,
         //     'theme' => 'light',
         //     'parent_user_id' => session('user_id'),
@@ -182,7 +182,8 @@ class UserController extends Controller{
                 ->with([
                     'title' => $title,
                     'owned' => User::find($id),
-                    'groups' => Usergroup::get()
+                    'groups' => Usergroup::get(),
+                    'uics' => UIC::get()
                 ]);
     }
 
@@ -197,8 +198,8 @@ class UserController extends Controller{
     {
         $put = User::find($id);
         $put->name = $req->name;
-        $put->email = $req->email;
-        $put->username = $req->username;
+        $put->uic_id = $req->uic_id;
+        $put->nik = $req->nik;
         $put->group_id = $req->group_id;
         $put->password = $req->password;
         $put->save();

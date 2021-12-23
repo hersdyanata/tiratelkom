@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Local
+ Source Server         : Local_DB
  Source Server Type    : MySQL
- Source Server Version : 100138
+ Source Server Version : 100315
  Source Host           : localhost:3306
  Source Schema         : tira
 
  Target Server Type    : MySQL
- Target Server Version : 100138
+ Target Server Version : 100315
  File Encoding         : 65001
 
- Date: 15/11/2021 08:22:53
+ Date: 23/12/2021 16:19:44
 */
 
 SET NAMES utf8mb4;
@@ -78,7 +78,7 @@ CREATE TABLE `dev_menu`  (
   `menu_level` int NULL DEFAULT NULL,
   `menu_publish_ke_user` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `menu_order` int NULL DEFAULT NULL,
-  `menu_createdat` datetime(0) NULL DEFAULT NULL,
+  `menu_createdat` datetime NULL DEFAULT NULL,
   `menu_createdby` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`menu_id`) USING BTREE,
   UNIQUE INDEX `index_dev_menu`(`menu_id`) USING BTREE
@@ -87,10 +87,10 @@ CREATE TABLE `dev_menu`  (
 -- ----------------------------
 -- Records of dev_menu
 -- ----------------------------
-INSERT INTO `dev_menu` VALUES (1, 1, NULL, 'Group Pengguna', 'User Group', 'UsergroupController', 'usergroup', 'usergroup', 'icon-users', 1, 'Y', 1, '2021-03-17 15:37:37', '1');
+INSERT INTO `dev_menu` VALUES (1, 1, NULL, 'Group Pengguna', 'User Group', 'UsergroupController', 'usergroup', 'usergroup', 'icon-users', 1, 'Y', 2, '2021-03-17 15:37:37', '1');
 INSERT INTO `dev_menu` VALUES (2, 1, NULL, 'Pengguna', 'Users', 'UserController', 'user', 'user', 'icon-users4', 1, 'Y', 1, '2021-03-17 15:42:56', '1');
 INSERT INTO `dev_menu` VALUES (12, 3, NULL, 'Dashboard', 'Dashboard', 'DashboardController', 'dashboard', 'dashboard', 'icon-home8', 1, 'Y', 1, '2021-09-18 22:56:51', '1');
-INSERT INTO `dev_menu` VALUES (17, 3, NULL, 'Create MoM', 'Create MoM', 'MomController', 'mom', 'mom', 'icon-file-plus', 1, 'Y', 2, '2021-09-18 22:56:51', '1');
+INSERT INTO `dev_menu` VALUES (17, 3, NULL, 'Create MoM', 'Create MoM', 'MomController', 'mom', 'mom', 'icon-file-plus', 1, 'Y', 1, '2021-09-18 22:56:51', '1');
 
 -- ----------------------------
 -- Table structure for dev_menu_divider
@@ -142,7 +142,7 @@ CREATE TABLE `failed_jobs`  (
   `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
@@ -231,7 +231,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of migrations
@@ -242,6 +242,7 @@ INSERT INTO `migrations` VALUES (3, '2019_08_19_000000_create_failed_jobs_table'
 INSERT INTO `migrations` VALUES (4, '2014_10_12_200000_add_two_factor_columns_to_users_table', 2);
 INSERT INTO `migrations` VALUES (5, '2019_12_14_000001_create_personal_access_tokens_table', 2);
 INSERT INTO `migrations` VALUES (6, '2020_12_19_093100_create_sessions_table', 2);
+INSERT INTO `migrations` VALUES (7, '2021_12_14_234827_add_objectguid_to_users_table', 3);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -250,7 +251,7 @@ DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets`  (
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   INDEX `password_resets_email_index`(`email`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
 
@@ -269,9 +270,9 @@ CREATE TABLE `personal_access_tokens`  (
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `last_used_at` timestamp(0) NULL DEFAULT NULL,
-  `created_at` timestamp(0) NULL DEFAULT NULL,
-  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token`) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`) USING BTREE
@@ -318,18 +319,14 @@ CREATE TABLE `tra_mom`  (
   `mom_notulen_by` int NULL DEFAULT NULL,
   `mom_called_by` int NULL DEFAULT NULL,
   `mom_status` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `mom_created_date` datetime(0) NULL DEFAULT NULL,
-  `mom_updated_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `mom_created_date` datetime NULL DEFAULT NULL,
+  `mom_updated_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 94 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom
 -- ----------------------------
-INSERT INTO `tra_mom` VALUES (87, 1, 'MoM WAR part 1', '2021-10-28', '16:07', 1, 'Hour', 'Zoom', 4, 4, 'O', '2021-10-28 15:08:28', '2021-11-15 08:18:54');
-INSERT INTO `tra_mom` VALUES (88, 2, 'MoM Forum Infrastruktur part 1', '2021-10-29', '20:15', 1, 'Hour', 'Vicon', 4, 1, 'O', '2021-10-28 16:15:31', '2021-11-07 12:50:10');
-INSERT INTO `tra_mom` VALUES (89, 3, 'MoM Forum Meeting part 1', '2021-10-30', '14:10', 1, 'Hour', 'Sakura', 4, 6, 'C', '2021-10-28 21:11:16', '2021-11-07 12:50:11');
-INSERT INTO `tra_mom` VALUES (90, 4, 'MoM Forum Support part 1', '2021-10-26', '23:16', 1, 'Hour', 'Melati', 4, 1, 'D', '2021-10-28 21:17:04', '2021-11-07 12:50:21');
 
 -- ----------------------------
 -- Table structure for tra_mom_agenda
@@ -344,14 +341,6 @@ CREATE TABLE `tra_mom_agenda`  (
 -- ----------------------------
 -- Records of tra_mom_agenda
 -- ----------------------------
-INSERT INTO `tra_mom_agenda` VALUES (87, 1, 'MoM WAR Agenda Part 1 A');
-INSERT INTO `tra_mom_agenda` VALUES (87, 2, 'MoM WAR Agenda Part 1 B');
-INSERT INTO `tra_mom_agenda` VALUES (88, 1, 'MoM FI Agenda Part 1 A');
-INSERT INTO `tra_mom_agenda` VALUES (89, 1, 'MoM FM Agenda Part 1 A');
-INSERT INTO `tra_mom_agenda` VALUES (89, 2, 'MoM FM Agenda Part 1 B');
-INSERT INTO `tra_mom_agenda` VALUES (90, 1, 'MoM FS Agenda Part 1 A');
-INSERT INTO `tra_mom_agenda` VALUES (90, 2, 'MoM FS Agenda Part 1 B');
-INSERT INTO `tra_mom_agenda` VALUES (90, 3, 'MoM FS Agenda Part 1 C');
 
 -- ----------------------------
 -- Table structure for tra_mom_discuss
@@ -368,24 +357,13 @@ CREATE TABLE `tra_mom_discuss`  (
   `discuss_priority` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_progress` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `discuss_status` char(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `discuss_created_date` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `discuss_created_date` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`discuss_id`, `discuss_agenda_id`, `discuss_mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 88 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_discuss
 -- ----------------------------
-INSERT INTO `tra_mom_discuss` VALUES (87, 1, 3, 'MoM WAR Pointer Part 1 A1', 'MoM WAR Assignment Part 1  A1', 1, '2021-11-15', '3', NULL, 'C', '2021-11-15 06:57:13');
-INSERT INTO `tra_mom_discuss` VALUES (87, 1, 4, 'MoM WAR  Pointer Part 1 A2', 'MoM WAR Assignment Part 1  A2', 2, '2021-11-15', '2', NULL, 'O', '2021-11-15 08:18:59');
-INSERT INTO `tra_mom_discuss` VALUES (87, 1, 5, 'MoM WAR  Pointer Part 1 A3', 'MoM WAR Assignment Part 1  A3', 3, '2021-11-15', '1', NULL, 'O', '2021-11-15 08:21:36');
-INSERT INTO `tra_mom_discuss` VALUES (87, 2, 6, 'MoM WAR Pointer Part 1 B1', 'MoM WAR Assignment Part 1  B1', 3, '2021-11-15', '3', NULL, 'O', '2021-11-15 08:21:38');
-INSERT INTO `tra_mom_discuss` VALUES (88, 1, 7, 'MoM FI Pointer Part 1 A1', 'MoM FI Assignment Part 1 A1', 11, '2021-11-15', '2', NULL, 'O', '2021-11-15 06:15:35');
-INSERT INTO `tra_mom_discuss` VALUES (89, 1, 8, 'MoM FM Pointer Part 1 A1', 'MoM FM Assignment Part 1  A1', 2, '2021-11-15', '1', NULL, 'C', '2021-11-15 06:15:35');
-INSERT INTO `tra_mom_discuss` VALUES (89, 2, 9, 'MoM FM Pointer Part 1 B1', 'MoM FM Assignment Part 1  B1', 5, '2021-11-15', '1', NULL, 'C', '2021-11-15 06:15:35');
-INSERT INTO `tra_mom_discuss` VALUES (90, 1, 10, 'MoM FS Pointer Part 1 A1', 'MoM FS Assignment Part 1 A1', 8, '2021-11-15', '3', NULL, 'D', '2021-11-15 06:15:36');
-INSERT INTO `tra_mom_discuss` VALUES (90, 1, 11, 'MoM FS Pointer Part 1 A2', 'MoM FS Assignment Part 1 A2', 12, '2021-11-15', '2', NULL, 'D', '2021-11-15 06:15:36');
-INSERT INTO `tra_mom_discuss` VALUES (90, 2, 12, 'MoM FS Pointer Part 1 B1', 'MoM FS Assignment Part 1 B1', 5, '2021-11-15', '1', NULL, 'D', '2021-11-15 06:15:36');
-INSERT INTO `tra_mom_discuss` VALUES (90, 3, 13, 'MoM FS Pointer Part 1 C1', 'MoM FS Assignment Part 1 C1', 7, '2021-11-15', '2', NULL, 'D', '2021-11-15 06:15:36');
 
 -- ----------------------------
 -- Table structure for tra_mom_participant
@@ -400,12 +378,6 @@ CREATE TABLE `tra_mom_participant`  (
 -- ----------------------------
 -- Records of tra_mom_participant
 -- ----------------------------
-INSERT INTO `tra_mom_participant` VALUES (87, 1);
-INSERT INTO `tra_mom_participant` VALUES (87, 6);
-INSERT INTO `tra_mom_participant` VALUES (88, 6);
-INSERT INTO `tra_mom_participant` VALUES (89, 1);
-INSERT INTO `tra_mom_participant` VALUES (89, 4);
-INSERT INTO `tra_mom_participant` VALUES (90, 4);
 
 -- ----------------------------
 -- Table structure for tra_mom_progress
@@ -419,16 +391,11 @@ CREATE TABLE `tra_mom_progress`  (
   `progress_date` date NULL DEFAULT NULL,
   `progress_desc` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`progress_id`, `progress_discuss_id`, `progress_agenda_id`, `progress_mom_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tra_mom_progress
 -- ----------------------------
-INSERT INTO `tra_mom_progress` VALUES (87, 1, 3, 4, '2021-11-14', 'Progress pengerjaan tira sudah mencapai 45%');
-INSERT INTO `tra_mom_progress` VALUES (87, 1, 3, 5, '2021-11-14', 'Progress pengerjaan tira sudah mencapai 75%');
-INSERT INTO `tra_mom_progress` VALUES (87, 1, 3, 6, '2021-11-14', 'Progress pengerjaan tira sudah mencapai 100%');
-INSERT INTO `tra_mom_progress` VALUES (87, 1, 4, 7, '2021-11-14', 'Pengumpulan data sudah mencapai 60%');
-INSERT INTO `tra_mom_progress` VALUES (87, 1, 4, 8, '2021-11-14', 'Pengumpulan data sudah mencapai 100%');
 
 -- ----------------------------
 -- Table structure for tra_mom_type
@@ -443,12 +410,6 @@ CREATE TABLE `tra_mom_type`  (
 -- ----------------------------
 -- Records of tra_mom_type
 -- ----------------------------
-INSERT INTO `tra_mom_type` VALUES (87, 1);
-INSERT INTO `tra_mom_type` VALUES (89, 1);
-INSERT INTO `tra_mom_type` VALUES (90, 1);
-INSERT INTO `tra_mom_type` VALUES (87, 2);
-INSERT INTO `tra_mom_type` VALUES (88, 3);
-INSERT INTO `tra_mom_type` VALUES (90, 5);
 
 -- ----------------------------
 -- Table structure for usergroup
@@ -462,13 +423,13 @@ CREATE TABLE `usergroup`  (
   `group_default_menu` int NULL DEFAULT NULL,
   PRIMARY KEY (`group_id`) USING BTREE,
   UNIQUE INDEX `index_usergroup`(`group_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of usergroup
 -- ----------------------------
-INSERT INTO `usergroup` VALUES (1, 'Kepala Unit', 'Kepala Bagian UIC', '[{\"menu_id\":12,\"permissions\":[\"create\",\"update\",\"delete\",\"close\"]},{\"menu_id\":17,\"permissions\":[\"create\",\"update\",\"delete\",\"close\"]}]', 12);
-INSERT INTO `usergroup` VALUES (2, 'Staff', 'Staff UIC', '[{\"menu_id\":12,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":17,\"permissions\":[\"create\",\"update\",\"delete\"]}]', 12);
+INSERT INTO `usergroup` VALUES (1, 'Staff', 'Staff UIC', '[{\"menu_id\":12,\"permissions\":[\"create\",\"update\",\"delete\",\"close\"]},{\"menu_id\":17,\"permissions\":[\"create\",\"update\",\"delete\",\"close\"]}]', 12);
+INSERT INTO `usergroup` VALUES (2, 'Kepala Unit', 'Kepala Bagian UIC', '[{\"menu_id\":12,\"permissions\":[\"create\",\"update\",\"delete\"]},{\"menu_id\":17,\"permissions\":[\"create\",\"update\",\"delete\"]}]', 12);
 
 -- ----------------------------
 -- Table structure for users
@@ -481,25 +442,25 @@ CREATE TABLE `users`  (
   `uic_id` int NULL DEFAULT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `email_verified_at` timestamp(0) NULL DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `theme` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `created_at` timestamp(0) NULL DEFAULT NULL,
-  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 385 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 386 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, '1803004', 0, 2, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'wTW818swqlawIeTrr0HpJQwCkSRtJC6qUKt9SIjvWcUxUPPl0TzbIh4p3067', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
-INSERT INTO `users` VALUES (2, '1802071', 1, 3, 'Aditya M Munggaran', 'adityammunggaran@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
-INSERT INTO `users` VALUES (3, '710447', 1, 1, 'BUDDY SETIAWAN,ST, MM', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', NULL);
-INSERT INTO `users` VALUES (4, '660396', 1, 1, 'ASEP TATANG', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', NULL);
+INSERT INTO `users` VALUES (1, '1803004', 0, 2, 'Hermansyah Handya Pranata', 'apocalypsix@gmail.com', '2021-08-26 23:28:02', '$2y$10$LYbZGX1cWPDKo/QVoRbOFuuA3VwOvHFc/23IZYIlRRN7Cop48xh0S', NULL, NULL, 'GjhRNQoUIvNQX14uGliak8efYHG6iKNzfI680Vgzt6eqsYL2gu0FxoDm7QBE', 'material', '2020-12-19 09:33:18', '2021-08-26 23:28:02');
+INSERT INTO `users` VALUES (2, '1802071', 0, 3, 'Aditya M Munggaran', 'adityammunggaran@gmail.com', '2020-12-19 09:33:18', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-01-16 16:26:41', '2021-01-16 16:38:33');
+INSERT INTO `users` VALUES (3, '710447', 2, 1, 'BUDDY SETIAWAN,ST, MM', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', '2021-12-23 16:00:53');
+INSERT INTO `users` VALUES (4, '660396', 1, 1, 'ASEP TATANG', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', '2021-12-23 16:14:44');
 INSERT INTO `users` VALUES (5, '690408', 1, 1, 'ERNI SUKAESIH', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', NULL);
 INSERT INTO `users` VALUES (6, '670211', 1, 1, 'NGADI WULYO UTOMO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', NULL);
 INSERT INTO `users` VALUES (7, '930165', 1, 1, 'EMILIA YULISITA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:05', NULL);
@@ -507,7 +468,7 @@ INSERT INTO `users` VALUES (8, '740303', 1, 1, 'TYAS PRATITIS, ST. MSEM.', NULL,
 INSERT INTO `users` VALUES (9, '920073', 1, 1, 'PRATIWI WIDHI MAYA SARI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (10, '850131', 1, 1, 'ARTIKA ARUMNINGTYAS', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (11, '860153', 1, 2, 'OCTA JULIAN ALADIYAH', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
-INSERT INTO `users` VALUES (12, '670173', 1, 2, 'YUDI MULYADI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
+INSERT INTO `users` VALUES (12, '670173', 2, 2, 'YUDI MULYADI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (13, '700657', 1, 2, 'HENDRAWAN', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (14, '780062', 1, 2, 'ANDI INDRIANI RAHMI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (15, '880006', 1, 2, 'AYU TRI HASTUTI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
@@ -518,7 +479,7 @@ INSERT INTO `users` VALUES (19, '720281', 1, 2, 'DEVY YUNARWATY, ST', NULL, '202
 INSERT INTO `users` VALUES (20, '890016', 1, 2, 'KHOIRINA FAJAR', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (21, '970012', 1, 2, 'GHEYI AMANATUNISSA MARGAATMADJA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (22, '720360', 1, 3, 'ERNAWANTI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
-INSERT INTO `users` VALUES (23, '830112', 1, 3, 'OKFARIMA MANDASARI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
+INSERT INTO `users` VALUES (23, '830112', 2, 3, 'OKFARIMA MANDASARI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (24, '950453', 1, 3, 'NABILA KHAIRUNNISA ANSORY', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (25, '810068', 1, 3, 'LYDIA OKTARINI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
 INSERT INTO `users` VALUES (26, '650556', 1, 3, 'SUDARSANA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:06', NULL);
@@ -562,12 +523,12 @@ INSERT INTO `users` VALUES (63, '750026', 1, 7, 'RICKA FEBRILIANTINA, ST', NULL,
 INSERT INTO `users` VALUES (64, '820051', 1, 7, 'WIDA AISYIYYAH', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (65, '850180', 1, 7, 'EKO ARDIANSYAH PUTRA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (66, '700639', 1, 7, 'SITI NURHAYATI,RADEN', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
-INSERT INTO `users` VALUES (67, '880051', 1, 7, 'HARLINA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
+INSERT INTO `users` VALUES (67, '880051', 2, 7, 'HARLINA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (68, '790118', 1, 7, 'AZIZAH KUSUMA WARDHANY', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (69, '910206', 1, 7, 'AMANITA MUSKARIANNY', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (70, '870047', 1, 7, 'SHANDY ASRI ACHMAD', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (71, '660094', 1, 7, 'SOPIYAN SOPIYANA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
-INSERT INTO `users` VALUES (72, '880017', 1, 7, 'ANGGITA AYU KARTIKA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
+INSERT INTO `users` VALUES (72, '880017', 2, 7, 'ANGGITA AYU KARTIKA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (73, '920191', 1, 7, 'RENA PUSPITA PUTRI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (74, '870050', 1, 7, 'ANGGI AGUSTINA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (75, '960210', 1, 7, 'MUHAMAD FARIZ AGUNG', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
@@ -580,7 +541,7 @@ INSERT INTO `users` VALUES (81, '950139', 1, 8, 'RAHADIAN HILMY', NULL, '2021-11
 INSERT INTO `users` VALUES (82, '720516', 1, 8, 'HELDI FUAD ABDILLAH', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (83, '670034', 1, 8, 'GANI MAY SAFARIE, SE.', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (84, '720169', 1, 8, 'DANANG TJATUR WIDJAJADI,MM', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
-INSERT INTO `users` VALUES (85, '710477', 1, 9, 'AZRUL', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
+INSERT INTO `users` VALUES (85, '710477', 2, 9, 'AZRUL', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (86, '730542', 1, 9, 'HARI WIDAYANTO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (87, '930355', 1, 9, 'FERIQ MUHAMMAD DAROJAT', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
 INSERT INTO `users` VALUES (88, '730458', 1, 9, 'AGUS SULISTYO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:07', NULL);
@@ -699,7 +660,7 @@ INSERT INTO `users` VALUES (200, '660126', 1, 14, 'AGUS WIDODO', NULL, '2021-11-
 INSERT INTO `users` VALUES (201, '950027', 1, 14, 'ARINDRA KARUNIA RAHMADHANI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
 INSERT INTO `users` VALUES (202, '930137', 1, 14, 'RADEN GELOMBANG ALAM NUSANTARA PUTRA HER', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
 INSERT INTO `users` VALUES (203, '720039', 1, 14, 'NENENG EKA RATNA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
-INSERT INTO `users` VALUES (204, '680091', 1, 14, 'DINDIN RAMDHANI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
+INSERT INTO `users` VALUES (204, '680091', 2, 14, 'DINDIN RAMDHANI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
 INSERT INTO `users` VALUES (205, '690176', 1, 14, 'SAEFULLAH', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
 INSERT INTO `users` VALUES (206, '700603', 1, 14, 'ABDUL MUCHLIS', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
 INSERT INTO `users` VALUES (207, '730553', 1, 14, 'SRI WIJAYANTI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:09', NULL);
@@ -821,10 +782,10 @@ INSERT INTO `users` VALUES (322, '680508', 1, 16, 'PATONI ABDULAH MAS\'UD', NULL
 INSERT INTO `users` VALUES (323, '940169', 1, 16, 'ADITYA INDRA BAGASKARA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (324, '680385', 1, 16, 'KASUM', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (325, '700476', 1, 16, 'KUSHARTONO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
-INSERT INTO `users` VALUES (326, '690568', 1, 16, 'SULISTYO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
+INSERT INTO `users` VALUES (326, '690568', 2, 16, 'SULISTYO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (327, '700080', 1, 16, 'DJOKO PURNOMO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (328, '910168', 1, 16, 'AGUNG MEINASTESI CAESAR', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
-INSERT INTO `users` VALUES (329, '700459', 1, 16, 'SRI MULYATI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
+INSERT INTO `users` VALUES (329, '700459', 2, 16, 'SRI MULYATI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (330, '660059', 1, 16, 'DEDI ACHMAD HIDAYAT', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (331, '950276', 1, 16, 'SELLA GABRELIAN MAHARANI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
 INSERT INTO `users` VALUES (332, '730444', 1, 16, 'AGUS SATRIAWAN', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:13', NULL);
@@ -873,7 +834,7 @@ INSERT INTO `users` VALUES (374, '651522', 1, 18, 'EMAN SURYAJAYA', NULL, '2021-
 INSERT INTO `users` VALUES (375, '650122', 1, 18, 'DADANG SAMAS', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
 INSERT INTO `users` VALUES (376, '940146', 1, 18, 'FIRMAN ADENDRO SASOTYO', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
 INSERT INTO `users` VALUES (377, '680494', 1, 18, 'YUDI RUSTANDI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
-INSERT INTO `users` VALUES (378, '920058', 1, 18, 'METHA MARTINA HERDIANI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
+INSERT INTO `users` VALUES (378, '920058', 2, 18, 'METHA MARTINA HERDIANI', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
 INSERT INTO `users` VALUES (379, '810002', 1, 18, 'SISWONO, S. Kom', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
 INSERT INTO `users` VALUES (380, '651516', 1, 18, 'DADANG WAHYU', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);
 INSERT INTO `users` VALUES (381, '690152', 1, 18, 'ACENG SUPRIATNA', NULL, '2021-11-09 15:24:22', '$2y$10$hHPUYxBxKsP78eln15w/He3JyRzHDjPPrYl429OcdE8vWKggmJac.', NULL, NULL, NULL, 'material', '2021-11-09 15:20:14', NULL);

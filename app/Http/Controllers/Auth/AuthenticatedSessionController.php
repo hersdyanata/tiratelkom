@@ -29,10 +29,6 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
-    public function username(){
-        return 'username';
-    }
-    
     /**
      * Handle an incoming authentication request.
      *
@@ -44,11 +40,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         $this->set_permission();
-
-        // return[
-        //     'uid' => $request->nik,
-        //     'password' => $request->password,
-        // ];
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -102,6 +93,10 @@ class AuthenticatedSessionController extends Controller
         }
 
         session($data);
+    }
+
+    public function username(){
+        return 'username';
     }
 
     /**

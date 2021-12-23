@@ -28,13 +28,10 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => [
+            'uic_id' => 'required',
+            'nik' => [
                 'required',
-                Rule::unique('users')->ignore($this->id, 'id')
-            ],
-            'username' => [
-                'required',
-                'max:30',
+                'max:6',
                 Rule::unique('users')->ignore($this->id, 'id')
             ],
             'group_id' => 'required',
@@ -45,11 +42,10 @@ class UserRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => 'Nama tidak boleh kosong',
-            'email.required' => 'Email tidak boleh kosong',
-            'email.unique' => 'Email sudah terdaftar',
-            'username.required' => 'Username tidak boleh kosong',
-            'username.max' => 'Username maximal 30 karakter',
-            'username.unique' => 'Username sudah terdaftar',
+            'uic_id.required' => 'UIC tidak boleh kosong', 
+            'nik.required' => 'NIK tidak boleh kosong',
+            'nik.max' => 'NIK maximal 6 karakter',
+            'nik.unique' => 'NIK sudah terdaftar',
             'group_id.required' => 'Group tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong'
         ];

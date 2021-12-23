@@ -26,11 +26,8 @@
                         <tr>
                             <th class="text-center" width="5%">#</th>
                             <th width="20%">Nama</th>
-                            <th width="10%">Email</th>
-                            @if (session('group_id') == 0)
-                                <th width="10%">Parent User</th>
-                            @endif
-                            <th width="10%">Username</th>
+                            <th width="20%">UIC</th>
+                            <th width="10%">NIK</th>
                             <th width="15%">Group</th>
                             <th width="15%">Tgl. Terdaftar</th>
                             <th width="10%" class="text-center">Actions</th>

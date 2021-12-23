@@ -19,16 +19,22 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Email</label>
+                            <label class="col-form-label col-lg-2">UIC</label>
                             <div class="col-lg-9">
-                                <input type="email" class="form-control" name="email" id="email">
+                                <select class="form-control select" name="uic_id" id="uic_id">
+                                    <option value="">-- Pilih --</option>
+                                    @foreach ($uics as $u)
+                                        <option value="{{ $u->uic_id }}">{{ $u->uic_desc }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
+
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Username</label>
+                            <label class="col-form-label col-lg-2">NIK</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control" name="username" id="username">
+                                <input type="number" class="form-control" name="nik" id="nik" maxlength="6">
                             </div>
                         </div>
 
