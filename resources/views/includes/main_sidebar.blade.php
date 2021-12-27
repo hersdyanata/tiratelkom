@@ -31,7 +31,7 @@
                 </a>
 
                 <div class="sidebar-resize-hide flex-1 ml-3">
-                    <div class="font-weight-semibold">{{ Auth::user()->name }}</div>
+                    <div class="font-weight-semibold">{{ session('user_name') }}</div>
                     <div class="font-size-sm line-height-sm text-muted">{{ session('uic_desc') }}</div>
                     <div class="font-size-sm line-height-sm text-white">
                         {{ session('group_name') }}

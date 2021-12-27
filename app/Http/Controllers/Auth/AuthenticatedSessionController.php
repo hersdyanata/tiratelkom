@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\MstUICModel as UIC;
 use App\Models\CoreMenuModel as Menu;
 use App\Models\CoreMenuDividerModel as Divider;
+use App\Models\User as Users;
 use App\Services\GrantedService;
 
 class AuthenticatedSessionController extends Controller
@@ -39,60 +40,66 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
-        $this->set_permission();
+        $this->set_permission($request);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-    public function set_permission(){
-        $userLogin = Auth::user();
-        if($userLogin->group_id != 0){
-            // $properties = $userLogin->permissions();
-            $properties = $this->granted->usergroup_permission($userLogin->group_id);
-            $dividers = $properties['dividers'];
-            $menus = $properties['menus'];
-            $permission = $properties['actions']['array_privileges'];
-            $uicDesc = UIC::where('uic_id', $userLogin->uic_id)->pluck('uic_desc')->first();
+    public function set_permission($request){
+        $userLogin  = Users::where('nik', $request->username)->first();
+        if (isset($userLogin)){
+            if($userLogin->group_id != 0){
+                // $properties = $userLogin->permissions();
+                $properties = $this->granted->usergroup_permission($userLogin->group_id);
+                $dividers = $properties['dividers'];
+                $menus = $properties['menus'];
+                $permission = $properties['actions']['array_privileges'];
+                $uicDesc = UIC::where('uic_id', $userLogin->uic_id)->pluck('uic_desc')->first();
 
-            $arr_granted = array();
-            foreach($menus as $r){
-                $arr_granted[$r['menu_route_name']] = array(
-                    'menu_id' => $r['menu_id'],
-                    'menu_name' => $r['menu_nama_ina'],
-                    'menu_route' => $r['menu_route_name'],
-                );
+                $arr_granted = array();
+                foreach($menus as $r){
+                    $arr_granted[$r['menu_route_name']] = array(
+                        'menu_id' => $r['menu_id'],
+                        'menu_name' => $r['menu_nama_ina'],
+                        'menu_route' => $r['menu_route_name'],
+                    );
+                }
+                
+                $data = [
+                    'user_id' => $userLogin->id,
+                    'user_nik' => $userLogin->nik,
+                    'user_name' => $userLogin->name,
+                    'uic_id' => $userLogin->uic_id,
+                    'uic_desc' => $uicDesc,
+                    'group_id' => $userLogin->group_id,
+                    'group_name' => $userLogin->group_nama,
+                    'theme' => $userLogin->theme,
+                    'granted_menu' => $arr_granted,
+                    'all_menus' => $menus,
+                    'dividers' => $dividers,
+                    'permission' => $permission
+                ];
+            }else{
+                $menus = Menu::orderBy('menu_div_id')
+                        ->orderBy('menu_order')
+                        ->get()->toArray();
+
+                $divider = Divider::all()->toArray();
+
+                $data = [
+                    'all_menus' => $menus,
+                    'dividers' => $divider,
+                    'user_id' => $userLogin->id,
+                    'group_id' => $userLogin->group_id,
+                    'group_name' => 'Developer',
+                    'theme' => $userLogin->theme,
+                ];
             }
-            
-            $data = [
-                'user_id' => $userLogin->id,
-                'uic_id' => $userLogin->uic_id,
-                'uic_desc' => $uicDesc,
-                'group_id' => $userLogin->group_id,
-                'group_name' => $userLogin->group_nama,
-                'theme' => $userLogin->theme,
-                'granted_menu' => $arr_granted,
-                'all_menus' => $menus,
-                'dividers' => $dividers,
-                'permission' => $permission
-            ];
+
+            session($data);
         }else{
-            $menus = Menu::orderBy('menu_div_id')
-                    ->orderBy('menu_order')
-                    ->get()->toArray();
-
-            $divider = Divider::all()->toArray();
-
-            $data = [
-                'all_menus' => $menus,
-                'dividers' => $divider,
-                'user_id' => $userLogin->id,
-                'group_id' => $userLogin->group_id,
-                'group_name' => 'Developer',
-                'theme' => $userLogin->theme,
-            ];
+            $this->destroy($request);
         }
-
-        session($data);
     }
 
     public function username(){

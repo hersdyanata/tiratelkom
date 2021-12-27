@@ -11,7 +11,7 @@
         </div>
 
         <div class="header-elements d-none">
-            {{ Auth::user()->name.' / '.Auth::user()->nik }}
+            {{ session('user_name').' / '.session('user_nik') }}
             {{-- <div class="breadcrumb justify-content-center">
                 <a href="#" class="breadcrumb-elements-item">
                     <i class="icon-comment-discussion mr-2"></i>

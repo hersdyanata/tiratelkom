@@ -25,7 +25,7 @@
                         @endif
 
                         <div class="form-group form-group-feedback form-group-feedback-left">
-                            <input id="nik" type="text" name="nik" value="{{ old('nik') }}" class="form-control" placeholder="NIK" autofocus style="background-color:#FFF5F4;">
+                            <input id="username" type="text" name="username" value="{{ old('username') }}" class="form-control" placeholder="Username" autofocus style="background-color:#FFF5F4;">
                             <div class="form-control-feedback">
                                 <i class="icon-user text-muted"></i>
                             </div>

@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'nik' => 'required',
+            'username' => 'required',
             // 'email' => 'required|string|email',
             'password' => 'required|string',
         ];
@@ -53,11 +53,11 @@ class LoginRequest extends FormRequest
         //         'email' => __('auth.failed'),
         //     ]);
         // }
-        if (! Auth::attempt($this->only('nik', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'nik' => __('auth.failed'),
+                $this->username() => __('auth.failed'),
             ]);
         }
 
@@ -82,7 +82,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'nik' => trans('auth.throttle', [
+            $this->username() => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -96,6 +96,16 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('nik')).'|'.$this->ip();
+        return Str::lower($this->input( $this->username())).'|'.$this->ip();
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'email';
     }
 }

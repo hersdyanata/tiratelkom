@@ -10,9 +10,15 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\App;
 use Auth;
 
-class User extends Authenticatable implements MustVerifyEmail
+//tambahaan untuk auth ldap
+use LdapRecord\Laravel\Auth\LdapAuthenticatable;
+use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
+
+// class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements LdapAuthenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    // use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable, AuthenticatesWithLdap;
 
     /**
      * The attributes that are mass assignable.
