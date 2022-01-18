@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'api_ldap' => env('API_LDAP_HOST', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------

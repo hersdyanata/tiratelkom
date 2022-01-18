@@ -1,0 +1,24 @@
+UNTUK TEST LDAP API
+https://auth.proman.id/services/auth?username=400767&password=G03g03n!
+
+Output : 
+1 = True
+0 = False
+
+Dummy usernya pake :
+Username : 400767
+Password : G03g03n!
+
+
+API_LDAP_HOST=https://auth.proman.id/services/
+
+# LDAP_LOGGING=true
+# LDAP_CONNECTION=default
+# LDAP_HOST=ldap.forumsys.com
+# LDAP_USERNAME=null
+# LDAP_PASSWORD=null
+# LDAP_PORT=389
+# LDAP_BASE_DN="dc=example,dc=com"
+# LDAP_TIMEOUT=5
+# LDAP_SSL=false
+# LDAP_TLS=false
