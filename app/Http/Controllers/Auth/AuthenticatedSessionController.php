@@ -47,12 +47,10 @@ class AuthenticatedSessionController extends Controller
         // $response = $client->request('POST', $url, [
         //     'username'  => $request->username,
         //     'password'  => $request->password,
-        // ]); 
+        // ]);  
 
-        $response = $client->request('GET', $url, ['auth' => [
-            'username' => $request->username,
-            'password' => $request->password,
-        ]]);
+        // $response = $client->GET('https://auth.proman.id/services/auth?username='.$request->username.'&password='.$request->password.'');
+ 
         
         $data_json = $response->getBody()->getContents();
         echo $data_json;
