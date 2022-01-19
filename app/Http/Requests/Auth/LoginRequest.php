@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use GuzzleHttp\Client;
 
 class LoginRequest extends FormRequest
 {
@@ -53,15 +54,25 @@ class LoginRequest extends FormRequest
         //         'email' => __('auth.failed'),
         //     ]);
         // }
-        if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $url = config('app.api_ldap');
 
-            throw ValidationException::withMessages([
-                $this->username() => __('auth.failed'),
-            ]);
+        $client = new Client(); 
+        $response = $client->GET('https://auth.proman.id/services/auth?username='.$this->username.'&password='.$this->password.'');
+        $data_json = json_decode($response->getBody()->getContents());
+        // echo $data_json->login;
+        // die;
+
+        if ($data_json->login == '1'){
+            if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
+                RateLimiter::hit($this->throttleKey());
+    
+                throw ValidationException::withMessages([
+                    $this->username() => __('auth.failed'),
+                ]);
+            }
+    
+            // RateLimiter::clear($this->throttleKey());
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**

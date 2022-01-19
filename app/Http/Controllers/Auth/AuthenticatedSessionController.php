@@ -13,7 +13,7 @@ use App\Models\CoreMenuModel as Menu;
 use App\Models\CoreMenuDividerModel as Divider;
 use App\Models\User as Users;
 use App\Services\GrantedService;
-use GuzzleHttp\Client;
+
 
 
 
@@ -40,22 +40,7 @@ class AuthenticatedSessionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LoginRequest $request)
-    {
-        $url = config('app.api_ldap');
-
-        $client = new Client();
-        // $response = $client->request('POST', $url, [
-        //     'username'  => $request->username,
-        //     'password'  => $request->password,
-        // ]);  
-
-        // $response = $client->GET('https://auth.proman.id/services/auth?username='.$request->username.'&password='.$request->password.'');
- 
-        
-        $data_json = $response->getBody()->getContents();
-        echo $data_json;
-        die; 
-
+    {    
         $request->authenticate();
         $request->session()->regenerate();
         $this->set_permission($request);
