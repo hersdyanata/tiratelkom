@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use GuzzleHttp\Client;
+use App\Models\User;
 
 class LoginRequest extends FormRequest
 {
@@ -63,15 +64,26 @@ class LoginRequest extends FormRequest
         // die;
 
         if ($data_json->login == '1'){
-            if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
-                RateLimiter::hit($this->throttleKey());
-    
+            $user = User::where('nik', $this->username)->pluck('id')->first();
+            if (!Auth::loginUsingId($user)) {
                 throw ValidationException::withMessages([
                     $this->username() => __('auth.failed'),
                 ]);
-            }
+            };
+            // if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
+            //     RateLimiter::hit($this->throttleKey());
     
-            // RateLimiter::clear($this->throttleKey());
+            //     throw ValidationException::withMessages([
+            //         $this->username() => __('auth.failed'),
+            //     ]);
+            // }
+    
+            // RateLimiter::clear($this->throttleKey());          
+            
+        }else{
+            throw ValidationException::withMessages([
+                $this->username() => __('auth.failed'),
+            ]);
         }
     }
 

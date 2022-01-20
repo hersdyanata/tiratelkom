@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'granted', 'verified']);
+        $this->middleware(['auth', 'granted', 'verified']); 
     }
 
     public function index(){
