@@ -20,18 +20,17 @@ class MomService{
         // simpan transaksi mom header 
         $header = [
             'mom_title'         => $post['category_id'],
-            'mom_event'         => $post['event_title'],
-            'mom_date'          => date('Y-m-d', strtotime($post['date'])),
-            'mom_time'          => $post['time'],
-            'mom_duration'      => $post['duration'],
-            'mom_unit'          => $post['unit'],
+            'mom_event'         => $post['event_title'], 
+            'mom_date'          => date('Y-m-d',strtotime(str_replace('/', '-', $post['date']))),
+            'mom_start'         => $post['mom_start'],
+            'mom_end'           => $post['mom_end'],
             'mom_location'      => $post['location'],
             'mom_notulen_by'    => session('user_id'),
             'mom_called_by'     => $post['meeting_called_by'],
             'mom_status'        => 'D',
             'mom_created_date'  => Now(), 
         ];
-
+         
         $id_header = MomHeader::insertGetId($header);
 
         // simpan detail transaksi mom type item
@@ -97,8 +96,8 @@ class MomService{
                 'discuss_agenda_id'     => $post['agenda_id'][$i],
                 'discuss_pointer'       => $post['pointer'][$i],
                 'discuss_assignment'    => $post['assignment'][$i],
-                'discuss_uic_id'        => $post['uic'][$i],
-                'discuss_due_date'      => date('Y-m-d', strtotime($post['due_date'][$i])),
+                'discuss_uic_id'        => $post['uic'][$i], 
+                'discuss_due_date'      => date('Y-m-d',strtotime(str_replace('/', '-', $post['due_date'][$i]))),
                 'discuss_priority'      => $post['priority'][$i],
                 'discuss_status'        => $post['status'][$i],
                 'discuss_created_date'  => Now(), 
@@ -125,10 +124,9 @@ class MomService{
         $put = MomHeader::find($post['temp_edit_mom_id']); 
         $put->mom_title         = $post['category_id'];
         $put->mom_event         = $post['event_title'];
-        $put->mom_date          = date('Y-m-d', strtotime($post['date']));
-        $put->mom_time          = $post['time'];
-        $put->mom_duration      = $post['duration'];
-        $put->mom_unit          = $post['unit'];
+        $put->mom_date          = date('Y-m-d',strtotime(str_replace('/', '-', $post['date'])));
+        $put->mom_start         = $post['mom_start']; 
+        $put->mom_end           = $post['mom_end']; 
         $put->mom_location      = $post['location'];
         $put->mom_notulen_by    = session('user_id');
         $put->mom_called_by     = $post['meeting_called_by'];

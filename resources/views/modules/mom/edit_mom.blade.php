@@ -40,7 +40,7 @@
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Date</label>
                                                 <div class="form-group form-group-feedback form-group-feedback-right">
-                                                    <input type="text" placeholder="Set Date" class="form-control daterange-single input_mom" name="date" id="date" value="{{ date("m/d/Y", strtotime($DataMoM->mom_date)) }}">
+                                                    <input type="text" placeholder="Set Date" class="form-control date input_mom" name="date" id="date" value="{{ date("d/m/Y", strtotime($DataMoM->mom_date)) }}">
                                                     <div class="form-control-feedback">
                                                         <i class="icon-calendar22 text-muted"></i>
                                                     </div>
@@ -50,27 +50,27 @@
 
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="font-weight-semibold">Time</label>
+                                                <label class="font-weight-semibold">Start</label>
                                                 <div class="form-group">
-                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="time" id="time" value="{{ $DataMoM->mom_time }}">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="mom_start" id="mom_start" value="{{ $DataMoM->mom_start }}">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="font-weight-semibold">Duration</label>
-                                                <input type="number" placeholder="Set Duration" class="form-control input_mom" name="duration" id="duration" min=0 value="{{ $DataMoM->mom_duration }}">
+                                                <label class="font-weight-semibold">End</label>
+                                                <div class="form-group">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="mom_end" id="mom_end" value="{{ $DataMoM->mom_end }}">
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-2">
+                                        {{-- <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Unit</label>
-                                                <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit" value="{{ $DataMoM->mom_unit }}">
+                                                <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit">
                                             </div>
-                                        </div>
-
+                                        </div> --}}
                                     </div>
 
                                     <div class="row">
@@ -257,6 +257,8 @@
         $('#btn_update_mom').hide(); 
         $('#btn_update_agenda').hide(); 
         $('#btn_save_draft').hide(); 
+        $('#btn_edit_mom').prop('disabled', true);
+        $('#btn_edit_agenda').prop('disabled', true);
         $('.input_mom').prop('disabled', true);
         $('.input_agenda').prop('disabled', true);
         $('.input_diskusi').prop('disabled', true);
@@ -423,6 +425,8 @@
                 $('#div_btn_discuss').show();
                 $('#btn_edit_agenda').show();
                 $('#btn_update_agenda').hide(); 
+                $('#btn_edit_draft').show();
+                $('#btn_save_draft').hide(); 
                 $('.btn_rm_agenda').hide();
                 $('html, body').animate({
                     scrollTop: $("#div_agenda").offset().top
@@ -438,7 +442,10 @@
     }
 
     function edit_data_diskusi(){
-        $('.input_diskusi').prop('disabled', false); 
+        $('.input_diskusi').prop('disabled', false);  
+        $('#btn_edit_mom').prop('disabled', false);
+        $('#btn_edit_agenda').prop('disabled', false);
+        $('.btn_add_item_diskusi').show();
         $('#discuss_id').focus(); 
         $('#btn_edit_draft').hide(); 
         $('#btn_save_draft').show(); 
@@ -461,7 +468,7 @@
                 $('#btn_preview_mom').prop('disabled', false);
                 $('#btn_discuss').prop('disabled', false);
                 $('.input_diskusi').prop('disabled', true);
-                $('#btn_add_item_diskusi').hide();
+                $('.btn_add_item_diskusi').hide();
                 $('#btn_edit_draft').show(); 
                 $('#btn_save_draft').hide(); 
                 $('#btn_edit_mom').prop('disabled', true);

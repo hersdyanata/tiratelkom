@@ -65,7 +65,7 @@
 	<script src="{{ asset('assets/'.session('theme').'/js/app.js') }}"></script>
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<!-- /theme JS files -->
-
+		
 	<style>
 		.bg-telkom{
 			background-color: #E74C3C!important;
@@ -168,6 +168,14 @@
 	});
 
 	// $('.form-check-input-switch').bootstrapSwitch();
+
+	$('.date').daterangepicker({
+		parentEl: '.content-inner',
+		singleDatePicker: true,
+		locale: {
+			format: 'DD/MM/YYYY'
+		}
+	});
 </script>
 
 </html>

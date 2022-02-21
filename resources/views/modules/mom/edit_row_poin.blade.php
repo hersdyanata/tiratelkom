@@ -43,7 +43,10 @@
 <script>
     $('.daterange-single').daterangepicker({
         parentEl: '.content-inner',
-        singleDatePicker: true
+        singleDatePicker: true,
+        locale: {
+            format: 'DD/MM/YYYY'
+        }
     });
 
     $('.select-fixed-single').select2({

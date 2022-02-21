@@ -43,7 +43,7 @@
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Date</label>
                                                 <div class="form-group form-group-feedback form-group-feedback-right">
-                                                    <input type="text" placeholder="Set Date" class="form-control daterange-single input_mom" name="date" id="date">
+                                                    <input type="text" placeholder="Set Date" class="form-control date input_mom" name="date" id="date">
                                                     <div class="form-control-feedback">
                                                         <i class="icon-calendar22 text-muted"></i>
                                                     </div>
@@ -53,25 +53,27 @@
 
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="font-weight-semibold">Time</label>
+                                                <label class="font-weight-semibold">Start</label>
                                                 <div class="form-group">
-                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="time" id="time">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="mom_start" id="mom_start">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="font-weight-semibold">Duration</label>
-                                                <input type="number" placeholder="Set Duration" class="form-control input_mom" name="duration" id="duration" min=0>
+                                                <label class="font-weight-semibold">End</label>
+                                                <div class="form-group">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="mom_end" id="mom_end">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        {{-- <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Unit</label>
                                                 <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                     <div class="row">
@@ -484,6 +486,6 @@
     function preview_mom(){
         window.location.href = "{{ route('mom.show', ':x') }}".replace(':x',$('#temp_edit_mom_id').val());  
     }    
-
+    
 </script>
 @endsection

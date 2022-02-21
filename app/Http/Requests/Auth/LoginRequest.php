@@ -63,7 +63,7 @@ class LoginRequest extends FormRequest
         // echo $data_json->login;
         // die;
 
-        if ($data_json->login == '1'){
+        if ($data_json->login == '0'){
             $user = User::where('nik', $this->username)->pluck('id')->first();
             if (!Auth::loginUsingId($user)) {
                 throw ValidationException::withMessages([

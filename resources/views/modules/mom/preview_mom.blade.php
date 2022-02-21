@@ -67,6 +67,10 @@
             position: relative;
             top: -3px;
             *overflow: hidden;
+        } 
+
+        .cPad {
+            padding-inline-start: 5px; 
         }
 
     </style>
@@ -93,7 +97,7 @@
                 <td>&nbsp;{{$DataMoM->mom_time}}</td>
             </tr>
             <tr>
-                <td><strong>Media</strong></td>
+                <td><strong>Location</strong></td>
                 <td>&nbsp;{{$DataMoM->mom_location}}</td>
             </tr>
             <tr>
@@ -115,7 +119,7 @@
             </tr>
             <tr>
                 <td colspan="3">Attendees :
-                    <ol style="list-style-type: lower-alpha;">
+                    <ol style="list-style-type: decimal;">
                         @foreach ($DataParticipant as $dtp)
                             <li>{{$dtp->getAttr_user_name()}}</li> 
                         @endforeach
@@ -127,7 +131,7 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <ol style="list-style-type: lower-alpha;">
+                    <ol style="list-style-type: decimal;">
                         @foreach ($DataAgenda as $dta)
                             <li>{{$dta->agenda_desc}}</li> 
                         @endforeach 
@@ -149,25 +153,15 @@
                             @endphp
 
                             <li>{{$dta->agenda_desc}}
-                                <ol style="list-style-type: lower-alpha;">
+                                <ul style="list-style-type: '-';"  class = "cPad">
                                     @foreach ($dtDiscuss as $dtd)
-                                        <li>{{$dtd->discuss_pointer}}</li> 
+                                        <li> {{$dtd->discuss_pointer}}</li>  
+                                        <li> {{$dtd->getAttr_uic_code()}}</li>  
+                                        <li> {{date('d F Y', strtotime($dtd->discuss_due_date));}}</li> 
+                                        <br>
                                     @endforeach 
-                                </ol>
-                            </li> 
-                            Diskusi:
-                            <ol style="list-style-type: lower-alpha;">
-                                @foreach ($dtDiscuss as $dtd)
-                                    <li>{{$dtd->discuss_assignment}}</li> 
-                                @endforeach 
-                            </ol>
-                            PIC: 
-                            <ol style="list-style-type: lower-alpha;">
-                                @foreach ($dtDiscuss as $dtd)
-                                    <li>{{$dtd->getAttr_uic_code()}}</li> 
-                                @endforeach 
-                            </ol>
-                            <br>
+                                </ul>
+                            </li>  
                         @endforeach 
                     </ol>
                 </td>
