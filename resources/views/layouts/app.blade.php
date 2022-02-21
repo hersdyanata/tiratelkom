@@ -93,9 +93,10 @@
 			color: #ef5350;
 		}
 
-		.nav-tabs-solid .nav-item.show .nav-link.active, .nav-tabs-solid .nav-link.active {
+		.nav-pills-bordered .nav-item.show .nav-link.active, .nav-pills-bordered .nav-link.active {
 			color: #fff;
 			background-color: #ef5350;
+			border-color:#ef5350;
 		}
 
 		/* .form-control-filled {

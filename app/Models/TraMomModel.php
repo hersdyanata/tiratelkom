@@ -24,7 +24,11 @@ class TraMomModel extends Model
         'mom_created_date',
     ];
 
-    
+    public function getAttr_sum_mom_by_category(){
+        $data = $this->hasMany(MomCategoryModel::class, 'category_id', 'mom_title')->get();
+        return count($data);
+    }
+
     public function getAttr_due_date_discuss(){
         $data = $this->hasOne(TraMomDiscussModel::class,'discuss_mom_id','mom_id')->pluck('discuss_due_date')->max();
         return $data;

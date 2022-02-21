@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nama MoM</th>
-            <th>Due Date</th>
+            <th>Created</th>
             <th>Priority</th>
             <th>Status</th>
         </tr>
@@ -12,9 +12,9 @@
         
             <tr onclick="view_mom_by_status('{{$m->mom_status}}', '{{$m->mom_id}}')" style="cursor:pointer">
                 <td>{{ $m->mom_event }}</td>
-                <td>{{ date("m/d/Y", strtotime($m->getAttr_due_date_discuss())) }}</td>
+                <td>{{ date("d F Y", strtotime($m->mom_created_date)) }}</td>
                 <td>{!! $m->getAttr_priority_discuss() !!}</td>
-                <td>{{ $m->getAttr_status_discuss()}}</td>
+                <td>{{ $m->getAttr_status_discuss()}}</td> 
             </tr>
         @empty
             <tr>
