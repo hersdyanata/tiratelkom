@@ -78,22 +78,22 @@
                                                                            ->pluck('total_discuss_per_status')
                                                                            ->first();
 
-                                        if ($dtu->total_discuss_per_uic <> 0) {
-                                            $dtProgressOpen  = (($dtAssignmentOpen == null) ? 0 : $dtAssignmentOpen) / $dtu->total_discuss_per_uic * 100;
-                                            $dtProgressClose = (($dtAssignmentClose == null) ? 0 : $dtAssignmentClose) / $dtu->total_discuss_per_uic * 100;
-                                        }else{
-                                            $dtProgressOpen  = 0;
-                                            $dtProgressClose = 0;
-                                        }
+                                        // if ($dtu->total_discuss_per_uic <> 0) {
+                                        //     $dtProgressOpen  = (($dtAssignmentOpen == null) ? 0 : $dtAssignmentOpen) / $dtu->total_discuss_per_uic * 100;
+                                        //     $dtProgressClose = (($dtAssignmentClose == null) ? 0 : $dtAssignmentClose) / $dtu->total_discuss_per_uic * 100;
+                                        // }else{
+                                        //     $dtProgressOpen  = 0;
+                                        //     $dtProgressClose = 0;
+                                        // } 
                                         
                                     @endphp
                                     <div class="progress rounded-pill" style="cursor:pointer">
-                                        <div class="progress-bar bg-teal" style="width: {{$dtProgressClose}}%">
-                                            <span>{{round($dtProgressClose,0)}} %</span>
+                                        <div class="progress-bar bg-teal" style="width: 100%">
+                                            <span>{{($dtAssignmentClose == null) ? 0 : $dtAssignmentClose}} / {{($dtAssignmentOpen == null) ? 0 : $dtAssignmentOpen}}</span>
                                         </div>
-                                        <div class="progress-bar bg-warning" style="width: {{$dtProgressOpen}}%">
-                                            <span>{{round($dtProgressOpen,0)}} %</span>
-                                        </div>
+                                        {{-- <div class="progress-bar bg-warning" style="width: {{$dtProgressOpen}}%">
+                                            <span>{{round($dtProgressOpen,0)}} </span>
+                                        </div> --}}
                                     </div>
                                 </td>
                             </tr>

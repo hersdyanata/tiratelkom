@@ -9,6 +9,12 @@
                 <div class="card-header header-elements-inline">
                     <h5 class="card-title">{{ $title }}</h5>
                 </div>
+                
+                <div class="header-elements d-none">
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="btn btn-link btn-float text-body"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a> 
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form id="form_data">

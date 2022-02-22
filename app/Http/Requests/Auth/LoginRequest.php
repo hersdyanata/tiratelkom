@@ -57,34 +57,41 @@ class LoginRequest extends FormRequest
         // }
         $url = config('app.api_ldap');
 
-        $client = new Client(); 
-        $response = $client->GET('https://auth.proman.id/services/auth?username='.$this->username.'&password='.$this->password.'');
-        $data_json = json_decode($response->getBody()->getContents());
-        // echo $data_json->login;
-        // die;
+        // $client = new Client(); 
+        // $response = $client->GET('https://auth.proman.id/services/auth?username='.$this->username.'&password='.$this->password.'');
+        // $data_json = json_decode($response->getBody()->getContents());
+        // // echo $data_json->login;
+        // // die;
 
-        if ($data_json->login == '0'){
-            $user = User::where('nik', $this->username)->pluck('id')->first();
+        // if ($data_json->login == '1'){
+        //     $user = User::where('nik', $this->username)->pluck('id')->first();
+        //     if (!Auth::loginUsingId($user)) {
+        //         throw ValidationException::withMessages([
+        //             $this->username() => __('auth.failed'),
+        //         ]);
+        //     };
+        //     // if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
+        //     //     RateLimiter::hit($this->throttleKey());
+    
+        //     //     throw ValidationException::withMessages([
+        //     //         $this->username() => __('auth.failed'),
+        //     //     ]);
+        //     // }
+    
+        //     // RateLimiter::clear($this->throttleKey());          
+            
+        // }else{
+        //     throw ValidationException::withMessages([
+        //         $this->username() => __('auth.failed'),
+        //     ]);
+        // }
+
+        $user = User::where('nik', $this->username)->pluck('id')->first();
             if (!Auth::loginUsingId($user)) {
                 throw ValidationException::withMessages([
                     $this->username() => __('auth.failed'),
                 ]);
             };
-            // if (! Auth::attempt($this->only($this->username(), 'password'), $this->boolean('remember'))) {
-            //     RateLimiter::hit($this->throttleKey());
-    
-            //     throw ValidationException::withMessages([
-            //         $this->username() => __('auth.failed'),
-            //     ]);
-            // }
-    
-            // RateLimiter::clear($this->throttleKey());          
-            
-        }else{
-            throw ValidationException::withMessages([
-                $this->username() => __('auth.failed'),
-            ]);
-        }
     }
 
     /**
