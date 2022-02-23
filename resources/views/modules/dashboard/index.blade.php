@@ -36,6 +36,7 @@
 @section('page_js')
 <script>
         extended_page('L');
+        
         function extended_page(type_){
             $.ajax({
                 type: "POST",

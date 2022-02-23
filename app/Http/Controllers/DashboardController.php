@@ -33,9 +33,9 @@ class DashboardController extends Controller
             $view = $this->closed_mom('C');
         }else{
             $dtAssignment = $Dashboard->get_assignment_per_uic();
-            $dtAssignmentPerStatus = $Dashboard->get_assignment_per_status();
-            $view = $this->list_assignment('L', $dtAssignment, $dtAssignmentPerStatus);
+            $view = $this->list_assignment('L', $dtAssignment);
         }
+
 
         return response()->json($view, 200);
     }
@@ -53,15 +53,16 @@ class DashboardController extends Controller
         return response()->json($view, 200);
     }
 
-    public function list_assignment($post, $dtAssignment, $dtAssignmentPerStatus){
+    public function list_assignment($post, $dtAssignment){
         $view = view('modules.dashboard.list_assignment')
                 ->with([
                     'title' => 'List Assignment Unit',
-                    'uic' => $dtAssignment,
-                    'DataAssignment' => $dtAssignmentPerStatus,
+                    'uic' => $dtAssignment['counter'],
+                    'DataAssignment' => $dtAssignment['uic'],
                 ])
                 ->render();
 
+        // echo count($dtAssignmentPerStatus);
         return $view;
     }
 

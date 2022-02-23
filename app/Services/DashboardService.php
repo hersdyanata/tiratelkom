@@ -48,18 +48,16 @@ class DashboardService{
     }
 
     public function get_assignment_per_uic(){
-        $data = $this->q_dashboard->selectRaw('count(discuss_id) as total_discuss_per_uic, uic_id, uic_code')
+        $uic = $this->q_dashboard->get();
+        $counter = $this->q_dashboard->selectRaw('count(discuss_id) as total_discuss_per_uic, uic_id, uic_code')
                                   ->groupby('uic_id', 'uic_code')
                                   ->get();
  
-        return $data;
-    }
+        $data = [
+            'uic' => $uic,
+            'counter' => $counter
+        ];
 
-    public function get_assignment_per_status(){
-        $data = $this->q_dashboard->selectRaw('count(discuss_id) as total_discuss_per_status, uic_id, uic_code, discuss_status')
-                                  ->groupby('uic_id', 'uic_code', 'discuss_status')
-                                  ->get();
- 
         return $data;
     }
 

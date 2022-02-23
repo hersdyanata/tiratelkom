@@ -65,7 +65,9 @@
                     @foreach ($kategori as $k)
                         <li class="nav-item" {{ $visible }}>
                             <a href="#kategori{{ $k->category_id }}" class="nav-link rounded-left rounded-right {{ $k->category_default }}" data-toggle="tab" onclick="filter_mom('{{ $k->category_id }}')">
-                                {{ $k->category_desc }} <span class="badge badge-danger badge-pill align-top ml-2 float-right">{{$dtAllMom}}</span>
+                                {{ $k->category_desc }} <span class="badge badge-danger badge-pill align-top ml-2 float-right">
+                                    {{$dtMom->where('mom_title', $k->category_id)->count();}}
+                                </span>
                             </a>
                         </li>    
                     @endforeach
