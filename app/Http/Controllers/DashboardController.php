@@ -25,14 +25,16 @@ class DashboardController extends Controller
     }
 
     public function extended_page(DashboardService $Dashboard, Request $r){
+        
+        $dtAssignment = $Dashboard->get_assignment_per_uic();
+
         if($r->type == 'A'){
-            $view = $this->all_mom('A');
+            $view = $this->all_mom('A', $dtAssignment);
         }elseif($r->type == 'O'){
-            $view = $this->open_mom('O');
+            $view = $this->open_mom('O', $dtAssignment);
         }elseif($r->type == 'C'){
-            $view = $this->closed_mom('C');
+            $view = $this->closed_mom('C', $dtAssignment);
         }else{
-            $dtAssignment = $Dashboard->get_assignment_per_uic();
             $view = $this->list_assignment('L', $dtAssignment);
         }
 
@@ -66,7 +68,7 @@ class DashboardController extends Controller
         return $view;
     }
 
-    public function all_mom($status){
+    public function all_mom($status, $dtAssignment){
         $view = view('modules.dashboard.extended_page')
                 ->with([
                     'title' => 'List All MoM',
@@ -74,6 +76,7 @@ class DashboardController extends Controller
                     'status' => $status,
                     'uic_id' => null,
                     'visible' => "unhidden",
+                    'DataAssignment' => $dtAssignment['uic'],
                 ])
                 ->render();
 
@@ -81,7 +84,7 @@ class DashboardController extends Controller
     }
 
 
-    public function open_mom($status){
+    public function open_mom($status, $dtAssignment){
         $view = view('modules.dashboard.extended_page')
                 ->with([
                     'title' => 'List Open MoM',
@@ -89,13 +92,14 @@ class DashboardController extends Controller
                     'status' => $status,
                     'uic_id' => null,
                     'visible' => "unhidden",
+                    'DataAssignment' => $dtAssignment['uic'],
                 ])
                 ->render();
 
         return $view;
     }
 
-    public function closed_mom($status){
+    public function closed_mom($status, $dtAssignment){
         $view = view('modules.dashboard.extended_page')
                 ->with([
                     'title' => 'List Closed MoM',
@@ -103,6 +107,7 @@ class DashboardController extends Controller
                     'status' => $status,
                     'uic_id' => null,
                     'visible' => "unhidden",
+                    'DataAssignment' => $dtAssignment['uic'],
                 ])
                 ->render();
 
