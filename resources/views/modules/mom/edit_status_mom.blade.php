@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('header')
-    MoM Review [Notulen Edit]
+Update Progress MoM [UIC Edit]
 @endsection
 @section('content')
     <div class="row">
@@ -8,13 +8,10 @@
             <div class="card" id="section_divider">
                 <div class="card-header header-elements-inline">
                     <h5 class="card-title">{{ $title }}</h5>
-                </div>
-                
-                <div class="header-elements d-none">
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-link btn-float text-body"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a> 
+                    <div class="header-elements">
+                        <a href="{{ route('mom.print_mom', $DataMoM->mom_id) }}" class="btn btn-primary btn-sm"><i class="icon-file-eye ml-2"></i> Preview MoM</a>
                     </div>
-                </div>
+                </div> 
 
                 <div class="card-body">
                     <form id="form_data">
@@ -46,7 +43,7 @@
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Date</label>
                                                 <div class="form-group form-group-feedback form-group-feedback-right">
-                                                    <input type="text" placeholder="Set Date" class="form-control daterange-single input_mom" name="date" id="date" value="{{ date("m/d/Y", strtotime($DataMoM->mom_date)) }}">
+                                                    <input type="text" placeholder="Set Date" class="form-control date input_mom" name="date" id="date" value="{{ date("d/m/Y", strtotime($DataMoM->mom_date)) }}">
                                                     <div class="form-control-feedback">
                                                         <i class="icon-calendar22 text-muted"></i>
                                                     </div>
@@ -56,27 +53,27 @@
 
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="font-weight-semibold">Time</label>
+                                                <label class="font-weight-semibold">Start</label>
                                                 <div class="form-group">
-                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="time" id="time" value="{{ $DataMoM->mom_time }}">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="mom_start" id="mom_start" value="{{ $DataMoM->mom_start }}">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="font-weight-semibold">Duration</label>
-                                                <input type="number" placeholder="Set Duration" class="form-control input_mom" name="duration" id="duration" min=0 value="{{ $DataMoM->mom_duration }}">
+                                                <label class="font-weight-semibold">End</label>
+                                                <div class="form-group">
+                                                    <input type="time" placeholder="Set Time" class="form-control input_mom" name="mom_end" id="mom_end" value="{{ $DataMoM->mom_end }}">
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-2">
+                                        {{-- <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="font-weight-semibold">Unit</label>
-                                                <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit" value="{{ $DataMoM->mom_unit }}">
+                                                <input type="text" placeholder="Second/Hour" class="form-control input_mom" name="unit" id="unit">
                                             </div>
-                                        </div>
-
+                                        </div> --}}
                                     </div>
 
                                     <div class="row">
@@ -347,7 +344,6 @@
 
         
     }
- 
 
 </script>
 @endsection
